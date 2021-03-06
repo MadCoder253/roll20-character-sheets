@@ -14288,28 +14288,33 @@ visualize what it will look like in chat.
 					<h3>Import Tool [BETA]</h3>
 
 					<p>
-						Initial version is designed for a one time import. Future iterations will allow re-import and adding GURPS Character Sheet (GCS).
+						Current version is designed for a one time import.
 					</p>
 	
-					<h4>GCA Import</h4>
+					<h4>Export Sheet to XML</h4>
 	
+					<div>
+						<strong>GCA</strong>: File > Export ... > <b>Check</b> Export XML File.
+					</div>
+					
+					<div>
+						<strong>GCS</strong>: File > Export To... > Master Library Output Templates > Fantasy Grounds PC... 
+					</div>
+					
+					<h4>Convert XML to JSON</h4>
+
 					<ol>
-						<li>Export your character sheet to an XML file.
-							<ul>
-								<li>File > Export ... > <b>Check</b> Export XML File.</li>
-							</ul>
-						</li>
-						<li>Convert the XML file to json.
+						<li>Use on of these suggested converters:
 							<ul>
 								<li>https://convertxmljson.com/</li>
 								<li>https://jsonformatter.org/xml-to-json</li>
 								<li>Initial testing worked with both sites. <b>Alert</b> if you use a different one make sure it <b>doesn't</b> create fields named <b>__cdata</b></li>
 							</ul>
 						</li>
-						<li>Copy/Past the json data to the text box below.</li>
-						<li>Press the <b>[Import CGA]</b> button</li>
+						<li>Copy/Paste the json data to the text box labeled <b>JSON DATA</b>.</li>
+						<li>Press the <b>[Import GCA]</b> or <b>[Import GCS]</b> button</li>
 						<li>Wait for the process to complete.</li>
-						<li>Review the sheet and notify the Forum of any errors or feature requests.</li>
+						<li>Review the sheet and notify the forum of any errors or feature requests.</li>
 					</ol>
 	
 				</div>
@@ -14332,7 +14337,7 @@ visualize what it will look like in chat.
 							<button type="action" name="act_import_gca" class="btn">Import GCA</button>
 						</div>
 
-						<div style="display: none;">
+						<div class="import-button">
 							<button type="action" name="act_import_gcs" class="btn">Import GCS</button>
 						</div>
 
@@ -30991,6 +30996,389 @@ The attacker may choose to hit the original target or the limb you used to parry
 
 	}
 
+	// close roll modifiers, no updates
+	on("clicked:import_gcs", (event) => {
 
+		setAttrs({"import_message": "Processing... If message doesn't clear, an error occurred."});
+
+		importGCS();
+
+	});
+
+
+	/**
+	 * Import GCS Data
+	 */
+	function importGCS() {
+
+		getAttrs(["json_data", "import_notes"], values => {
+
+			let data = String(values.json_data).trim();
+
+			let importNotes = Boolean(values.import_notes);
+
+			let success = true;
+
+			let message = "";
+
+			let jsonData;
+
+			if (data) {
+
+				try {
+
+					jsonData = JSON.parse(data);
+
+					// check for GCA signature
+					let release = String(jsonData.root._release);
+
+					if (!jsonData.root._release) {
+
+						success = false;
+
+						message = "Invalid GCS Data. _release information is missing";
+
+					}
+
+				} catch (ex) {
+
+					success = false;
+
+					message = "Invalid JSON Data. " + ex.message;
+
+				}
+
+
+			} else {
+
+				success = false;
+
+				message = "Please copy/paste JSON Data into text area.";
+
+			}
+
+			if (success) {
+
+				let importNotes = Boolean(values.import_notes);
+
+				let uniqueKeys = {};
+
+				importCharacterSheetWithGCS(uniqueKeys, jsonData, importNotes);
+
+				// uniqueKeys is passed by reference. Gets updated while reading each repeating table.
+				// getUniqueKeysForSheet(uniqueKeys, () => {
+				//
+				//     importCharacterSheetWithGCA(uniqueKeys, jsonData, importNotes);
+
+				// });
+				
+
+			} else {
+
+				setAttrs({"import_message": message});
+
+			}
+
+		});
+
+	}
+
+
+	/**
+	 * Start processing GCS json data and update character sheet
+	 * 
+	 * @param object  uniqueKeys  Key values pairs for unique key and associated row id. Passed by reference
+	 * @param json    jsonData    GCA json data
+	 * @param boolean importNotes Option to also import notes.
+	 */
+	function importCharacterSheetWithGCS(uniqueKeys, jsonData, importNotes) {
+
+		// keeps track of running totals
+		let runningTotals = {
+			"stun_check_mod": 0,
+			"knockdown_check_mod": 0,
+			"unconscious_check_mod": 0,
+			"death_check_mod": 0,
+			"apply_size_modifier": 0,
+			"import_message": "Import has completed.",
+			"json_data": "",
+			"templates": [],
+			"templateNotes": "",
+			"templateNames": "",
+		};
+
+
+		importGcsNonRepeatingFields(uniqueKeys, jsonData, runningTotals, importNotes, () => {
+
+			// remove the unnecessary properties
+			delete runningTotals.templates;
+			delete runningTotals.templateNames;
+			delete runningTotals.templateNotes;
+
+			// TODO: add callback to delete orphaned records
+			setAttrs(runningTotals);
+
+		});
+	
+	}
+
+	/**
+	 * Update non-repeating fields, then process callback function
+	 *
+	 * @param object   uniqueKeys    Key values pairs for unique idkey and associated row id. Passed by reference
+	 * @param json     jsonData      GCA json data
+	 * @param object   runningTotals An object that keeps track of running totals
+	 * @param boolean  importNotes   Option to also import notes.
+	 * @param function callback      Function to run next
+	 */
+	function importGcsNonRepeatingFields(uniqueKeys, jsonData, runningTotals, importNotes, callback) {
+
+		// make sure we have a valid function
+		callback = callback || noop;
+
+		let totalPoints = Number(jsonData.root.character.pointtotals.totalpoints.__text) || 0;
+
+		let attributes = jsonData.root.character.attributes;
+
+		let [strPts, strMod] = getCharacterPointsModFromGcsAttributes(attributes, "strength");
+
+		let [dexPts, dexMod] = getCharacterPointsModFromGcsAttributes(attributes, "dexterity");
+
+		let [intPts, intMod] = getCharacterPointsModFromGcsAttributes(attributes, "intelligence");
+
+		let [htPts, htMod] = getCharacterPointsModFromGcsAttributes(attributes, "health");
+
+		let [hpPts, hpMod] = getCharacterPointsModFromGcsAttributes(attributes, "hitpoints");
+
+		let [fatPts, fatMod] = getCharacterPointsModFromGcsAttributes(attributes, "fatiguepoints");
+
+		let [perPts, perMod] = getCharacterPointsModFromGcsAttributes(attributes, "perception");
+
+		// TODO: Test traits
+		
+		// let [visionPts, visionMod] = getCharacterPointsModFromGcsAttributes(attributes, "vision");
+		let visionPts = 0;
+		let visionMod = 0;
+		
+		// let [hearPts, hearMod] = getCharacterPointsModFromGcsAttributes(attributes, "hearing");
+		let hearPts = 0;
+		let hearMod = 0;
+		
+		// let [tastePts, tasteMod] = getCharacterPointsModFromGcsAttributes(attributes, "taste");
+		let tastePts = 0;
+		let tasteMod = 0;
+		
+		// let [touchPts, touchMod] = getCharacterPointsModFromGcsAttributes(attributes, "touch");
+		let touchPts = 0;
+		let touchMod = 0;
+		
+		let [willPts, willMod] = getCharacterPointsModFromGcsAttributes(attributes, "will");
+
+		// let [fearPts, fearMod] = getCharacterPointsModFromGcsAttributes(attributes, "fear");
+		let fearPts = 0;
+		let fearMod = 0;
+
+		let [speedPts, speedMod] = getCharacterPointsModFromGcsAttributes(attributes, "basicspeed");
+
+		let [movePts, moveMod] = getCharacterPointsModFromGcsAttributes(attributes, "basicmove");
+
+		let strWeight = jsonData.root.character.traits.weight.__text;
+
+		let arrWeight = strWeight.split(" ");
+
+		let characterWeight = Number(arrWeight[0]) || 0;
+
+		let updates = {
+			fullname:              jsonData.root.character.name.__text,
+			height:                jsonData.root.character.traits.height.__text,
+			weight:                characterWeight,
+			size:                  Number(jsonData.root.character.traits.sizemodifier.__text) || 0,
+			age:                   jsonData.root.character.traits.age.__text,
+			race:                  jsonData.root.character.traits.race.__text || "",
+			total_points:          totalPoints,
+			strength_points:       strPts,
+			strength_mod:		   strMod,
+			dexterity_points:      dexPts,
+			dexterity_mod:		   dexMod,
+			intelligence_points:   intPts,
+			intelligence_mod:      intMod,
+			health_points:         htPts,
+			health_mod:            htMod,
+			hit_points_points:     hpPts,
+			hit_points_mod:		   hpMod,
+			fatigue_points_points: fatPts,
+			fatigue_points_mod:    fatMod,
+			perception_points:     perPts,
+			perception_mod:		   perMod,
+			vision_points:         visionPts,
+			vision_mod:            visionMod,
+			hearing_points:        hearPts,
+			hearing_mod:           hearMod,
+			taste_smell_points:    tastePts,
+			taste_smell_mod:       tasteMod,
+			touch_points:          touchPts,
+			touch_mod:             touchMod,
+			willpower_points:      willPts,
+			willpower_mod:         willMod,
+			fear_check_points:     fearPts,
+			basic_speed_points:    speedPts,
+			basic_speed_mod:       speedMod,
+			basic_move_points:     movePts
+		};
+
+		setAttrs(updates, {silent: false}, callback);
+
+	}
+
+
+	/**
+	 * Get the character points and modifier for an attribute
+	 *
+	 * @param json   attributes JSON Attribute data. Array of elements
+	 * @param string name       Name of the field to get CP for.
+	 *
+	 * @return array [points, modifier]
+	 */
+	 function getCharacterPointsModFromGcsAttributes(attributes, name) {
+
+		let points = 0;
+
+		let modifier = 0;
+
+		let traitLevel = 0;
+
+		let baseLevel = 10;
+
+		if (attributes.hasOwnProperty(name)) {
+
+			traitLevel = Number(attributes[name].__text) || 0;
+
+			points = Number(attributes[`${name}_points`].__text) || 0;
+
+			if (name === "basicspeed") {
+
+				baseLevel = getGcsBaseLevelForSpeed(attributes);
+
+			} else if (name === "basicmove") {
+
+				baseLevel = Math.floor(getGcsBaseLevelForSpeed(attributes));
+
+			}
+
+			modifier = getGcsTraitModifier(traitLevel, points, name, baseLevel);
+			
+		}
+
+
+		return [points, modifier];
+	}
+
+	/**
+	 * calculates basic speed
+	 * speed = (DX + HT) / 4
+	 */ 
+	function getGcsBaseLevelForSpeed(attributes) {
+
+		let dexterity = Number(attributes.dexterity.__text) || 10;
+
+		let health = Number(attributes.health.__text) || 10;
+
+		let speed = (dexterity + health) / 4;
+
+		return speed;
+
+	}
+
+	/**
+	 * Determines the modifier for a trait if the points 
+	 * total doesn't match the final trait level
+	 * 
+	 * @param int    traitLevel Final level of the trait.
+	 * @param int    points     Character points spent on trait
+	 * @param string name       Name of the trait
+	 * @param int    baseLevel  Base starting level of the trait
+	 * 
+	 * @return int
+	 */
+	function getGcsTraitModifier(traitLevel, points, name, baseLevel = 10) {
+
+		let stepLevel = 1;
+
+		let pointsPerLevel = 10;
+
+		let modifierByPoints = 0;
+
+		let modifier = 0;
+
+		switch (name) {
+		
+			case "hitpoints":
+				pointsPerLevel = 2;
+				break;
+
+			case "fatiguepoints":
+			case "perception":
+				pointsPerLevel = 3;
+				break;
+
+			case "basicspeed":
+				pointsPerLevel = 5;
+				stepLevel = .25;
+				break;
+
+			case "will":
+			case "perception":
+			case "basicmove":
+				pointsPerLevel = 5;
+				break;
+
+			case "dexterity":
+			case "intelligence":
+				pointsPerLevel = 20;
+				break;
+
+			case "strength":
+			case "health":
+			default:
+				pointsPerLevel = 10;
+				break;
+		}
+
+		// determine modifier by points
+		// formulat: modByPoints = (points / points per level) * step level
+		// example 1: strength points = 20
+		//            point per level = 10
+		//            step level = 1
+		//            modByPoints = (20 / 10) * 1 = 2
+		// example 2: strength points = -20
+		//            point per level = 10
+		//            step level = 1
+		//            modByPoints = (-20 / 10) * 1 = -2
+		// example 2: basicspeed points = 10
+		//            point per level = 5
+		//            step level = .25
+		//            modByPoints = (10 / 5) * .25 = .5
+		modifierByPoints = (points / pointsPerLevel) * stepLevel;
+
+		// determine the modifier
+		// formula: modifier = (traitLevel - baseLevel) - modByPoints
+		// example 1: strength level = 13
+		//            base level = 10
+		//            strength points = 20
+		//            point per level = 10
+		//            step level = 1
+		//            modByPoints = (20 / 10) * 1 = 2
+		//            modifier = (13 - 10) - 2 = 1
+		// example 1: basicspeed level = 6.50
+		//            base level (DX+HT)/4 = 6
+		//            basicspeed points = 5
+		//            point per level = 5
+		//            step level = .25
+		//            modByPoints = (5 / 5) * .25 = .25
+		//            modifier = (6.5 - 6) - .25 = .25
+		modifier = (traitLevel - baseLevel) - modifierByPoints;
+
+		return modifier;
+	}
 
 </script>
