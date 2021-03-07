@@ -21819,7 +21819,7 @@ visualize what it will look like in chat.
 	/**
 	 * Update the Knockback skill based on selected attribute and/or skill
 	 *
-	 * @param function callBack Optional call back function
+	 * @param function callback Optional call back function
 	 */
 	function updateLinkedKnockbackSkill(callback) {
 
@@ -22121,7 +22121,7 @@ visualize what it will look like in chat.
 	 * @param int      skillMod                  Modifier to skill level
 	 * @param string   defenseType				 Used by active defense to determine skill calculation formula
 	 * @param int      talentLevel				 Talent level is used by active defense to determine skill calculation formula
-	 * @param int      callBack 				 Callback function 
+	 * @param int      callback 				 Callback function 
 	 */
 	function updateLinkWeaponSkillByAttribute(sectionName, skillRowIdFieldName, weaponSkillFieldName, skillMessageFieldName, skillMessageFieldLevel, skillRowIdToggleFieldName, parentFieldName, baseSkillFieldName, rowType, skillMod, defenseType, talentLevel, callback)
 	{
@@ -22332,7 +22332,7 @@ visualize what it will look like in chat.
 	 * @param string   repeatingTableToUse Name of table that contains the row id
 	 * @param string   skillRowId          The Row that has the information we need for name and skill level to use
 	 * @param string   rowType             Type of knockback defense
-	 * @param function callBack            An optional call back function  
+	 * @param function callback            An optional call back function  
 	 */
 	function updateLinkedKnockbackSkillByTable(repeatingTableToUse, skillRowId, rowType, callback)
 	{
@@ -31110,14 +31110,18 @@ The attacker may choose to hit the original target or the limb you used to parry
 
 		importGcsNonRepeatingFields(uniqueKeys, jsonData, runningTotals, importNotes, () => {
 
-			// remove the unnecessary properties
-			delete runningTotals.templates;
-			delete runningTotals.templateNames;
-			delete runningTotals.templateNotes;
+			importGcsTraits(uniqueKeys, jsonData, runningTotals, importNotes, () => {
 
-			// TODO: add callback to delete orphaned records
-			setAttrs(runningTotals);
+				// remove the unnecessary properties
+				delete runningTotals.templates;
+				delete runningTotals.templateNames;
+				delete runningTotals.templateNotes;
 
+				// TODO: add callback to delete orphaned records
+				setAttrs(runningTotals);
+
+			});
+			
 		});
 	
 	}
@@ -31195,6 +31199,8 @@ The attacker may choose to hit the original target or the limb you used to parry
 			size:                  Number(jsonData.root.character.traits.sizemodifier.__text) || 0,
 			age:                   jsonData.root.character.traits.age.__text,
 			race:                  jsonData.root.character.traits.race.__text || "",
+			general_appearance:	   jsonData.root.character.traits.appearance.__text || "",
+			tl:                    jsonData.root.character.traits.tl.__text || "",
 			total_points:          totalPoints,
 			strength_points:       strPts,
 			strength_mod:		   strMod,
@@ -31230,6 +31236,172 @@ The attacker may choose to hit the original target or the limb you used to parry
 
 	}
 
+	/**
+	 * Loops advantages and traits
+	 * TODO: Check to see if trait already exists, then update
+	 * 
+	 * @param object   uniqueKeys    Key values pairs for unique idkey and associated row id. Passed by reference
+	 * @param json     jsonData      Json DATA from GCS file
+	 * @param object   runningTotals An object that keeps track of running totals. NOTE: passed by reference
+	 * @param boolean  importNotes   Option to also import notes.
+	 * @param function callback      A function to run after updating is complete
+	 */
+	function importGcsTraits(uniqueKeys, jsonData, runningTotals, importNotes, callback) {
+
+		// make sure we have a valid function
+		callback = callback || noop;
+
+		// rows is passed by reference
+		let rows = {};
+
+		let saveRows = false;
+
+		let advantages = jsonData.root.character.traits.adslist;
+
+		let disadvantages = jsonData.root.character.traits.disadslist;
+
+		let cultures = jsonData.root.character.traits.culturalfamiliaritylist;
+
+		let languages = jsonData.root.character.traits.languagelist;
+
+		if (advantages) {
+
+			// loop through each advantage
+			for (const idkey in advantages) {
+
+				if (advantages.hasOwnProperty(idkey)) {
+
+					saveRows = true;
+
+					let advantage = advantages[idkey];
+
+					let name = advantage.name.__text || "";
+
+					getGcsTraitRow("traits", uniqueKeys, idkey, rows, name, advantage, runningTotals, importNotes);
+
+				}
+
+			}
+
+		}
+
+		if (disadvantages) {
+
+			// loop through each advantage
+			for (const idkey in disadvantages) {
+
+				if (disadvantages.hasOwnProperty(idkey)) {
+
+					saveRows = true;
+
+					let disadvantage = disadvantages[idkey];
+
+					let name = disadvantage.name.__text || "";
+
+					getGcsTraitRow("disadvantages", uniqueKeys, idkey, rows, name, disadvantage, runningTotals, importNotes);
+
+				}
+
+			}
+
+		}
+
+		if (cultures) {
+
+			// loop through each advantage
+			for (const idkey in cultures) {
+
+				if (cultures.hasOwnProperty(idkey)) {
+
+					saveRows = true;
+
+					let culture = cultures[idkey];
+
+					let name = culture.name.__text || "";
+
+					getGcsTraitRow("cultures", uniqueKeys, idkey, rows, name, culture, runningTotals, importNotes);
+
+				}
+
+			}
+
+		}
+
+		if (languages) {
+
+			saveRows = true;
+
+			addGcsLanguagesToRows(uniqueKeys, languages, rows);
+
+		}
+		
+		if (saveRows) {
+			
+			setAttrs(rows, {silent: false}, callback);
+
+		} else {
+
+			callback();
+
+		}
+		
+	}
+
+	/**
+	 * Updates the rows value with an row for trait (advantages, disadvantages)
+	 * 
+	 * @param string  type    		trait type to update based on repeating section name: traits, disadvantages
+	 * @param object  uniqueKeys    Key values pairs for unique idkey and associated row id. Passed by reference
+	 * @param string  idkey         Unique key associated with the trait
+	 * @param object  rows          Object of properties to update/add rows. passed by Ref
+	 * @param string  name          Name of the advantage
+	 * @param json    trait     	JSON data for the trait: advantage, disadvantage
+	 * @param object  runningTotals An object that keeps track of running totals. NOTE: passed by reference
+	 * @param boolean importNotes   Option to also import notes.
+	 */
+	function getGcsTraitRow(type, uniqueKeys, idkey, rows, name, trait, runningTotals, importNotes) {
+
+		let rowId = generateOrGetRowId(uniqueKeys, idkey);
+
+		let baseFieldName = `repeating_${type}_${rowId}`;
+
+		let fullName = name;
+
+		let notes = "";
+
+		let pageRef = "";
+
+		rows[`${baseFieldName}_idkey`] = idkey;
+
+		rows[`${baseFieldName}_name`] = fullName;
+
+		if (trait.points.__text) {
+			rows[`${baseFieldName}_points`] = Number(trait.points.__text);
+		} else {
+			rows[`${baseFieldName}_points`] = 0;
+		}
+
+		if (trait.text && trait.text.p) {
+
+			notes = trait.text.p[0] || "";
+
+			pageRef = trait.text.p[1] || "";
+
+		}
+
+		if (pageRef) {
+
+			// be sure to remove 'Page Ref: '
+			pageRef = pageRef.replace("Page Ref: ", "");
+
+			rows[`${baseFieldName}_ref`] = pageRef;
+		}
+
+		if (importNotes && notes) {
+			rows[`${baseFieldName}_notes`] = notes;
+		}
+
+	}
 
 	/**
 	 * Get the character points and modifier for an attribute
@@ -31379,6 +31551,136 @@ The attacker may choose to hit the original target or the limb you used to parry
 		modifier = (traitLevel - baseLevel) - modifierByPoints;
 
 		return modifier;
+	}
+
+	/**
+	 * Adds any languages to the GCS row data
+	 * Updates the rows parameter, which is passed by reference
+	 * 
+	 * @param object uniqueKeys A list of unique keys already in use. To be implemented
+	 * @param json   languages A list of GCS languages
+	 * @param object rows      A json object of Roll20 fields to update. NOTE: Passed by reference
+	 */
+	function addGcsLanguagesToRows(uniqueKeys, languages, rows) {
+
+		// loop through each advantage
+		for (const idkey in languages) {
+
+			if (languages.hasOwnProperty(idkey)) {
+
+				let language = languages[idkey];
+
+				let name = language.name.__text || "";
+
+				let points = Number(language.points.__text) || 0;
+
+				let spoken = language.spoken.__text || "";
+
+				let written = language.written.__text || "";
+
+				let spokenLevel = 0;
+
+				let writtenLevel = 0;
+
+				// check for native language
+				if (points === 0 && spoken === "Native" && written === "Native") {
+
+					spokenLevel = getLanguageValueFromGcs(spoken, false);
+
+					writtenLevel = getLanguageValueFromGcs(written, false);
+
+					rows["name_native_language"] = name;
+
+					rows["native_language_idkey"] = idkey;
+					
+					rows["native_language_spoken"] = spokenLevel;
+
+					rows["native_language_written"] = writtenLevel;
+
+				} else {
+
+					let rowId = generateOrGetRowId(uniqueKeys, idkey);
+
+					let baseFieldName = `repeating_languages_${rowId}`;
+					
+					spokenLevel = getLanguageValueFromGcs(spoken, true);
+
+					writtenLevel = getLanguageValueFromGcs(written, true);
+
+					rows[`${baseFieldName}_idkey`] = idkey;
+
+					rows[`${baseFieldName}_name`] = name;
+
+					rows[`${baseFieldName}_spoken`] = spokenLevel;
+
+					rows[`${baseFieldName}_written`] = writtenLevel;
+
+				}
+
+			}
+
+		}	
+
+	}
+
+	/**
+	 * Determines Roll20 language level for GCS language
+	 * 
+	 * @param string confidence  Confidence level of language
+	 * @param bool   isRepeating Language being added to repeating table?
+	 * 
+	 * @return int Points cost
+	 */
+	function getLanguageValueFromGcs(confidence, isRepeating) {
+
+		let level = 0;
+
+		confidence = confidence.toLowerCase();
+
+		if (isRepeating) {
+
+			switch (confidence) {
+				case "native":
+					level = 3;
+					break;
+			
+				case "accented":
+					level = 2;
+					break;
+			
+				case "broken":
+					level = 1;
+					break;
+			
+				default:
+					level = 0;
+					break;
+			}
+
+		} else {
+
+			switch (confidence) {
+				case "native":
+					level = 0;
+					break;
+			
+				case "accented":
+					level = -1;
+					break;
+			
+				case "broken":
+					level = -1;
+					break;
+			
+				default:
+					level = -3;
+					break;
+			}
+
+		}
+		
+		return level;
+
 	}
 
 </script>
