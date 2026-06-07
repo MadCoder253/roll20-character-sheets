@@ -4380,10 +4380,10 @@
 				<!-- current version notes: 2.25.0 -->
 				<ul>
 					<li><b>NEW:</b> GCA5 import. Added new field values for Home World, Gravity, Birth Date, Birth Place, Gender, Handedness, Build, Hair Color, Eye Color, and Family.</li>
-					<li><b>NEW:</b> GCA5 import. Added weapon weight to the melee weapons table.</li>
-					<li><b>REVISED:</b> Set the default melee weapon weight to 0.</li>
+					<li><b>NEW:</b> GCA5 import. Added weapon weight to the combat melee weapons table.</li>
+					<li><b>REVISED:</b> Set the default combat melee weapon weight to 0.</li>
 					<li><b>REVISED:</b> Updated GCS documentation for Roll20.json file and updated links for the GCS Template Exporter.md file.</li>
-					<li><b>GCA5 - Export to Roll20:</b> Waiting on approval by Armin to add the updates to GCA5.</li>
+					<li><b>GCA5 - Export to Roll20:</b> Waiting on approval by Armin. Once approved, the updates will be added to GCA5.</li>
 				</ul>
 				
 				<label class="check"><input type="checkbox" name="attr_announcements_hide" value="1">&nbsp;<b><span data-i18n="hide-until-next-update">Hide until next update</span></b></label>
@@ -53357,7 +53357,7 @@ B378
 			playername: character.Playername,
 			nickname: character.Nickname,
 			race: character.Race,
-			gender: character.Gender,
+			gender: character?.Gender ?? "",
 			size: parseInt(character.Size),
 			apply_size_modifier: applySizeModifier,
 			reactions: character.Reactions,
@@ -53373,20 +53373,20 @@ B378
 			height: character.Height,
 			weight: parseFloat(character.Weight),
 			appearance: parseInt(character.Appearance),
-			general_appearance: character.GeneralAppearance,
-			build: character.Build,
-			hair: character.HairColor,
-			eyes: character.EyeColor,
-			birth_date: character.BirthDate,
-			birth_place: character.BirthPlace,
-			homeworld: character.HomeWorld,
-			homeworld_gravity_rating: character.Gravity,
-			hand: character.Handedness,
-			family: character.Family,
-			strength_points: parseInt(character.StrengthPoints),
-			dexterity_points: parseInt(character.DexterityPoints),
-			intelligence_points: parseInt(character.IntelligencePoints),
-			health_points: parseInt(character.HealthPoints)
+			general_appearance: character?.GeneralAppearance ?? "",
+			build: character?.Build ?? "",
+			hair: character?.HairColor ?? "",
+			eyes: character?.EyeColor ?? "",
+			birth_date: character?.BirthDate ?? "",
+			birth_place: character?.BirthPlace ?? "",
+			homeworld: character?.HomeWorld ?? "",
+			homeworld_gravity_rating: character?.Gravity ?? "",
+			hand: character?.Handedness ?? "",
+			family: character?.Family ?? "",
+			strength_points: parseInt(character?.StrengthPoints ?? 0),
+			dexterity_points: parseInt(character?.DexterityPoints ?? 0),
+			intelligence_points: parseInt(character?.IntelligencePoints ?? 0),
+			health_points: parseInt(character?.HealthPoints ?? 0)
 		};
 
 		const baseAttributeMods = {
@@ -53910,7 +53910,7 @@ B378
 
 			attributes[`${baseFieldName}_notes`] = trait.Notes;
 
-			attributes[`${baseFieldName}_weapon_weight`] = trait.Weight;
+			attributes[`${baseFieldName}_weapon_weight`] = trait?.Weight ?? 0;
 
 			await setAttrsAsync(attributes);
 
