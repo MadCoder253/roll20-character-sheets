@@ -4379,7 +4379,9 @@
 
 				<!-- current version notes: 2.25.0 -->
 				<ul>
-					<li><b>NEW:</b> Added new GCA5 Field value imports for Home World, Gravity, Birth Date, Birth Place, Gender, Handedness, Build, Hair Color, Eye Color, and Family.</li>
+					<li><b>NEW:</b> GCA5 import. Added new field values for Home World, Gravity, Birth Date, Birth Place, Gender, Handedness, Build, Hair Color, Eye Color, and Family.</li>
+					<li><b>NEW:</b> GCA5 import. Added weapon weight to the melee weapons table.</li>
+					<li><b>REVISED:</b> Set the default melee weapon weight to 0.</li>
 					<li><b>REVISED:</b> Updated GCS documentation for Roll20.json file and updated links for the GCS Template Exporter.md file.</li>
 				</ul>
 				
@@ -13679,7 +13681,7 @@ visualize what it will look like in chat.
 											</span>	
 										</div>
 										<div class="cell">
-											<input type="number" class="inline" name="attr_weapon_weight" value="3" title="Macro: @{NAME|repeating_melee_$[row #]_weapon_weight}" />
+											<input type="number" class="inline" name="attr_weapon_weight" value="0" title="Macro: @{NAME|repeating_melee_$[row #]_weapon_weight}" />
 										</div>
 									</div> <!-- .row -->
 
@@ -53903,6 +53905,8 @@ B378
 			attributes[`${baseFieldName}_armor_divisor`] = Number(trait.ArmorDivisor);
 
 			attributes[`${baseFieldName}_notes`] = trait.Notes;
+
+			attributes[`${baseFieldName}_weapon_weight`] = trait.Weight;
 
 			await setAttrsAsync(attributes);
 
