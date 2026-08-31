@@ -4399,6 +4399,7 @@
 				<div>
 					<b>NEW:</b> Added Demolition calculations based on High-tech rules.<br />
 					<b>FIX:</b> Update style for resync button widths.<br />
+					<b>FIX:</b> Newly added records for skills, spells, ranged, melee, defense, and techniques did not display the correct macro names. Added fix to update Macro names when expanding the tool box.<br />
 				</div>
 
 				<div style="margin: 10px 0 10px 0;">
@@ -28141,6 +28142,7 @@ For more information, see B409.
 			<div>
 				<b>NEW:</b> Added Demolition calculations based on High-tech rules.<br />
 				<b>FIX:</b> Update style for resync button widths.<br />
+				<b>FIX:</b> Newly added records for skills, spells, ranged, melee, defense, and techniques did not display the correct macro names. Added fix to update Macro names when expanding the tool box.<br />
 			</div>
 			
 			<h4>Version: 2.30.1</h4>
@@ -36911,37 +36913,26 @@ See notes for the weapon.
 
 	}
 	
-	// if toggle is clicked, update the display id.
+	// if toggle is clicked, update the display id and macro names (needed when a new row is added)
 	// event = {sourceAttribute, sourceType, triggerName, sourceAttribute, previousValue, newValue}
-	on("change:repeating_spells:spell_toggle_notes change:repeating_skills:skill_toggle_notes change:repeating_techniquesrevised:technique_revised_toggle_notes change:repeating_melee:melee_toggle_notes change:repeating_item:item_toggle_notes", event => {
+	on("change:repeating_spells:spell_toggle_notes change:repeating_skills:skill_toggle_notes change:repeating_techniquesrevised:technique_revised_toggle_notes change:repeating_melee:melee_toggle_notes change:repeating_ranged:ranged_toggle_notes change:repeating_item:item_toggle_notes change:repeating_defense:defense_toggle_notes", event => {
 	
 		if (event.triggerName) {
 
 			let row = event.triggerName;
 	
 			let [section, rowId, fieldName] = getSectionRowIdFromChangeEvent(event);
-		
-			switch (section) {
-				case "repeating_spells":
-					updateRowIdDisplay(section, rowId);
-					break;
-		
-				case "repeating_skills":
-					updateRowIdDisplay(section, rowId);
-					break;
-		
-				case "repeating_techniquesrevised":
-					updateRowIdDisplay(section, rowId);
-					break;
-		
-				case "repeating_melee":
-					updateRowIdDisplay(section, rowId);
-					break;
 
-				case "repeating_item":
-					updateRowIdDisplay(section, rowId);
-					break;
+			if (section === "repeating_defense" || section === "repeating_ranged") {
+				updateMacroNames(section, rowId);
+				return;
 			}
+
+			const callback = () => {
+				updateMacroNames(section, rowId);
+			};
+
+			updateRowIdDisplay(section, rowId, callback);
 		}
 		
 	});
@@ -36967,6 +36958,37 @@ See notes for the weapon.
 		// update the field values
 		setAttrs(items, { silent: true }, callback);
 	
+	}
+
+	function updateMacroNames(section, rowId, callback = noop) {
+		
+		// get all the macro names
+		let fields = [
+			"custom_skill_macro_one_name",
+			"custom_skill_macro_two_name",
+			"custom_skill_macro_three_name",
+			"custom_skill_macro_four_name",
+			"custom_skill_macro_five_name",
+			"custom_skill_macro_six_name"
+		];
+
+		getAttrs(fields, function(values) {
+			
+			// Update the macro names based on the retrieved values
+			// for the section and rowid
+			let keyValues = {};
+			
+			keyValues[`${section}_${rowId}_macro_one_name`] = values["custom_skill_macro_one_name"];
+			keyValues[`${section}_${rowId}_macro_two_name`] = values["custom_skill_macro_two_name"];
+			keyValues[`${section}_${rowId}_macro_three_name`] = values["custom_skill_macro_three_name"];
+			keyValues[`${section}_${rowId}_macro_four_name`] = values["custom_skill_macro_four_name"];
+			keyValues[`${section}_${rowId}_macro_five_name`] = values["custom_skill_macro_five_name"];
+			keyValues[`${section}_${rowId}_macro_six_name`] = values["custom_skill_macro_six_name"];
+
+			setAttrs(keyValues, { silent: true }, callback);
+
+		});
+
 	}
 	
 	// Update the total cost of Techniques
