@@ -4270,6 +4270,13 @@ button.sheet-positive-action {
     background: var(--highlight-text);
     border-radius: 3px;
     font-weight: bold;
+}
+
+.sheet-reset button.sheet-reset.sheet-small-width {
+    width: 60px;
+}
+
+.sheet-reset button.sheet-reset.sheet-medium-width {
     width: 135px;
 }
 
