@@ -30868,6 +30868,15 @@ For more information, see B409.
 				<div class="option-column">
 				
 					<div class="option-container collision-falling-options">
+
+						<div>
+							<button type="action" name="act_damage_notes_reset" class="reset" style="width: 130px;">
+								<span data-i18n="reset-damage-notes-button-label">Reset Damage Notes</span>
+							</button>
+							<br />
+							<span data-i18n="damage-notes-button-description">If you modified a note, you will not see the most recent rule updates. Press the button to get the recent rules. <b>NOTE:</b> this will replace any notes you made.</span>
+						</div>
+
 						<h4>
 							<span data-i18n="falling-damage-notes-label">Falling Damage Notes B431</span>
 						</h4>
@@ -30905,7 +30914,18 @@ For more information, see B409.
 * If the explosion has an armor divisor, do NOT apply to "collateral damage.
 * Explosions are considered incendiary. see Catching Fire B434.
 * Can use Dodge and Drop (B377) to avoid collateral damage.
-* See B414</textarea>
+* See B414
+
+High-Tech 181-182
+HT Roll. 
+-1 per 5 points of penetrating damage.
++1 earplugs
++5 Protected Hearing
+Fail, stunned roll vs HT per turn to recover.
+Fail, tinnitus for 20-HT minutes. (Minimum 1 minute). Hearing penalty equal to margin of failure
+Critical Fail, deafness for 20-HT minutes. (Minimum 1 minute)
+Afterwards, roll HT per turn to recover from tinnitus or deafness.
+Critical Failure on a recovery roll results in permanent tinnitus or deafness.</textarea>
 					</div><!-- end option-container -->
 				
 					<div class="option-container collision-falling-options">
@@ -44644,6 +44664,52 @@ See notes for the weapon.
 		const deathCheckCriticalFailureNotes = `You died! When a PC or important NPC is killed in any but the most sudden and thorough fashion, the GM should allow a "dying action." If this is a final blow to the enemy, it should take no more than a turn. (B423)
 		**On a Failure of only 1 or 2:** you don't drop dead, but suffer a "mortal wound."" This is a wound so severe that your internal injuries might kill you even after you stop bleeding. (See Mortal Wounds B423)`;
 
+		/** DAMAGE NOTES **/
+		const fallingDamageNotes = `**Immovable Objects:** Inflict damage on both objects. If immovable is breakable, moving object can't inflict/take more damage than immovable's (HP + DR). 
+
+**Immovable Soft Object:** Add DR 2 (feather bed) to DR 10 (safety net).
+
+**Striking Water:** Swimming or Vehicle Skill Roll minus Speed Penalty from Size and Speed/Range Table B550 to avoid all damage.
+
+**Armor:** ALL armor counts as flexible armor. If DR blocks all damage, moving object suffers 1 HP per 5 points of falling damage.
+
+**Falling Damage**: If using hit locations, roll randomly. If extremity/limb, do not ignore injury in excess of crippling damage. Instead, subtract the full amount from HP! If crippled limb, roll 1d. On 5-6, all limbs of that type are crippled, although there is no extra injury.`;
+
+		const collisionDamageNotes = `**Immovable Objects:** Inflict damage on both objects. If immovable is breakable, moving object can't inflict/take more damage than immovable's (HP + DR). 
+
+**Immovable Soft Object:** Add DR 2 (feather bed) to DR 10 (safety net).
+
+**Striking Water:** Swimming or Vehicle Skill Roll minus Speed Penalty from Size and Speed/Range Table B550 to avoid all damage.
+
+**Armor:** ALL armor counts as flexible armor. If DR blocks all damage, moving object suffers 1 HP per 5 points of falling damage.`;
+
+		const demolitionDamageNotes = `Explosion damage. Targets struck directly takes listed damage. Apply "collateral damage" of Damage / (3 x distance from center of blast) rounded down.
+
+* Use torso armor to determine DR against explosion.
+* If the explosion has an armor divisor, do NOT apply to "collateral damage.
+* Explosions are considered incendiary. see Catching Fire B434.
+* Can use Dodge and Drop (B377) to avoid collateral damage.
+* See B414
+
+High-Tech 181-182
+HT Roll. 
+-1 per 5 points of penetrating damage.
++1 earplugs
++5 Protected Hearing
+Fail, stunned roll vs HT per turn to recover.
+Fail, tinnitus for 20-HT minutes. (Minimum 1 minute). Hearing penalty equal to margin of failure
+Critical Fail, deafness for 20-HT minutes. (Minimum 1 minute)
+Afterwards, roll HT per turn to recover from tinnitus or deafness.
+Critical Failure on a recovery roll results in permanent tinnitus or deafness.`;
+		
+		const fragmentationSkillNotes = `For every three points by which the attack roll succeeds, one additional fragment strikes the target.
+
+The only active defense against fragments is to dive away from the explosion that produced them; see Dodge and Drop and Diving for Cober (B377).
+
+For each hit, roll hit location randomly. If that location is behind cover, the fragment hits cover.`;
+		
+		const fragmentationDamageNotes = `Fragmentation damage is cutting. Note that if an explosive attack has an armor divisor, this does not apply to the fragments it produces.`;
+
 	    const notes = [
 			{ code: "dodge_success_notes", value: dodgeSuccessNotes },
 			{ code: "dodge_critical_success_notes", value: dodgeCriticalSuccessNotes },
@@ -44699,7 +44765,12 @@ See notes for the weapon.
 			{ code: "unconscious_check_success_notes", value: unconsciousCheckSuccessNotes },
 			{ code: "unconscious_check_fail_notes", value: unconsciousCheckFailNotes },
 			{ code: "unconscious_check_critical_success_notes", value: unconsciousCheckCriticalSuccessNotes }, 
-			{ code: "unconscious_check_critical_failure_notes", value: unconsciousCheckCriticalFailureNotes }
+			{ code: "unconscious_check_critical_failure_notes", value: unconsciousCheckCriticalFailureNotes },
+			{ code: "falling_damage_notes", value: fallingDamageNotes },
+			{ code: "collision_damage_notes", value: collisionDamageNotes },
+			{ code: "demolition_damage_notes", value: demolitionDamageNotes },
+			{ code: "fragmentation_skill_notes", value: fragmentationSkillNotes },
+			{ code: "fragmentation_damage_notes", value: fragmentationDamageNotes }
 		];
 	
 		return notes;
@@ -53062,6 +53133,38 @@ See notes for the weapon.
 			spell_critical_success_notes: spellCriticalSuccessNotes,
 			spell_fail_notes: spellFailNotes,
 			spell_critical_failure_notes: spellCriticalFailureNotes
+		}
+
+		setAttrs(notesToUpdate);
+		
+	}
+
+	// reset notes for damage descriptions
+	// when button is clicked, show the updates tab
+	on("clicked:damage_notes_reset", event => {
+
+		resetDamageRollNotes();
+
+	});
+
+	const resetDamageRollNotes = () => {
+
+		const fallingDamageNotes = getNotesByCode("falling_damage_notes");
+
+		const collisionDamageNotes = getNotesByCode("collision_damage_notes");
+
+		const demolitionDamageNotes = getNotesByCode("demolition_damage_notes");
+
+		const fragmentationSkillNotes = getNotesByCode("fragmentation_skill_notes");
+
+		const fragmentationDamageNotes = getNotesByCode("fragmentation_damage_notes");
+
+		const notesToUpdate = {
+			falling_damage_notes: fallingDamageNotes,
+			collision_damage_notes: collisionDamageNotes,
+			demolition_damage_notes: demolitionDamageNotes,
+			fragmentation_skill_notes: fragmentationSkillNotes,
+			fragmentation_damage_notes: fragmentationDamageNotes
 		}
 
 		setAttrs(notesToUpdate);
