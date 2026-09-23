@@ -1,0 +1,391 @@
+/* -- MISC TAB -- */
+
+/* general info */
+.sheet-general-bio { 
+    width: 412px; 
+}
+
+.sheet-general-bio .sheet-header {
+    background: var(--header-bg);
+    margin-bottom: 5px;
+}
+
+.sheet-general-bio .sheet-header .sheet-col0 { 
+    width: calc(100%);
+    text-align: center;
+}
+
+span.sheet-emphatic {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.sheet-general-bio .sheet-row .sheet-col-half {
+    width: calc(100% - 386px);
+} 
+
+.sheet-general-bio .sheet-row .sheet-col-apply-size-modifier {
+    width: 50px;
+} 
+
+.sheet-general-bio .sheet-row .sheet-col-input {
+    width: 25px;
+} 
+
+.sheet-general-bio .sheet-row .sheet-col-input input[type="checkbox"] {
+    opacity: 1;
+} 
+
+.sheet-general-bio .sheet-row .sheet-col0 { 
+    width: 80px; 
+}
+
+.sheet-general-bio .sheet-row .sheet-col-label { 
+    width: 50px; 
+}
+
+.sheet-general-bio .sheet-row .sheet-col-main-hand { 
+    width: 63px; 
+}
+
+.sheet-general-bio .sheet-row .sheet-col1 { 
+    width: calc(100% - 85px); 
+}
+
+.sheet-general-bio .sheet-row .sheet-col2 { 
+    width: 200px; 
+}
+
+.sheet-general-bio .sheet-row input {
+    text-align: left;
+}
+
+.sheet-general-bio .sheet-row-textarea-reactions {
+    height: 150px;
+    margin-top: 4px;
+}
+
+.sheet-general-bio .sheet-row-textarea-reactions .sheet-cell {
+    height: 140px;    
+}
+
+.sheet-general-bio .sheet-row-textarea-reactions textarea {
+    height: 136px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+/* bio description */
+.sheet-bio-description { 
+    width: 412px; 
+}
+
+.sheet-bio-description .sheet-header,
+.sheet-encumberance .sheet-header {
+    background: var(--header-bg);
+    margin-bottom: 5px;
+}
+
+.sheet-bio-description .sheet-header .sheet-col0 { 
+    width: calc(100%);
+    text-align: center;
+}
+
+.sheet-bio-description .sheet-row .sheet-col0 { 
+    width: 80px; 
+}
+
+.sheet-bio-description .sheet-row .sheet-col1 { 
+    width: calc(100% - 85px); 
+}
+
+.sheet-bio-description .sheet-row .sheet-col-half {
+    width: calc(100% - 294px);
+} 
+
+.sheet-bio-description .sheet-row .sheet-col-main-hand { 
+    width: 63px; 
+}
+
+.sheet-bio-description .sheet-row .sheet-col-input { 
+    width: 30px; 
+}
+
+.sheet-bio-description .sheet-row .sheet-col-small { 
+    width: 44px; 
+}
+
+.sheet-bio-description .sheet-row .sheet-col-height { 
+    width: 85px;
+}
+
+.sheet-bio-description .sheet-row .sheet-col-med-small { 
+    width: 59px;
+}
+
+.sheet-bio-description .sheet-row .sheet-col-med { 
+    width: 90px; 
+}
+
+.sheet-bio-description .sheet-row .sheet-col-large { 
+    width: 120px; 
+}
+
+.sheet-bio-description .sheet-row .sheet-col2 { 
+    width: 200px; 
+}
+
+.sheet-bio-description .sheet-row input {
+    text-align: left;
+}
+
+.sheet-bio-description .sheet-row-textarea {
+    height: 112px;
+    margin-top: 4px;
+}
+
+.sheet-bio-description .sheet-row-textarea .sheet-cell {
+    height: 112px;
+}
+
+.sheet-bio-description .sheet-row-textarea textarea {
+    height: 83px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+.sheet-bio-description .sheet-row-textarea-features {
+    margin-bottom: 4px;
+}
+
+.sheet-bio-description .sheet-row-textarea-features,
+.sheet-bio-description .sheet-row-textarea-features .sheet-cell {
+    height: 80px;
+}
+
+.sheet-bio-description .sheet-row-textarea-features textarea {
+    height: 50px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+.sheet-bio-description input[name="attr_use_metric"][type="hidden"][value="1"] ~ .sheet-pounds {
+    display: none;
+}
+
+.sheet-bio-description input[name="attr_use_metric"][type="hidden"][value="0"] ~ .sheet-kilagrams {
+    display: none;
+}
+
+
+/* Background Information */
+
+.sheet-background-info { 
+    width: 412px; 
+}
+
+.sheet-background-info .sheet-header {
+    background: var(--header-bg);
+    margin-bottom: 5px;
+}
+
+.sheet-background-info .sheet-header .sheet-col0 { 
+    width: calc(100%);
+    text-align: center;
+}
+
+.sheet-background-info .sheet-row .sheet-col0 { 
+    width: 85px;
+}
+
+.sheet-background-info .sheet-row .sheet-col1 { 
+    width: calc(100% - 88px); 
+}
+
+.sheet-background-info .sheet-row .sheet-col-half {
+    width: calc(100% - 294px);
+} 
+
+.sheet-background-info .sheet-row .sheet-col-main-hand { 
+    width: 63px; 
+}
+
+.sheet-background-info .sheet-row .sheet-col-input { 
+    width: 30px; 
+}
+
+.sheet-background-info .sheet-row .sheet-col-small { 
+    width: 44px; 
+}
+
+.sheet-background-info .sheet-row .sheet-col-height { 
+    width: 80px;
+}
+
+.sheet-background-info .sheet-row .sheet-col-med { 
+    width: 90px; 
+}
+
+.sheet-background-info .sheet-row .sheet-col2 { 
+    width: 200px; 
+}
+
+.sheet-background-info .sheet-row input {
+    text-align: left;
+}
+
+.sheet-background-info .sheet-row-textarea {
+    height: 112px;
+    margin-top: 4px;
+}
+
+.sheet-background-info .sheet-row-textarea .sheet-cell {
+    height: 112px;
+}
+
+.sheet-background-info .sheet-row-textarea textarea {
+    height: 121px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+.sheet-background-info .sheet-row-textarea-family {
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+.sheet-background-info .sheet-row-textarea-family,
+.sheet-background-info .sheet-row-textarea-family .sheet-cell {
+    height: 128px;
+    padding-right: 5px;
+}
+
+.sheet-background-info .sheet-row-textarea-family textarea {
+    height: 122px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+/* Misc Notes */
+
+.sheet-misc-notes { 
+    width: 412px;
+}
+
+.sheet-misc-notes .sheet-header {
+    background: var(--header-bg);
+    margin-bottom: 5px;
+}
+
+.sheet-misc-notes .sheet-header .sheet-col0 { 
+    width: calc(100%);
+    text-align: center;
+}
+
+.sheet-misc-notes .sheet-row .sheet-col0 { 
+    width: calc(100%);
+}
+
+.sheet-misc-notes .sheet-row-textarea {
+    margin-top: 4px;
+}
+
+.sheet-misc-notes .sheet-row-textarea .sheet-cell {
+    height: 326px;
+    padding: 4px 8px 4px 4px;
+}
+
+.sheet-misc-notes .sheet-row-textarea textarea {
+    height: 316px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+/* training Notes */
+
+.sheet-training-notes { 
+    width: 100%;
+}
+
+.sheet-training-notes .sheet-header {
+    background: var(--header-bg);
+    margin-bottom: 5px;
+}
+
+.sheet-training-notes .sheet-header .sheet-col0 { 
+    width: calc(100%);
+    text-align: center;
+}
+
+.sheet-training-notes .sheet-row .sheet-col0 { 
+    width: calc(100%);
+}
+
+.sheet-training-notes .sheet-row-textarea {
+    margin-top: 4px;
+}
+
+.sheet-training-notes .sheet-row-textarea .sheet-cell {
+    height: 259px;
+    padding: 4px 8px 4px 4px;
+}
+
+.sheet-training-notes .sheet-row-textarea textarea {
+    height: 245px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+
+/* Reactions Notes */
+
+.sheet-reaction-notes { 
+    width: 100%;
+}
+
+.sheet-reaction-notes .sheet-header {
+    background: var(--header-bg);
+    margin-bottom: 5px;
+}
+
+.sheet-reaction-notes .sheet-header .sheet-col0 { 
+    width: calc(100%);
+    text-align: center;
+}
+
+.sheet-reaction-notes .sheet-row .sheet-col0 { 
+    width: calc(100%);
+}
+
+.sheet-reaction-notes .sheet-row-textarea {
+    margin-top: 4px;
+}
+
+.sheet-reaction-notes .sheet-row-textarea .sheet-cell {
+    height: 259px;
+    padding: 4px 8px 4px 4px;
+}
+
+.sheet-reaction-notes .sheet-row-textarea textarea {
+    height: 245px;
+    margin: 0;
+    padding: 2px 0 2px 2px;
+}
+
+/* -- repeating controls -- */
+.repcontrol {
+    margin-top: 4px;
+}
+
+.btn.repcontrol_move {
+    line-height: 12px;
+    padding: 4px 7px 4px;
+    position: relative!important;
+    z-index: 1;
+}
+
+
+.charsheet .sheet-box .sheet-toggle.sheet-toggle-notes ~ .sheet-checkbox {
+    left: 22px;
+}
+

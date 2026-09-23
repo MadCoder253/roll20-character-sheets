@@ -1,0 +1,746 @@
+/*
+To add a sheet style:
+
+Add a CSS rule for .sheeet-color-setting-X ~ .sheet-wrapper , were X is the following number to the highest one from the available styles.  
+    Within it, set the CSS variables for the colors to use, use the existing styles as a baseline to simplify this. 
+Add a color-setting <input> element at the begging of the sheet HTML, directly before sheet-wrapper, using the same number X you've used on the CSS rule
+Increase by one the StyleCount variable at the start of the sheet worker at the begining of the sheet HTML (it should be one higher than X)
+Go to  <select name="attr_sheetstyle"/> on the sheet HTML to add a new option, with X as value, and the name you wish to give the style
+
+*/
+
+.sheet-color-setting{
+    display: none !important;
+}
+
+.sheet-rolltemplate-skillRoll {
+    --main-text:black;
+    --highlight-text:#8b0000;
+    --secondary-highlight: #AE4D4D;
+    --secondary-highlight-color:white;
+    --point-label-text:black;
+    --sheet-bg: white;
+    --header-bg:#F0F0F0;
+    --tabbed-header-bg:white;
+    --border-color:#033530;
+    --input-disabled-bg:#C9C9C9;
+    --input-bg:transparent;
+    --header-text:black;
+    --row-bg:#e9e9e9;
+    --odd-row-bg:#d9d9d6;
+}
+
+.sheet-rolltemplate-macro {
+    --main-text:black;
+    --highlight-text:#8b0000;
+    --secondary-highlight: #AE4D4D;
+    --secondary-highlight-color:white;
+    --point-label-text:black;
+    --sheet-bg: white;
+    --header-bg:#F0F0F0;
+    --tabbed-header-bg:white;
+    --border-color:#033530;
+    --input-disabled-bg:#C9C9C9;
+    --input-bg:transparent;
+    --header-text:black;
+    --row-bg:#e9e9e9;
+    --odd-row-bg:#d9d9d6;
+    margin-left: -37px;
+}
+
+/* option 0 green */
+.sheet-color-setting-0:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-0 {  /* Sets the values for the variables if their respective style is selected, add one to add a new style*/
+    --main-text:black;          
+    --highlight-text:black;
+    --secondary-highlight:#334739;
+    --secondary-highlight-color:white;
+    --point-label-text:#4f91cd;
+    --header-text:white;
+    --tabbed-header-bg:white;
+    --sheet-bg: white;
+    --box-bg:linear-gradient(#5f8c86,var(--sheet-bg));
+    --header-bg:#347970;
+    --subheader-bg:#FFFFFF44;
+    --row-bg:#8ebcb6;
+    --odd-row-bg:#7da8a2;
+    --input-bg:rgba(255, 255, 255, 0.39);
+    --input-disabled-bg:#c9c9c9;
+    --border-color:#033530;
+}
+
+/* option 1 blue */
+.sheet-color-setting-1:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-1 {
+    --main-text:black;          
+    --highlight-text:black;
+    --secondary-highlight:#333547;
+    --secondary-highlight-color:white;
+    --point-label-text:#1c33b7;
+    --header-text:white;
+    --sheet-bg: white;
+    --box-bg:linear-gradient(#5f768c,var(--sheet-bg));
+    --header-bg:#346079;
+    --tabbed-header-bg:white;
+    --subheader-bg:#FFFFFF44    ;
+    --row-bg:#8ea3bc;
+    --odd-row-bg:#7d90a8;
+    --input-bg:rgba(255, 255, 255, 0.39);
+    --input-disabled-bg:#c9c9c9;
+    --border-color:#033530;
+}
+
+/* option 2 beige */
+.sheet-color-setting-2:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-2 {
+    --main-text:black;
+    --highlight-text:#8b0000;
+    --secondary-highlight: #9b5555;
+    --secondary-highlight-color:white;
+    --point-label-text:#4f91cd;
+    --sheet-bg: white;
+    --box-bg:linear-gradient(#DDDDCC,var(--sheet-bg));
+    --header-bg:#FFFFF4;
+    --tabbed-header-bg:white;
+    --subheader-bg:#FFFFFF99;
+    --row-bg: #d5d5bf;
+    --odd-row-bg: #c1c1af;
+    --border-color:#033530;
+    --input-bg:rgba(255, 255, 255, 0.39);
+    --input-disabled-bg:#DDDDDD;
+    --header-text:black;
+}
+
+/* option 3 gray */
+.sheet-color-setting-3:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-3 {
+    --main-text:black;
+    --highlight-text:#8b0606;
+    --secondary-highlight: #AE4D4D;
+    --secondary-highlight-color:white;
+    --point-label-text:black;
+    --sheet-bg: white;
+    --header-bg:#F0F0F0;
+    --tabbed-header-bg:white;
+    --row-bg:#DFDFDF;
+    --odd-row-bg:#BABABA;
+    --border-color:#033530;
+    --input-bg:rgba(255, 255, 255, 0.39);
+    --input-disabled-bg:#C9C9C9;
+    --header-text:black;
+}
+
+/* option 4 Classic white */
+.sheet-color-setting-4:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-4 {
+    --main-text:black;
+    --highlight-text:#8b0000;
+    --secondary-highlight: #AE4D4D;
+    --secondary-highlight-color:white;
+    --point-label-text:black;
+    --sheet-bg: white;
+    --header-bg:#F0F0F0;
+    --tabbed-header-bg:white;
+    --border-color:#033530;
+    --input-disabled-bg:#C9C9C9;
+    --input-bg: white;
+    --header-text:black;
+}
+
+.sheet-rolltemplate-color-setting-4{
+    --row-bg:#e9e9e9;
+    --odd-row-bg:#d9d9d6;
+}
+
+/* option 5 pastel pink */
+.sheet-color-setting-5:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-5 {
+    --main-text:black;
+    --highlight-text:#6d4c8d;
+    --secondary-highlight: #80738b;
+    --secondary-highlight-color:white;
+    --point-label-text:black;
+    --sheet-bg: white;
+    --box-bg:#FFDFD3;
+    --tabbed-header-bg:white;
+    --header-bg:#d291bc;
+    --subheader-bg:#9b000033;
+    --row-bg:#ffeeff;
+    --odd-row-bg:#E0BBE4;
+    --border-color:black;
+    --input-bg:rgba(255, 255, 255, 0.39);
+    --input-disabled-bg:#E5E5E5;
+    --header-text:white;
+}
+
+/* option 6 pastel earth */
+.sheet-color-setting-6:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-6 {
+    --main-text:black;
+    --highlight-text:#1066ee ;
+    --secondary-highlight: #4c66be ;
+    --secondary-highlight-color:white;
+    --point-label-text:black;
+    --sheet-bg: white;
+    --box-bg:#B4ECBB;
+    --header-bg:#95E09D;
+    --tabbed-header-bg:white;
+    --subheader-bg:#FFFFFF99;
+    --row-bg:#EADBB2;
+    --odd-row-bg:#E4CDA1;
+    --border-color:black;
+    --input-bg:rgba(255, 255, 255, 0.39);
+    --input-disabled-bg:#C9C9C9;
+    --header-text:white;
+}
+
+/* option 7 purple */
+.sheet-color-setting-7:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-7 {
+    --main-text:white;
+    --highlight-text:#fff21c ;
+    --secondary-highlight: #fffc71 ;
+    --secondary-highlight-color:black;
+    --point-label-text:white;
+    --sheet-bg: white; /*MAIN TEXT AND SHEET MUST BE CONTRASTING**/
+    --box-bg:#776290 ;
+    --header-bg:#7851a9;
+    --tabbed-header-bg:#7851a9;
+    --subheader-bg:#00000045;
+    --row-bg:#c07c7a;
+    --odd-row-bg:#c27c92;
+    --border-color:black;
+    --input-bg:rgba(255, 255, 255, 0.958);
+    --input-disabled-bg:#C9C9C9;
+    --header-text:white;
+}
+
+/* option 8 fabric */
+.sheet-color-setting-8:checked ~  .sheet-wrapper, 
+.sheet-rolltemplate-color-setting-8 {
+    --main-text:white;
+    --highlight-text:#fff21c ;
+    --secondary-highlight: gold ;
+    --secondary-highlight-color:black;
+    --point-label-text:black;
+    --sheet-bg: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
+    hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+    hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
+    hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+    hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+    hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 120px, hsla(197, 62%, 11%, 0.5) 120px, hsla(197, 62%, 11%, 0.5) 140px
+    ),
+    repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
+    hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+    hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
+    hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+    hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+    hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
+    );
+    --box-bg:url(http://www.transparenttextures.com/patterns/dark-denim-3.png),#626f7e;
+    --header-bg: url("https://www.transparenttextures.com/patterns/leather.png"),radial-gradient(#8d7154 40%, #8d5134 105%);
+    --tabbed-header-bg:#00000099;
+    --subheader-bg:#00000099;
+    --row-bg:url(http://www.transparenttextures.com/patterns/dark-denim-3.png),#4E6988;
+    --odd-row-bg:url(http://www.transparenttextures.com/patterns/dark-denim-3.png),#415063;
+    --border-color:black;
+    --input-bg:rgba(255, 255, 255, 0.91);
+    --input-disabled-bg:#C9C9C9;
+    --header-text:white;
+    
+}
+
+.sheet-color-setting-8:checked ~ .sheet-wrapper .sheet-header,
+.sheet-rolltemplate-color-setting-8 table.sheet-result th {
+    outline:  2px dashed goldenrod;
+    outline-offset: -3px;
+}
+
+.sheet-color-option-0 {color:black;background: #8ebcb6;}
+.sheet-color-option-1 {color:black;background: #8ea3bc;}
+.sheet-color-option-2 {color:black;background: #B1B1A5;}
+.sheet-color-option-3 {color:black;background:#DFDFDF ;}
+.sheet-color-option-5 {color:black;background: #ffeeff;}
+.sheet-color-option-6 {color:black;background: #EADBB2;}
+.sheet-color-option-7 {color:white;background: #C07C7A;}
+.sheet-color-option-8 {color:white;background: #4e6988;}
+
+
+.sheet-wrapper {
+    min-width: 852px;
+    font-family: var(--font);
+    color:var(--main-text);
+    background: var(--sheet-bg);
+    overflow: hidden;
+    margin-top: -22px;
+}
+
+.sheet-wrapper > div {
+    overflow: hidden;
+}
+
+.sheet-wrapper button[type=roll],
+.sheet-wrapper button[type=action] {
+    box-shadow: none;
+}
+
+
+.uneditable-input{
+    background: white;
+}
+
+.sheet-box {
+    box-sizing: border-box;
+    font-size: 12px;
+    float: left;
+    background:var(--box-bg); 
+    margin: 0.2em;
+    overflow: auto;
+    outline: 1px solid gray;
+}
+
+.sheet-box.sheet-overflow-normal {
+    overflow: visible;
+}
+
+.sheet-label {
+    font-weight: bold;
+    text-align: right;
+}
+
+.sheet-title{width: 100%;}
+
+.sheet-hr {
+    box-shadow: 0 -1px 0 var(--main-text);
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    font-style:italic;
+    opacity: 0.5; /* Firefox */
+}
+
+/* indenting */
+input.sheet-indent-field[value="1"] ~ input.sheet-field-to-indent {
+    padding-left: 12px;
+}
+
+input.sheet-indent-field[value="2"] ~ input.sheet-field-to-indent {
+    padding-left: 24px;
+}
+
+input.sheet-indent-field[value="3"] ~ input.sheet-field-to-indent {
+    padding-left: 36px;
+}
+
+input.sheet-indent-field[value="4"] ~ input.sheet-field-to-indent {
+    padding-left: 48px;
+}
+
+input.sheet-indent-field[value="5"] ~ input.sheet-field-to-indent {
+    padding-left: 60px;
+}
+
+input.sheet-indent-field[value="6"] ~ input.sheet-field-to-indent {
+    padding-left: 72px;
+}
+
+/* section heading box */
+.sheet-section-heading {
+    width: 100%;
+    margin: 10px .2em;
+    background: var(--header-bg);
+    outline: 1px solid var(--header-bg);
+    float: left;
+}
+
+.sheet-section-heading.sheet-combat-tools {
+    width: calc(100% - 140px - 0.8em);
+}
+
+.sheet-section-heading.sheet-combat-tools .sheet-header {
+    font-size: 15px;
+    color: var(--header-text);
+    background: var(--header-bg);
+}
+
+/* -- name heading -- */
+.sheet-heading-character-name {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.sheet-heading-character-name h3 {
+    text-align: left;
+    color: var(--main-text);
+    background: var(--tabbed-header-bg);
+}
+
+/* roll option buttons */
+
+.sheet-heading-character-name .sheet-roll-options {
+    display: none;
+}
+
+.sheet-heading-character-name .sheet-roll-options .sheet-custom-roll-button {
+    display: none;
+}
+
+input[name="attr_display_roll_option_header"][value="1"] ~ .sheet-roll-options {
+    display: block;
+}
+
+input[name="attr_display_custom_roll_option_header"][value="1"] ~ .sheet-custom-roll-button {
+    display: inline-block;
+}
+
+.sheet-heading-character-name .sheet-roll-modifiers-prompt {
+    display: none;
+}
+
+input[name="attr_display_roll_modifiers_header"][value="1"] ~ .sheet-roll-modifiers-prompt {
+    display: block;
+}
+
+.sheet-heading-character-name .sheet-roll-options {
+    clear: both;
+    height: 27px;
+    width: auto;
+}
+
+.sheet-heading-character-name .sheet-roll-options label {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    display: inline-block;
+}
+
+.sheet-heading-character-name .sheet-roll-options label input[type="radio"] {
+    display: none;
+}
+
+.sheet-heading-character-name .sheet-roll-options > label > span {
+    display: block;
+    padding: 3px;
+    cursor: pointer;
+    transition: background-color .3s;
+    font-size: 11px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    line-height: 18px;
+    background: var(--input-disabled-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.sheet-heading-character-name .sheet-roll-options > label > span:hover,
+.sheet-heading-character-name .sheet-roll-options > label > input:checked + span {
+  background: var(--secondary-highlight);
+  color: var(--secondary-highlight-color);
+}
+
+/* -- Announcements -- */
+input[name="attr_announcements_hide"][value="1"] ~ .sheet-update-alert {
+    display: none !important;
+}
+
+.sheet-update-alert .sheet-container {
+    margin-bottom: 10px;
+}
+
+.sheet-update-alert .sheet-container input[type=checkbox].sheet-ack-button {
+    width: 12em;
+    margin-right: -12em;
+    z-index: 5;
+    height: 1.6em;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+}
+
+.sheet-update-alert .sheet-container input[type=checkbox].sheet-ack-button:not(:checked) ~ .sheet-content {
+    display: none !important;
+}
+
+.sheet-update-alert .sheet-container label.sheet-show-content {
+    display: inline !important;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    color: darkred;
+}
+
+.sheet-update-alert .sheet-container label.sheet-show-content:before {
+    display: inline-block !important;
+    color:black!important;
+    content: '►';
+    width: 1em;
+    height: 1em;
+    font-size: 1em;
+}
+
+.sheet-update-alert .sheet-container input[type=checkbox].sheet-ack-button:checked ~ label.sheet-show-content:before {
+    content: '▼';
+}
+
+.sheet-update-alert .sheet-container .sheet-content {
+    padding: 10px;
+    color: black !important;
+    border: 1px solid var(--border-color);
+    margin: 0 0 10px 0;
+    border-radius: 5px;
+    background: aliceblue;
+}
+
+.sheet-update-alert .sheet-container .sheet-content h4 {
+    margin-bottom: 10px;
+}
+
+.sheet-update-alert .sheet-container .sheet-content h4 input {
+    width: 50px;
+    height: 18px;
+    border: none;
+    font-weight: bold;
+    padding-left: 0;
+    padding-bottom: 6px;
+    font-size: 14px;  
+}
+
+.sheet-update-alert .sheet-container .sheet-content button.sheet-reset {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 8px;
+}
+
+.sheet-update-alert .sheet-container .sheet-content button.sheet-reset:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.sheet-update-alert .sheet-container .sheet-content .sheet-check input[type=checkbox] {
+    width: 14px;
+    height: 14px;
+}
+
+.sheet-update-alert .sheet-container .sheet-content .sheet-check b {
+    font-size: 11px;
+}
+
+/* Default d6 for all skill rolls */
+.sheet-wrapper button[type=roll]::before {
+    font-family: "dicefontd6";
+    content: "L";
+    font-size: 24px;
+}
+
+/* Option stlyle for explosion damage dice */
+.sheet-wrapper button[type=roll].roll_explode::before,
+.sheet-wrapper button[type=action].roll_explode::before {
+    font-family: "Pictos Custom";
+    content: "t";
+    font-size: 24px;
+    color: red;
+}
+
+/* Option style for d20 blank damage dice */
+.sheet-wrapper button[type=roll].roll_d20blank::before {
+    font-family: "dicefontd20";
+    content: "0";
+    font-size: 24px;
+}
+
+/* Option style for d4skull damage dice */
+.sheet-wrapper button[type=roll].roll_d4skull::before {
+    font-family: "dicefontd4";
+    content: "@";
+    font-size: 30px;
+}
+
+/* style button for inventory use item */
+.sheet-wrapper button[type=roll][name=roll_useitem]::before {
+    font-family: "Pictos";
+    content: "L";
+    font-size: 24px;
+}
+
+/**** Generic Textarea notes *****/
+.sheet-table-generic-notes .sheet-header {
+    height: 24px;
+}
+
+.sheet-table-generic-notes .sheet-cell.sheet-full-width {
+    width: 100%;
+}
+
+input.sheet-hidden-generic-notes-toggle ~ div.sheet-wrapper-generic-textarea-notes {
+    display: none !important;
+}
+
+input.sheet-hidden-generic-notes-toggle[value="1"] ~ div.sheet-wrapper-generic-textarea-notes {
+    display: block !important;
+}
+
+.sheet-wrapper-generic-textarea-notes {
+    padding-bottom: 3px;
+}
+
+.sheet-wrapper-generic-textarea-notes.sheet-tall-row {
+    height: 163px;
+}
+
+.sheet-wrapper-generic-textarea-notes.sheet-medium-row {
+    height: 80px;
+}
+
+.sheet-wrapper-generic-textarea-notes textarea.sheet-generic-textrea-notes {
+    width: 98%;
+}
+
+.sheet-wrapper-generic-textarea-notes textarea.sheet-macro-textrea-notes {
+    height: 60px !important;
+    width: 98%;
+}
+
+/*******************************************************/
+/* Set the thrust damage dice based on selected option */
+button[type=action].roll_damage {
+    padding: 2px 3px;
+    font-size: 1.3em;
+    margin: 0px 3px 0px 3px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid white;
+}
+
+input.sheet-thrust-damage-dice-icon[value="explode"] ~ button[type=roll].roll_damage::before, 
+input.sheet-thrust-damage-dice-icon[value="explode"] ~ button[type=action].roll_damage::before {
+    font-family: "Pictos Custom";
+    content: "t";
+    font-size: 24px;
+    color: red;
+}
+
+input.sheet-thrust-damage-dice-icon[value="d6black"] ~ button[type=roll].roll_damage::before,
+input.sheet-thrust-damage-dice-icon[value="d6black"] ~ button[type=action].roll_damage::before {
+    font-family: "dicefontd6";
+    content: "L";
+    font-size: 24px;
+}
+
+input.sheet-thrust-damage-dice-icon[value="d20blank"] ~ button[type=roll].roll_damage::before,
+input.sheet-thrust-damage-dice-icon[value="d20blank"] ~ button[type=action].roll_damage::before {
+    font-family: "dicefontd20";
+    content: "0";
+    font-size: 24px;
+}
+
+input.sheet-thrust-damage-dice-icon[value="d4skull"] ~ button[type=roll].roll_damage::before,
+input.sheet-thrust-damage-dice-icon[value="d4skull"] ~ button[type=action].roll_damage::before {
+   font-family: "dicefontd4";
+    content: "@";
+    font-size: 30px;
+}
+
+/*******************************************************/
+/* Set the swing damage dice based on selected option */
+input.sheet-swing-damage-dice-icon[value="explode"] ~ button[type=roll].roll_damage::before,
+input.sheet-swing-damage-dice-icon[value="explode"] ~ button[type=action].roll_damage::before {
+    font-family: "Pictos Custom";
+    content: "t";
+    font-size: 24px;
+    color: red;
+}
+
+input.sheet-swing-damage-dice-icon[value="d6black"] ~ button[type=roll].roll_damage::before,
+input.sheet-swing-damage-dice-icon[value="d6black"] ~ button[type=action].roll_damage::before {
+    font-family: "dicefontd6";
+    content: "L";
+    font-size: 24px;
+}
+
+input.sheet-swing-damage-dice-icon[value="d20blank"] ~ button[type=roll].roll_damage::before,
+input.sheet-swing-damage-dice-icon[value="d20blank"] ~ button[type=action].roll_damage::before {
+    font-family: "dicefontd20";
+    content: "0";
+    font-size: 24px;
+}
+
+input.sheet-swing-damage-dice-icon[value="d4skull"] ~ button[type=roll].roll_damage::before,
+input.sheet-swing-damage-dice-icon[value="d4skull"] ~ button[type=action].roll_damage::before {
+    font-family: "dicefontd4";
+    content: "@";
+    font-size: 30px;
+}
+
+/******************************************************/
+/* Set the melee damage dice based on selected option */
+input.sheet-melee-damage-dice-icon[value="explode"] ~ button[type=roll].roll_damage::before,
+input.sheet-melee-damage-dice-icon[value="explode"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="explode"] ~ button[type=roll].roll_damage::before {
+    font-family: "Pictos Custom";
+    content: "t";
+    font-size: 24px;
+    color: red;
+}
+
+input.sheet-melee-damage-dice-icon[value="d6black"] ~ button[type=roll].roll_damage::before,
+input.sheet-melee-damage-dice-icon[value="d6black"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d6black"] ~ button[type=roll].roll_damage::before {
+    font-family: "dicefontd6";
+    content: "L";
+    font-size: 24px;
+}
+
+input.sheet-melee-damage-dice-icon[value="d20blank"] ~ button[type=roll].roll_damage::before,
+input.sheet-melee-damage-dice-icon[value="d20blank"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d20blank"] ~ button[type=roll].roll_damage::before {
+    font-family: "dicefontd20";
+    content: "0";
+    font-size: 24px;
+}
+
+input.sheet-melee-damage-dice-icon[value="d4skull"] ~ button[type=roll].roll_damage::before,
+input.sheet-melee-damage-dice-icon[value="d4skull"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d4skull"] ~ button[type=roll].roll_damage::before {
+    font-family: "dicefontd4";
+    content: "@";
+    font-size: 30px;
+}
+
+/******************************************************/
+/* Set the range damage dice based on selected option */
+input.sheet-range-damage-dice-icon[value="explode"] ~ button[type=roll].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="explode"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="explode"] ~ button[type=roll].roll_damage::before {
+    font-family: "Pictos Custom";
+    content: "t";
+    font-size: 24px;
+    color: red;
+}
+
+input.sheet-range-damage-dice-icon[value="d6black"] ~ button[type=roll].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d6black"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d6black"] ~ button[type=roll].roll_damage::before {
+    font-family: "dicefontd6";
+    content: "L";
+    font-size: 24px;
+}
+
+input.sheet-range-damage-dice-icon[value="d20blank"] ~ button[type=roll].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d20blank"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d20blank"] ~ button[type=roll].roll_damage::before {
+    font-family: "dicefontd20";
+    content: "0";
+    font-size: 24px;
+}
+
+input.sheet-range-damage-dice-icon[value="d4skull"] ~ button[type=roll].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d4skull"] ~ button[type=action].roll_damage::before,
+input.sheet-range-damage-dice-icon[value="d4skull"] ~ button[type=roll].roll_damage::before {
+    font-family: "dicefontd4";
+    content: "@";
+    font-size: 30px;
+}
+

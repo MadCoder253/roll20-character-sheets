@@ -1,0 +1,13 @@
+{
+  "name": "gurps-roll20-sheet",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node src/build.js",
+    "build:check": "node src/build.js --check",
+    "lint": "eslint src/**/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.17.0"
+  }
+}

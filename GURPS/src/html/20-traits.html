@@ -1,0 +1,963 @@
+<!-- ===== ===== ===== ===== TRAITS TAB ===== ===== ===== ===== -->
+	<div class="tab2">
+
+		<!-- _____ _____ LANGUAGE BOX _____ _____ -->
+
+		<div class="box language">
+			<div class="table">
+				<div class="header">
+					<div class="cell col0">
+						<span data-i18n="native-language-label">Native Language</span>
+					</div>
+					<div class="cell col1">
+						<span data-i18n="spoken-label">Spoken</span>
+					</div>
+					<div class="cell col1-pts">
+						<div class="popup">
+							<span data-i18n="modifier-abbreviation-label">Mod</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="language-cost-modifier-tooltip">Use this input box to modifier the number of Character Points for the selected language option.</span>
+						</span>
+					</div>
+					<div class="cell col2">
+						<span data-i18n="written-label">Written</span>
+					</div>
+					<div class="cell col2-pts">
+						<div class="popup">
+							<span data-i18n="modifier-abbreviation-label">Mod</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="language-cost-modifier-tooltip">Use this input box to modifier the number of Character Points for the selected language option.</span>
+						</span>
+					</div>
+					<div class="cell col3">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+				</div> <!-- .header -->
+				
+				<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_toggle_native_language_notes" style="left: 30px;" />
+				<span class="checkbox"></span>
+					
+				<div class="row row-native-language">
+					<div class="cell col0 label">
+						<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+						<input type="hidden" name="attr_native_language_idkey" />
+						<input type="text" style="font-weight:bold;" name="attr_name_native_language" placeholder="-Enter Native Language here" title="Macro: @{NAME|name_native_language}" />
+					</div>
+					<div class="cell col1">
+						<select name="attr_native_language_spoken" title="Macro: @{NAME|native_language_spoken}">
+							<option value="0" selected><span data-i18n="option-native">Native</span><span> 0 CP</span></option>
+							<option value="-1"><span  data-i18n="option-accented">Accented</span><span> -1 CP</span></option>
+							<option value="-2"><span data-i18n="option-broken">Broken</span><span> -2 CP</span></option>
+							<option value="-3"><span data-i18n="option-none">None</span><span> -3 CP</span></option>
+						</select>
+					</div>
+					<div class="cell col1-pts">
+						<input type="number" step="1" name="attr_native_language_spoken_mod_points" value="0" title="Macro: @{NAME|native_language_spoken_mod_points}" />
+					</div>
+					<div class="cell col2">
+						<select name="attr_native_language_written" title="Macro: @{NAME|native_language_written}">
+							<option value="0" selected><span data-i18n="option-native">Native</span><span> 0 CP</span></option>
+							<option value="-1"><span data-i18n="option-literate">Literate</span><span> -1 CP</span></option>
+							<option value="-2"><span data-i18n="option-semi-literate">Semi-literate</span><span> -2 CP</span></option>
+							<option value="-3"><span data-i18n="option-none">None</span><span> -3 CP</span></option>
+						</select>
+					</div>
+					<div class="cell col1-pts">
+						<input type="number" step="1" name="attr_native_language_written_mod_points" value="0" title="Macro: @{NAME|native_language_written_mod_points}" />
+					</div>
+					<div class="cell col3">
+						<input type="text" name="attr_native_language_points" value="@{native_language_spoken} + @{native_language_spoken_mod_points} + @{native_language_written} + @{native_language_written_mod_points}" disabled="disabled" title="Macro: @{NAME|native_language_points}" />
+					</div>
+				</div> <!-- .row -->
+
+				<div class="melee-notebox">
+						
+					<div class="row">
+						<div class="cell">
+							<div>
+								<span data-i18n="reason-for-mod-label">Reason for mod:</span><br />
+								<textarea class="text-left reason-notes" name="attr_native_language_reason_mod" title="Macro: @{NAME|native_language_reason_mod}"></textarea>
+							</div>
+							<div>
+								<span data-i18n="description-label">Description</span>:<br />
+								<textarea class="text-left notes" name="attr_native_language_notes" title="Macro: @{NAME|native_language_notes}"></textarea>
+							</div>
+						</div>
+					</div> <!-- .row -->
+				</div>
+
+				<div class="row">
+					<div class="cell" style="width: 100%;">
+						<label style="margin-bottom: 0px;">
+							<input type="checkbox" class="talent-checkbox" name="attr_has_language_talent" value="1" />
+							<div class="popup">
+								<span style="font-size: 12px;" data-i18n="language-talent-label">Language Talent</span>
+							</div>
+							<div class="tooltip">
+								<span data-i18n="language-talent-tooltip">If checked, you can learn languages at the next-highest level, if you spend 2 points on a langauge, instead of broken, you know the language at Accented level. This changes the available options in the drop-down and related costs. See B65.</span>
+							</div>
+						</label>
+					</div>
+				</div>
+				<div class="header">
+					<div class="cell col0">
+						<span data-i18n="learned-language-label">Learned Languages</span>
+					</div>
+					<div class="cell col1">
+						<span data-i18n="spoken-label">Spoken</span>
+					</div>
+					<div class="cell col1-pts">
+						<div class="popup">
+							<span data-i18n="modifier-abbreviation-label">Mod</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="language-cost-modifier-tooltip">Use this input box to modifier the number of Character Points for the selected language option.</span>
+						</span>
+					</div>
+					<div class="cell col2">
+						<span data-i18n="written-label">Written</span>
+					</div>
+					<div class="cell col2-pts">
+						<div class="popup">
+							<span data-i18n="modifier-abbreviation-label">Mod</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="language-cost-modifier-tooltip">Use this input box to modifier the number of Character Points for the selected language option.</span>
+						</span>
+					</div>
+					<div class="cell col3">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+				</div> <!-- .header -->
+				<input type="hidden" name="attr_has_language_talent" value="0" />
+				<fieldset class="repeating_languages">
+					<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+							<input type="hidden" name="attr_idkey" />
+							<input type="text" name="attr_name" title="Macro: @{NAME|repeating_languages_$[row #]_name}" />
+						</div>
+						<div class="cell col1 language-select">
+							<input type="hidden" name="attr_spoken_points" value="0" />
+							<select name="attr_spoken" title="Macro: @{NAME|repeating_languages_$[row #]_spoken}">
+								<option value="3"><span data-i18n="option-native">Native</span><span> 3 CP</span></option>
+								<option value="2"><span data-i18n="option-accented">Accented</span><span> 2 CP</span></option>
+								<option value="1"><span data-i18n="option-broken">Broken</span><span> 1 CP</span></option>
+								<option value="0" selected><span data-i18n="option-none">None</span><span> 0 CP</span></option>
+							</select>
+							<select name="attr_spoken_talent" title="Macro: @{NAME|repeating_languages_$[row #]_spoken_talent}">
+								<option value="2"><span data-i18n="option-native">Native</span><span> 2 CP</span></option>
+								<option value="1"><span data-i18n="option-accented">Accented</span><span> 1 CP</span></option>
+								<option value="0" selected><span data-i18n="option-none">None</span><span> 0 CP</span></option>
+							</select>
+						</div>
+						<div class="cell col1-pts">
+							<input type="number" step="1" name="attr_spoken_mod_points" value="0" title="Macro: @{NAME|repeating_languages_$[row #]_spoken_mod_points}" />
+						</div>
+						<div class="cell col2 language-select">
+							<input type="hidden" name="attr_written_points" value="0" />
+							<select name="attr_written" title="Macro: @{NAME|repeating_languages_$[row #]_written}">
+								<option value="3"><span data-i18n="option-native">Native</span><span> 3 CP</span></option>
+								<option value="2"><span data-i18n="option-literate">Literate</span><span> 2 CP</span></option>
+								<option value="1"><span data-i18n="option-semi-literate">Semi-literate</span><span> 1 CP</span></option>
+								<option value="0" selected><span data-i18n="option-none">None</span><span> 0 CP</span></option>
+							</select>
+							<select name="attr_written_talent" title="Macro: @{NAME|repeating_languages_$[row #]_written_talent}">
+								<option value="2"><span data-i18n="option-native">Native</span><span> 2 CP</span></option>
+								<option value="1"><span data-i18n="option-literate">Literate</span><span> 1 CP</span></option>
+								<option value="0" selected><span data-i18n="option-none">None</span><span> 0 CP</span></option>
+							</select>
+						</div>
+						<div class="cell col1-pts">
+							<input type="number" step="1" name="attr_written_mod_points" value="0" title="Macro: @{NAME|repeating_languages_$[row #]_written_mod_points}" />
+						</div>
+						<div class="cell col3">
+							<input type="text" name="attr_points" value="@{spoken_points} + @{written_points}" disabled="disabled" title="Macro: @{NAME|repeating_languages_$[row #]_points}" />
+						</div>
+					</div> <!-- .row -->
+					
+					<div class="melee-notebox">		
+						<div class="row">
+							<div class="cell">
+								<div>
+									<span data-i18n="reason-for-mod-label">Reason for mod:</span><br />
+									<textarea class="text-left reason-notes" name="attr_reason_notes" title="Macro: @{NAME|repeating_languages_$[row #]_reason_notes}"></textarea>
+								</div>
+								<div>
+									<span data-i18n="description-label">Description</span>:<br />
+									<textarea class="text-left notes" name="attr_notes" title="Macro: @{NAME|repeating_languages_$[row #]_notes}"></textarea>
+								</div>
+							</div>
+						</div> <!-- .row -->
+					</div>
+	
+				</fieldset> <!-- .repeating_languages -->
+			</div> <!-- .table -->
+		</div> <!-- .box .language -->
+
+		<!-- _____ _____ MISCELLENEOUS BOX _____ _____ -->
+		<div class="box miscelleneous">
+			<div class="table">
+				<div class="header">
+					<div class="cell col0">
+						<div class="popup">
+							<span data-i18n="technology-level-label">Tech Level</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="technology-level-tooltip">Tech Level Modifiers (B168), Tech Levels (B511-514)</span>
+						</span>
+					</div>
+					<div class="cell col1">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+				</div> <!-- .header -->
+				<div class="row row-tech-level">
+					<div class="cell col0 label">
+						<span data-i18n="campaign-technology-level-label">Campaign Tech Level</span>
+					</div>
+					<div class="cell col1">
+						<input type="text" name="attr_campaign_tl" title="Macro: @{NAME|campaign_tl}" />
+					</div>
+					<div class="cell col2">
+						&nbsp;
+					</div>
+				</div> <!-- .row -->
+				<div class="row row-tech-level">
+					<div class="cell col0 label">
+						<span data-i18n="your-technology-level-label">Your Tech Level</span>
+					</div>
+					<div class="cell col1">
+						<input type="text" name="attr_tl" title="Macro: @{NAME|tl}" />
+					</div>
+					<div class="cell col2">
+						<input type="number" step="5" name="attr_tl_pts" value="0" title="Macro: @{NAME|tl_pts}" />
+					</div>
+				</div> <!-- .row -->
+			</div> <!-- .table -->
+		</div> <!-- .box .miscelleneous -->
+
+		<!-- _____ _____ CULTURE BOX _____ _____ -->
+
+		<div class="box culture">
+			<div class="table">
+				<div class="header">
+					<div class="cell col0">
+						<div class="popup">
+							<span data-i18n="cultural-familiarities-label">Cultural Familiarities</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="cultural-familiarities-tooltip">When dealing with an <i>unfamiliar</i> culture, you may suffer -3 to skill that a cultural component, such as Carousing, Detect Lies. (B23).</span>
+						</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-character-points-label">Pts</span>
+						</div>
+						<span class="tooltip tooltip-skills-ref">
+							<span data-i18n="cultural-point-cost">Native culture cost is 0. Otherwise cost is 1 or 2 (Consult with GM). (B23)</span>
+						</span>
+					</div>
+				</div> <!-- .header -->
+
+				<fieldset class="repeating_cultures">
+					<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_culture_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+							<input type="hidden" name="attr_idkey" />
+							<input type="text" name="attr_name" title="Macro: @{NAME|repeating_cultures_$[row #]_name}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" name="attr_points" title="Macro: @{NAME|repeating_cultures_$[row #]_points}" />
+						</div>
+					</div> <!-- .row -->
+
+					<div class="melee-notebox">
+						
+						<div class="row">
+							<div class="cell label">
+								<textarea class="text-left notes" name="attr_notes" title="Macro: @{NAME|repeating_cultures_$[row #]_notes}"></textarea>
+							</div>
+						</div> <!-- .row -->
+					</div>
+
+				</fieldset> <!-- .repeating_cultures -->
+
+			</div> <!-- .table -->
+		</div> <!-- .box .culture -->
+
+		<div class="clearfix"> </div>
+
+
+		<!-- _____ _____ ADVANTAGES BOX _____ _____ -->
+		<!-- this box uses the identifier "traits" for backwards compatibility -->
+
+		<div class="box traits">
+			<div class="table">
+				<div class="header">
+					<div class="cell col0">
+						<span data-i18n="advantages-label">Advantages</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-level-label">LVL</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="trait-level-tooltip">Level of the trait.</span>
+						</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-frequency-of-appearance-label">FOA</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="frequency-of-appearance-tooltip">
+Frequency of Appearance<br />
+<table>
+	<tbody>
+		<tr><td>15 or less><td></td>
+		<tr><td>12 or less><td></td>
+		<tr><td>9 or less><td></td>
+		<tr><td>6 or less><td></td>
+	</tbody>
+</table>
+							</span>
+						</span>
+					</div>
+					<div class="cell col2"></div>
+					<div class="cell col3">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+					<div class="cell col4">
+						<div class="popup">
+							<span data-i18n="abbreviation-book-reference-label">Ref</span>
+						</div>
+						<div class="tooltip tooltip-skills-ref">
+							<span data-i18n="book-reference-tooltip">
+Reference to book and page numbers.<br />
+Examples:<br />
+B238 = GURPS Basic, Page 238<br />
+PU2:126 = Power-Ups 2. Page 126
+							</span>
+						</div>
+					</div>
+				</div> <!-- .header -->
+				<fieldset class="repeating_traits">
+					<input type="hidden" name="attr_foa" />
+					<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_trait_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+							<input type="hidden" name="attr_idkey" />
+							<input type="text" name="attr_name" title="Macro: @{NAME|repeating_traits_$[row #]_name}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" name="attr_trait_level" step="1" title="Macro: @{NAME|repeating_traits_$[row #]_trait_level}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" name="attr_foa" min="3" max="18" step="1" title="Macro: @{NAME|repeating_traits_$[row #]_foa}" />
+						</div>
+						<div class="cell col2">
+							<button type="roll" value="@{roll}&{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Frequency of Appearance Check}} {{activeDefense=[[0]]}} {{showSuccessLabel=[[1]]}} {{characterName=@{character_name}}} {{skillName=@{name}}} {{rollResult=[[3d6cs<1cf>6]]}} {{effectiveSkill=[[@{foa} + @{modifier}]]}} {{notes=@{notes}}} {{showNotes=[[@{show_notes}]]}} {{bookReference=@{ref}}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{customSuccessNote=@{success_notes}}} {{customCriticalSuccessNote=@{critical_success_notes}}} {{customFailNote=@{fail_notes}}} {{customCriticalFailNote=@{critical_fail_notes}}} {{popupModifier=@{popup_modifier}}} {{displayRollModifierSummary=[[@{display_roll_modifier_summary}]]}}" name="roll_vsAFOA" />
+						</div>
+						<div class="cell col3">
+							<input type="number" name="attr_points" title="Macro: @{NAME|repeating_traits_$[row #]_points}" />
+						</div>
+						<div class="cell col4">
+							<input type="text" name="attr_ref" title="Macro: @{NAME|repeating_traits_$[row #]_ref}" />
+						</div>
+					</div> <!-- .row -->
+
+					<div class="melee-notebox">
+						
+						<div class="row">
+							<div class="cell label full-width-margin-right-sm">
+								<div class="show-notes">
+									<input type="checkbox" name="attr_show_notes" value="1" />
+									<span class="label">
+										<span data-i18n="show-notes-below-label">Show notes below in roll template</span>
+									</span> 	
+								</div>
+								<textarea class="text-left full-width-margin-zero texbox-height-medium" name="attr_notes" title="Macro: @{NAME|repeating_traits_$[row #]_notes}"></textarea>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row success-fail-notes">
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="success-note-label">Success Note</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-success-notes-tooltip">
+	<strong>Hint:</strong> Enter inline rolls for additional results. To show the selected arrow.<br />
+	Example: Select Location: ?{Location|Head|Torso}
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_success_notes" title="Macro: @{NAME|repeating_traits_$[row #]_success_notes}"></textarea>
+							</div>
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="critical-success-note-label">Critical Success Notes</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-critical-success-notes-tooltip">
+	<strong>Hint:</strong> Enter inline rolls for additional results.<br />
+	Example: Does an additional [[1d6]] fire damage.
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_critical_success_notes" title="Macro: @{NAME|repeating_traits_$[row #]_critical_success_notes}">The GM determines what happens to you. It is always something good! The lower the roll, the better **bonus** they give you. (B347)</textarea>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row success-fail-notes">
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="fail-note-label">Fail Note</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-fail-notes-tooltip">
+<strong>Hint:</strong> Enter inline rolls for additional results. To show the selected arrow.<br />
+Example: Select Location: ?{Location|Head|Torso}
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_fail_notes" title="Macro: @{NAME|repeating_traits_$[row #]_fail_notes}"></textarea>
+							</div>
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="critical-fail-note-label">Critical Fail Notes</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-critical-fail-notes-tooltip">
+<strong>Hint:</strong> Enter inline rolls for additional results.<br />
+Example: Does an additional [[1d6]] fire damage.
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_critical_fail_notes" title="Macro: @{NAME|repeating_traits_$[row #]_critical_fail_notes}">The GM determines what happens to you. It is always something bad - the higher the roll, the worse the result. (B348)</textarea>
+							</div>
+						</div> <!-- .row -->
+
+					</div> <!-- .row -->
+
+				</fieldset> <!-- .repeating_traits -->
+			</div> <!-- .table -->
+		</div> <!-- .box .traits -->
+
+
+		<!-- _____ _____ PERKS BOX _____ _____ -->
+		<!-- this box uses the identifier "traits" for backwards compatibility -->
+
+		<div class="box traits perks-disadvantages">
+
+			<!-- PERKS AREA -->
+			<div class="table half-size border perks-area">
+
+				<div class="header">
+					<div class="cell col0">
+						<span data-i18n="perks-label">Perks</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-frequency-of-appearance-label">FOA</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="frequency-of-appearance-tooltip">
+Frequency of Appearance<br />
+<table>
+	<tbody>
+		<tr><td>15 or less><td></td>
+		<tr><td>12 or less><td></td>
+		<tr><td>9 or less><td></td>
+		<tr><td>6 or less><td></td>
+	</tbody>
+</table>
+							</span>
+						</span>
+					</div>
+					<div class="cell col2"></div>
+					<div class="cell col3">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+					<div class="cell col4">
+						<div class="popup">
+							<span data-i18n="abbreviation-book-reference-label">Ref</span>
+						</div>
+						<div class="tooltip tooltip-spell-ref">
+							<span data-i18n="book-reference-tooltip">
+Reference to book and page numbers.<br />
+Examples:<br />
+B238 = GURPS Basic, Page 238<br />
+PU2:126 = Power-Ups 2. Page 126
+							</span>
+						</div>
+					</div>
+				</div> <!-- .header -->
+				<fieldset class="repeating_perks">
+					<input type="hidden" name="attr_foa" />
+					<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_perks_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+							<input type="hidden" name="attr_idkey" />
+							<input type="text" name="attr_name" title="Macro: @{NAME|repeating_perks_$[row #]_name}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" min="3" max="18" step="1" name="attr_foa" title="Macro: @{NAME|repeating_perks_$[row #]_foa}" />
+						</div>
+						<div class="cell col2">
+							<button type="roll" value="@{roll}&{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Frequency of Appearance Check}} {{activeDefense=[[0]]}} {{showSuccessLabel=[[1]]}} {{characterName=@{character_name}}} {{skillName=@{name}}} {{rollResult=[[3d6cs<1cf>6]]}} {{effectiveSkill=[[@{foa} + @{modifier}]]}} {{notes=@{notes}}} {{showNotes=[[@{show_notes}]]}} {{bookReference=@{ref}}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{popupModifier=@{popup_modifier}}} {{displayRollModifierSummary=[[@{display_roll_modifier_summary}]]}}" name="roll_vsAFOA" />
+						</div>
+						<div class="cell col3">
+							<input type="number" name="attr_points" value="1" title="Macro: @{NAME|repeating_perks_$[row #]_points}" />
+						</div>
+						<div class="cell col4">
+							<input type="text" name="attr_ref" title="Macro: @{NAME|repeating_perks_$[row #]_ref}" />
+						</div>
+					</div> <!-- .row -->
+					<div class="row row-details notebox">
+						<div class="cell col-notebox">
+							<div class="show-notes">
+								<input type="checkbox" name="attr_show_notes" value="1" />
+								<span class="label">
+									<span data-i18n="show-notes-below-label">Show notes below in roll template</span>
+								</span>
+							</div>
+							<textarea name="attr_notes" title="Macro: @{NAME|repeating_perks_$[row #]_notes}"></textarea>
+						</div>
+					</div> <!-- .row -->
+				</fieldset> <!-- .repeating_perks -->
+			</div> <!-- .table -->
+			<!-- END PERKS AREA -->
+			
+			<!-- QUIRKS AREA -->
+			<div class="table half-size quirks-area">
+				<div class="header">
+					<div class="cell col0">
+						<span data-i18n="quirks-label">Quirks</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-self-control-number-label">SCN</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="self-control-number-tooltip">
+Self-control Number OR<br />
+Frequency of Appearance<br />							
+<table>
+	<tbody>
+		<tr><td>15 or less</td></tr>
+		<tr><td>12 or less</td></tr>
+		<tr><td>9 or less</td></tr>
+		<tr><td>6 or less</td></tr>
+	</tbody>
+</table>
+							</span>
+						</span>
+					</div>
+					<div class="cell col2"></div>
+					<div class="cell col3">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+					<div class="cell col4">
+						<div class="popup">
+							<span data-i18n="abbreviation-book-reference-label">Ref</span>
+						</div>
+						<div class="tooltip tooltip-skills-ref">
+							<span data-i18n="book-reference-tooltip">
+Reference to book and page numbers.<br />
+Examples:<br />
+B238 = GURPS Basic, Page 238<br />
+PU2:126 = Power-Ups 2. Page 126
+							</span>
+						</div>
+					</div>	
+				</div> <!-- .header -->
+				<fieldset class="repeating_quirks">
+					<input type="hidden" name="attr_control_rating" />
+					<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_quirks_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+							<input type="hidden" name="attr_idkey" />
+							<input type="text" name="attr_name" title="Macro: @{NAME|repeating_quirks_$[row #]_name}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" name="attr_control_rating" title="Macro: @{NAME|repeating_quirks_$[row #]_control_rating}" />
+						</div>
+						<div class="cell col2">
+							<button type="roll" value="@{roll}&{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Self-control Check}} {{activeDefense=[[0]]}} {{showSuccessLabel=[[1]]}} {{characterName=@{character_name}}} {{skillName=@{name}}} {{rollResult=[[3d6cs<1cf>6]]}} {{effectiveSkill=[[@{control_rating} + @{modifier}]]}} {{notes=@{notes}}} {{showNotes=[[@{show_notes}]]}} {{bookReference=@{ref}}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{popupModifier=@{popup_modifier}}} {{displayRollModifierSummary=[[@{display_roll_modifier_summary}]]}}" name="roll_vsDSCR" />
+						</div>
+						<div class="cell col3">
+							<input type="number" name="attr_points" value="-1" title="Macro: @{NAME|repeating_quirks_$[row #]_points}" />
+						</div>
+						<div class="cell col4">
+							<input type="text" name="attr_ref" title="Macro: @{NAME|repeating_quirks_$[row #]_ref}" />
+						</div>
+					</div> <!-- .row -->
+					<div class="row row-details notebox">
+						<div class="cell col-notebox">
+							<div class="show-notes">
+								<input type="checkbox" name="attr_show_notes" value="1" />
+								<span class="label">
+									<span data-i18n="show-notes-below-label">Show notes below in roll template</span>
+								</span>
+							</div>
+							<textarea name="attr_notes" title="Macro: @{NAME|repeating_quirks_$[row #]_notes}"></textarea>
+						</div>
+					</div> <!-- .row -->
+				</fieldset> <!-- .repeating_perks -->
+			</div> <!-- .table -->
+			<!-- END QUIRKS AREA -->
+
+		</div> <!-- .box .traits -->
+
+
+		<!-- _____ _____ DISADVANTAGES BOX _____ _____ -->
+
+		<div class="box disadvantages perks-disadvantages">
+			<div class="table">
+				<div class="header">
+					<div class="cell col0">
+						<span data-i18n="disadvantages-label">Disadvantages</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-level-label">LVL</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="trait-level-tooltip">Level of the trait.</span>
+						</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-self-control-number-label">SCN</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="self-control-number-tooltip">
+Self-control Number OR<br />
+Frequency of Appearance<br />							
+<table>
+	<tbody>
+		<tr><td>15 or less</td></tr>
+		<tr><td>12 or less</td></tr>
+		<tr><td>9 or less</td></tr>
+		<tr><td>6 or less</td></tr>
+	</tbody>
+</table>
+							</span>
+						</span>
+					</div>
+					<div class="cell col2"></div>
+					<div class="cell col3">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+					<div class="cell col4">
+						<div class="popup">
+							<span data-i18n="abbreviation-book-reference-label">Ref</span>
+						</div>
+						<div class="tooltip tooltip-skills-ref">
+							<span data-i18n="book-reference-tooltip">
+Reference to book and page numbers.<br />
+Examples:<br />
+B238 = GURPS Basic, Page 238<br />
+PU2:126 = Power-Ups 2. Page 126
+							</span>
+						</div>
+					</div>	
+				</div> <!-- .header -->
+				<fieldset class="repeating_disadvantages">
+					<input type="hidden" name="attr_control_rating" />
+					<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_disadvantage_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+							<input type="hidden" name="attr_idkey" />
+							<input type="text" name="attr_name" title="Macro: @{NAME|repeating_disadvantages_$[row #]_name}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" step="1" name="attr_trait_level" title="Macro: @{NAME|repeating_disadvantages_$[row #]_trait_level}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" min="0" step="1" name="attr_control_rating" title="Macro: @{NAME|repeating_disadvantages_$[row #]_control_rating}" />
+						</div>
+						<div class="cell col2">
+							<input type="hidden" name="attr_disadvantage_roll" value="@{roll}" />
+							<button type="roll" value="@{disadvantage_roll}&{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Self-control Check}} {{activeDefense=[[0]]}} {{showSuccessLabel=[[1]]}} {{characterName=@{character_name}}} {{skillName=@{name}}} {{rollResult=[[3d6cs<1cf>6]]}} {{effectiveSkill=[[@{control_rating} + @{modifier}]]}} {{notes=@{notes}}} {{showNotes=[[@{show_notes}]]}} {{bookReference=@{ref}}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{customSuccessNote=@{success_notes}}} {{customCriticalSuccessNote=@{critical_success_notes}}} {{customFailNote=@{fail_notes}}} {{customCriticalFailNote=@{critical_fail_notes}}} {{popupModifier=@{popup_modifier}}} {{displayRollModifierSummary=[[@{display_roll_modifier_summary}]]}}" name="roll_vsDSCR" />
+						</div>
+						<div class="cell col3">
+							<input type="number" name="attr_points" title="Macro: @{NAME|repeating_disadvantages_$[row #]_points}" />
+						</div>
+						<div class="cell col4">
+							<input type="text" name="attr_ref" title="Macro: @{NAME|repeating_disadvantages_$[row #]_ref}" />
+						</div>
+					</div> <!-- .row -->
+
+					<div class="melee-notebox">
+						
+						<div class="row">
+							<div class="cell label full-width-margin-right-sm">
+								<div>
+									<div class="show-notes">
+										<input type="checkbox" name="attr_show_notes" value="1" />
+										<span class="label">
+											<span data-i18n="show-notes-below-label">Show notes below in roll template</span>
+										</span> 	
+									</div>
+									<div class="show-notes">
+										<input type="checkbox" name="attr_whisper_mode" value="1" />
+										<span class="label">
+											<span data-i18n="whisper-mode-label">Check to make the results a whisper to GM only.</span>
+										</span> 	
+									</div>
+								</div>
+								<textarea class="text-left full-width-margin-zero texbox-height-medium" name="attr_notes" title="Macro: @{NAME|repeating_disadvantages_$[row #]_notes}"></textarea>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row success-fail-notes">
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="success-note-label">Success Note</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-success-notes-tooltip">
+	<strong>Hint:</strong> Enter inline rolls for additional results. To show the selected arrow.<br />
+	Example: Select Location: ?{Location|Head|Torso}
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_success_notes" title="Macro: @{NAME|repeating_disadvantages_$[row #]_success_notes}"></textarea>
+							</div>
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="critical-success-note-label">Critical Success Notes</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-critical-success-notes-tooltip">
+	<strong>Hint:</strong> Enter inline rolls for additional results.<br />
+	Example: Does an additional [[1d6]] fire damage.
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_critical_success_notes" title="Macro: @{NAME|repeating_disadvantages_$[row #]_critical_success_notes}">The GM determines what happens to you. It is always something good! The lower the roll, the better **bonus** they give you. (B347)</textarea>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row success-fail-notes">
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="fail-note-label">Fail Note</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-fail-notes-tooltip">
+<strong>Hint:</strong> Enter inline rolls for additional results. To show the selected arrow.<br />
+Example: Select Location: ?{Location|Head|Torso}
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_fail_notes" title="Macro: @{NAME|repeating_disadvantages_$[row #]_fail_notes}"></textarea>
+							</div>
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="critical-fail-note-label">Critical Fail Notes</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-critical-fail-notes-tooltip">
+<strong>Hint:</strong> Enter inline rolls for additional results.<br />
+Example: Does an additional [[1d6]] fire damage.
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_critical_fail_notes" title="Macro: @{NAME|repeating_disadvantages_$[row #]_critical_fail_notes}">The GM determines what happens to you. It is always something bad - the higher the roll, the worse the result. (B348)</textarea>
+							</div>
+						</div> <!-- .row -->
+
+					</div> <!-- .row -->
+
+				</fieldset> <!-- .repeating_disadvantages -->
+			</div> <!-- .table -->
+		</div> <!-- .box .disadvantages -->
+
+		<!-- _____ _____ RACIAL Traits BOX _____ _____ -->
+
+		<div class="box racial">
+			<div class="table">
+				<div class="header">
+					<div class="cell col0">
+						<span data-i18n="racial-traits-label">Racial Traits</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-level-label">LVL</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="trait-level-tooltip">Level of the trait.</span>
+						</span>
+					</div>
+					<div class="cell col1">
+						<div class="popup">
+							<span data-i18n="abbreviation-self-control-number-label">SCN</span>
+						</div>
+						<span class="tooltip">
+							<span data-i18n="self-control-number-tooltip">
+Self-control Number OR<br />
+Frequency of Appearance<br />							
+<table>
+	<tbody>
+		<tr><td>15 or less</td></tr>
+		<tr><td>12 or less</td></tr>
+		<tr><td>9 or less</td></tr>
+		<tr><td>6 or less</td></tr>
+	</tbody>
+</table>
+							</span>
+						</span>
+					</div>
+					<div class="cell col2"></div>
+					<div class="cell col3">
+						<span data-i18n="abbreviation-character-points-label">Pts</span>
+					</div>
+					<div class="cell col4">
+						<div class="popup">
+							<span data-i18n="abbreviation-book-reference-label">Ref</span>
+						</div>
+						<div class="tooltip tooltip-skills-ref">
+							<span data-i18n="book-reference-tooltip">
+Reference to book and page numbers.<br />
+Examples:<br />
+B238 = GURPS Basic, Page 238<br />
+PU2:126 = Power-Ups 2. Page 126
+							</span>
+						</div>
+					</div>
+				</div> <!-- .header -->
+				<div class="row">
+					<div class="cell col-race">
+						 <b><span data-i18n="race-label">Race</span>:</b> <input type="text" name="attr_race" title="Macro: @{NAME|race}" />
+					</div>
+					<div class="cell col1"></div>
+					<div class="cell col1"></div>
+					<div class="cell col2"></div>
+					<div class="cell col3">
+						<input type="text" name="attr_trait_racial_points" disabled="disabled" value="@{racial_points}" title="Macro: @{NAME|trait_racial_points}" />
+					</div>
+					<div class="cell col4">
+						<input type="text" name="attr_race_ref" title="Macro: @{NAME|race_ref}" />
+					</div>
+				</div> 
+				<div class="row">
+					<div class="cell col-template">
+						 <b><span data-i18n="templates-label">Templates</span>:</b> <input type="text" name="attr_template_names" title="Macro: @{NAME|templates_names}" />
+					</div>
+					<div class="cell col1"></div>
+					<div class="cell col1"></div>
+					<div class="cell col2"></div>
+					<div class="cell col3"></div>
+					<div class="cell col4"></div>
+				</div> <!-- .header -->
+				<fieldset class="repeating_racial">
+					<input type="hidden" name="attr_control_rating" />
+					<input class="toggle" type="checkbox" title="Click to show/hide more information." name="attr_racial_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<!-- idkey is the key used by either GCA or GCS. Can be used to update and advantage instead of just adding -->
+							<input type="hidden" name="attr_idkey" />
+							<input type="text" name="attr_name" title="Macro: @{NAME|repeating_racial_$[row #]_name}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" step="1" name="attr_trait_level" title="Macro: @{NAME|repeating_racial_$[row #]_trait_level}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" min="1" step="1" name="attr_control_rating" title="Macro: @{NAME|repeating_racial_$[row #]_control_rating}" />
+						</div>
+						<div class="cell col2">
+							<button type="roll" value="@{roll}&{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Self-control Check}} {{activeDefense=[[0]]}} {{showSuccessLabel=[[1]]}} {{characterName=@{character_name}}} {{skillName=@{name}}} {{rollResult=[[3d6cs<1cf>6]]}} {{effectiveSkill=[[@{control_rating} + @{modifier}]]}} {{notes=@{notes}}} {{showNotes=[[@{show_notes}]]}} {{bookReference=@{ref}}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{customSuccessNote=@{success_notes}}} {{customCriticalSuccessNote=@{critical_success_notes}}} {{customFailNote=@{fail_notes}}} {{customCriticalFailNote=@{critical_fail_notes}}} {{popupModifier=@{popup_modifier}}} {{displayRollModifierSummary=[[@{display_roll_modifier_summary}]]}}" name="roll_vsRSCR" />
+						</div>
+						<div class="cell col3">
+							<input type="number" name="attr_points" title="Macro: @{NAME|repeating_racial_$[row #]_points}" />
+						</div>
+						<div class="cell col4">
+							<input type="text" name="attr_ref" title="Macro: @{NAME|repeating_racial_$[row #]_ref}" />
+						</div>
+					</div> <!-- .row -->
+					
+					<div class="melee-notebox">
+						
+						<div class="row">
+							<div class="cell label full-width-margin-right-sm">
+								<div class="show-notes">
+									<input type="checkbox" name="attr_show_notes" value="1" />
+									<span class="label">
+										<span data-i18n="show-notes-below-label">Show notes below in roll template</span>
+									</span> 	
+								</div>
+								<textarea class="text-left full-width-margin-zero texbox-height-medium" name="attr_notes" title="Macro: @{NAME|repeating_racial_$[row #]_notes}"></textarea>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row success-fail-notes">
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="success-note-label">Success Note</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-success-notes-tooltip">
+	<strong>Hint:</strong> Enter inline rolls for additional results. To show the selected arrow.<br />
+	Example: Select Location: ?{Location|Head|Torso}
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_success_notes" title="Macro: @{NAME|repeating_racial_$[row #]_success_notes}"></textarea>
+							</div>
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="critical-success-note-label">Critical Success Notes</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-critical-success-notes-tooltip">
+	<strong>Hint:</strong> Enter inline rolls for additional results.<br />
+	Example: Does an additional [[1d6]] fire damage.
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_critical_success_notes" title="Macro: @{NAME|repeating_racial_$[row #]_critical_success_notes}"></textarea>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row success-fail-notes">
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="fail-note-label">Fail Note</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-fail-notes-tooltip">
+<strong>Hint:</strong> Enter inline rolls for additional results. To show the selected arrow.<br />
+Example: Select Location: ?{Location|Head|Torso}
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_fail_notes" title="Macro: @{NAME|repeating_racial_$[row #]_fail_notes}"></textarea>
+							</div>
+							<div class="cell">
+								<div class="popup">
+									<span data-i18n="critical-fail-note-label">Critical Fail Notes</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="advantage-critical-fail-notes-tooltip">
+<strong>Hint:</strong> Enter inline rolls for additional results.<br />
+Example: Does an additional [[1d6]] fire damage.
+									</span>
+								</span>
+								<textarea class="text-left chat-size" name="attr_critical_fail_notes" title="Macro: @{NAME|repeating_racial_$[row #]_critical_fail_notes}"></textarea>
+							</div>
+						</div> <!-- .row -->
+
+				</fieldset> <!-- .repeating_racial -->
+			</div> <!-- .table -->
+		</div> <!-- .box .racial -->
+
+	</div> <!-- .tab2 -->
+
+	

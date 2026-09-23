@@ -1,0 +1,281 @@
+<!-- ===== ===== ===== ===== ITEMS TAB ===== ===== ===== ===== -->
+	<div class="tab5">
+
+		<!-- _____ _____ QUICK INVENTORY BOX _____ _____ -->
+
+		<div class="box quick-inventory textarea">
+			<div class="header"> 
+				<div class="cell col0"><span data-i18n="quick-inventory-label">Quick Inventory</span></div>
+			</div>
+			<div class="quick-inventory-textarea">
+				<textarea name="attr_quick_inventory" title="Macro: @{NAME|quick_inventory}"></textarea>
+			</div>
+		</div>
+
+		<!-- _____ _____ INVENTORY BOX _____ _____ -->
+
+		<div class="box items">
+			<div class="table">
+				<div class="header">
+					<div class="cell col0"><span data-i18n="inventory-label">Inventory</span></div>
+					<div class="cell col-location">
+						<div class="popup"><span data-i18n="location-label">Location</span></div>
+						<div class="tooltip tooltip-spell-ref">
+							<span data-i18n="inventory-location-tooltip">
+Where is the item located? If you entered a Parent ID in the expanded notes area, this field will be updated with the name of the parent inventory item.<br />
+							</span>
+						</div>	
+					</div>
+					<div class="cell col1"><span data-i18n="abbreviation-technology-level-label">TL</span></div>
+					<div class="cell col1">
+						<div class="popup"><span data-i18n="abbreviation-legality-class-label">LC</span></div>
+						<div class="tooltip tooltip-spell-ref">
+							<span data-i18n="legality-class-tooltip">
+								Legality Class B267.
+							</span>
+						</div>
+					</div>
+					<div class="cell col2">
+						<div class="popup"><span data-i18n="abbreviation-book-reference-label">Ref</span></div>
+						<div class="tooltip tooltip-spell-ref">
+							<span data-i18n="book-reference-tooltip">
+								Reference to book and page numbers.<br />
+								Examples:<br />
+								B238 = GURPS Basic, Page 238<br />
+								PU2:126 = Power-Ups 2. Page 126
+							</span>
+						</div>
+					</div>
+					<div class="cell col3">
+						<div class="popup"><span data-i18n="on-label">On</span></div>
+						<span class="tooltip">
+							<span data-i18n="inventory-carried-tooltip">
+								Carried<br />
+								Is the item being carried at the moment?
+							</span>
+						</span>
+					</div>
+					<div class="cell col4">#</div>
+					<div class="cell col5">$</div>
+					<div class="cell col6">
+						<input type="hidden" name="attr_weight_system" value="lbs" />
+						<span name="attr_weight_system"></span>
+					</div>
+					<div class="cell col7">$+</div>
+					<div class="cell col8">W+</div>
+				</div>
+				<fieldset class="repeating_item">
+					<input class="toggle-highlight" type="checkbox" title="Check to highlight row" name="attr_highlight" />
+					<input class="toggle toggle-notes" type="checkbox" title="Click to show/hide more information." name="attr_item_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<input type="hidden" class="indent-field" name="attr_indent_level" value="0" />
+							<input type="text" class="field-to-indent" name="attr_name" title="Macro: @{NAME|repeating_item_$[row #]_name}" />
+							<input type="hidden" name="attr_idkey" />
+						</div>
+						<div class="cell col-button">
+							<button type="roll" name="roll_useitem" class="button-roll-template btn ui-draggable" value="&{template:macro} {{sheetStyle=@{chatstyle}}} {{templateType=dnd5e}} {{title=Use Item}} {{subtitle=@{name}}} {{desc=@{macro_content}}}"></button>
+						</div>
+						<div class="cell col-location">
+							<input type="text" name="attr_location" title="Macro: @{NAME|repeating_item_$[row #]_location}" />
+						</div>
+						<div class="cell col1">
+							<input type="text" name="attr_tl" title="Macro: @{NAME|repeating_item_$[row #]_tl}" />
+						</div>
+						<div class="cell col1">
+							<input type="number" step="1" min="0" max="4" name="attr_legality_class" title="Macro: @{NAME|repeating_item_$[row #]_legality_class}" />
+						</div>
+						<div class="cell col2">
+							<input type="text" name="attr_ref" title="Macro: @{NAME|repeating_item_$[row #]_ref}" />
+						</div>
+						<div class="cell col3">
+							<input class="boolean" type="checkbox" name="attr_carried" value="1" checked title="Macro: @{NAME|repeating_item_$[row #]_carried}" />
+						</div>
+						<div class="cell col4">
+							<input type="number" name="attr_count" value="1" title="Macro: @{NAME|repeating_item_$[row #]_count}" />
+						</div>
+						<div class="cell col5">
+							<input type="number" name="attr_cost" value="0.00" step="0.01" title="Macro: @{NAME|repeating_item_$[row #]_cost}" />
+						</div>
+						<div class="cell col6">
+							<input type="number" name="attr_weight" value="0.000" step="0.001" title="Macro: @{NAME|repeating_item_$[row #]_weight}" />
+						</div>
+						<div class="cell col7" style="text-align: right;background-color: #c9c9c9;border-bottom: 1px solid white;border-right: 1px solid white;">
+							<span name="attr_costtotal" value="0.00" title="Macro: @{NAME|repeating_item_$[row #]_costtotal}" />
+						</div>
+						<div class="cell col8" style="text-align: right;background-color: #c9c9c9;border-bottom: 1px solid white;border-right: 1px solid white;">
+							<input type="hidden" name="attr_carried" />
+							<span name="attr_weighttotal" value="0.000" class="item-weight-total" title="Macro: @{NAME|repeating_item_$[row #]_weighttotal}" />
+						</div>
+					</div> <!-- .row -->
+					<div class="row row-details notebox">
+
+						<div class="row-misc">
+							<div class="cell label">
+								<div class="popup">
+									<span data-i18n="row-id-label">Row ID:</span>
+								</div>
+								<span class="tooltip">
+									<span data-i18n="inventory-row-id-tooltip">
+For inventory, the row id can used to link an inventory item to a parent item.<br />
+That means, if you uncheck the <b>ON</b> checkbox, all the child inventory items will also become unchecked.<br />
+You can use the row id with macros.
+									</span>
+								</span> 
+							</div>
+							<div class="cell">
+								<input type="text" readonly="readonly" name="attr_row_id" value="" />
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row-misc">
+							<div class="cell label">
+								<div class="popup">
+									<span data-i18n="parent-id-label">Parent ID</span>:
+								</div>
+								<span class="tooltip">
+									<span data-i18n="inventory-parent-id-tooltip">
+For inventory, the row id can used to link an inventory item to a parent item.<br />
+That means, if you uncheck the <b>ON</b> checkbox, all the child inventory items will also become unchecked.<br />
+You can use the row id with macros.
+									</span>
+								</span> 
+							</div>
+							<div class="cell">
+								<input type="text" name="attr_parent_id" value="" />
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row-misc">
+							<div class="cell label">
+								<div class="popup">
+									<span data-i18n="indent-label">Indent</span>:
+								</div>
+								<span class="tooltip">
+									<span data-i18n="inventory-indent-tooltip">
+Select the indent level of the inventory item. This is handy to help show the item belongs to a parent item.
+									</span>
+								</span> 
+							</div>
+							<div class="cell">
+								<select name="attr_indent_level">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>									
+								</select>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="cell col-notebox">
+							<div class="show-notes">
+								<span class="label">
+									<span data-i18n="notes-label">Notes</span>
+								</span>
+							</div>
+							<textarea name="attr_notes" title="Macro: @{NAME|repeating_item_$[row #]_notes}"></textarea>
+						</div>
+
+						<div class="cell col-notebox" style="display:none;">
+							<div class="show-notes">
+								<span class="label">
+									<span data-i18n="macro-label">Macro</span>
+								</span>
+							</div>
+							<textarea name="attr_macro" title="Macro: @{NAME|repeating_item_$[row #]_macro}">&{template:macro} {{templateType=dnd5e}} {{sheetStyle=4}} {{title=Use Item}} {{desc=@{macro_content}}}</textarea>
+						</div>
+						
+						<div class="cell col-notebox">
+							<div class="show-notes">
+								<div class="standard-tooltip">
+									<span data-i18n="macro-label">Macro Content</span>
+									<span class="tooltiptext">
+										<span data-i18n="macro-content-tooltip">
+Enter Roll20 macro content here, this will be used with the round button on the inventory list. When clicked it will process the content.<br />
+See the Help Tab > Getting Started > Formatting Text Chat<br />
+Example:<br />
+Heal [[1d6]] **Hit Points** to a character.
+										</span>
+									</span>
+								</div>
+							</div>
+							<textarea name="attr_macro_content" title="Macro: @{NAME|repeating_item_$[row #]_macro_content}"></textarea>
+						</div>
+
+
+					</div> <!-- .row -->
+				</fieldset> <!-- .repeating_item -->
+				<div class="sort-control">
+					<button type="action" name="act_sort_inventory" class="btn sort">Sort & Indent</button>
+					<div>
+						<i>After sorting, please open/close the notes for one item. This will fix the weirdness caused by the Roll20 sorter.</i>
+					</div>
+				</div>
+				<div class="row row-totals">
+					<div class="cell col0">
+						<div class="cell" style="width: 50px;">
+							<div class="popup" style="font-weight: bold;">
+								<span data-i18n="gravity-label">Gravity</span><span>:</span>
+							</div>
+							<div class="tooltip">
+								<span data-i18n="gravity-tooltip">Standard gravity is based on 1G, earth normal.<br />If gravity is over 1G, then add <i>your</i> weight and encumbrance then multiply by Gravity - 1. Add this value to your encumbrance.<br />If gravity is less than 1G, multiply the weight of your gear by the Gravity value, this is your new encumbrance.<br />See B350.</span>
+							</div>
+						</div>
+						<div class="cell" style="width: 35px;">
+							<input type="number" value="1" step=".01" min=".01" name="attr_gravity" title="Macro: @{NAME|gravity}" />
+						</div>
+					</div>
+					<div class="cell col1">
+						<div style="text-align: right; font-weight: bold;" class="popup">
+							<span data-i18n="total-inventory-value-label">Total Inventory Value:</span>
+						</div>
+						<div class="tooltip">
+							<span data-i18n="total-inventory-value-tooltip">
+								Total monetary value of all items (carried or not).
+							</span>
+						</div>
+					</div>
+					<div class="cell col2">
+						<input type="number" style="font-weight: bold;" step=".01" name="attr_total_value" value="0" readonly="readonly" title="Macro: @{NAME|total_value}" />
+					</div>
+					<div class="cell col3">
+						<div style="text-align: right; font-weight: bold;" class="popup">
+							<span data-i18n="total-inventory-weight-label">Total Inventory Weight:</span>
+						</div>
+						<div class="tooltip">
+							<span data-i18n="total-inventory-weight-tooltip">
+								Total weight of all items carried.
+							</span>
+						</div>
+					</div>
+					<div class="cell col4">
+						<input type="hidden" name="attr_total_weight" value="" />
+						<input type="text" style="font-weight: bold; text-align: center;" name="attr_total_weight_gravity" value="" readonly="readonly" title="Macro: @{NAME|total_weight_gravity}" />
+					</div>
+					<div class="cell col5">
+						<div style="text-align: right; font-weight: bold;" class="popup">
+							<span data-i18n="grand-total-weight-label">Grand Total Weight:</span>
+						</div>
+						<div class="tooltip">
+							<span data-i18n="grand-total-weight-tooltip">
+								Grand total of PC's weight: <span style="background-color: white; font-weight: bold; text-decoration: underline;" name="attr_weight" value="0"></span>, and all items carried.
+							</span>
+						</div>
+					</div>
+					<div class="cell col6">
+						<input type="hidden" name="attr_grand_total_weight" />
+						<input type="text" style="font-weight: bold; text-align: center;" name="attr_grand_total_weight_display" value="0" readonly="readonly" title="Macro: @{NAME|grand_total_weight}" />
+
+					</div>					
+				</div> <!-- .row -->
+			</div> <!-- .table -->
+		</div> <!-- .box .items -->
+
+	</div> <!-- .tab5 -->
+
+
+	

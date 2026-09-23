@@ -1,0 +1,38 @@
+{
+  "outputs": {
+    "html": {
+      "input": [
+        "html/00-setup.html",
+        "html/10-tabs.html",
+        "html/20-traits.html",
+        "html/30-misc.html",
+        "html/40-skills.html",
+        "html/50-combat.html",
+        "html/60-items.html",
+        "html/70-grimoire.html",
+        "html/80-chase.html",
+        "html/90-vehicle.html",
+        "html/99-updates-footer.html",
+        "html/100-logo.html",
+        "html/110-worker.html"
+      ],
+      "output": "../gurps.html",
+      "description": "HTML is split into stable section files to preserve the original final output order."
+    },
+    "css": {
+      "input": [
+        "css/00-base.css",
+        "css/10-custom-tables.css",
+        "css/20-traits.css",
+        "css/30-misc.css",
+        "css/40-skills.css",
+        "css/50-combat.css",
+        "css/60-inventory.css",
+        "css/70-spells.css",
+        "css/99-footer.css"
+      ],
+      "output": "../gurps.css",
+      "description": "CSS is split into stable section files to preserve the original final output ordering."
+    }
+  }
+}

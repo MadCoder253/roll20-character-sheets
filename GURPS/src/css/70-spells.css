@@ -1,0 +1,705 @@
+/* -- SPELLS -- */
+.sheet-spells { 
+    width: calc(100% - 0.4em); 
+}
+
+.sheet-spells .sheet-header {
+    padding: 3px;
+}
+
+.sheet-spells .sheet-header.sheet-spell-stats-header {
+    background: var(--box-bg);
+    height: 34px;
+}
+
+.sheet-spells .sheet-header.sheet-spell-stats-header select {
+    height: 25px;
+    margin: 0;
+}
+
+.sheet-spells .sheet-header.sheet-spell-stats-header input {
+    height: 25px;
+}
+
+.sheet-spells .sheet-header.sheet-spell-stats-header .sheet-margin-right {
+    margin-right: 5px;
+}
+
+/* -- highlight row -- */
+.sheet-spells .repcontainer.ui-sortable.editmode .sheet-toggle-notes {
+    display: none;
+}
+
+.sheet-spells input.sheet-toggle-highlight[type="checkbox"] {
+    width: 16px;
+    height: 22px;
+    opacity: 1;
+    position: absolute;
+    margin-left: 25px;
+}
+
+.sheet-spells .sheet-toggle-notes {
+    position: absolute;
+    left: 0px;
+}
+
+.sheet-spells input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats,
+.sheet-spells input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats input:enabled,
+.sheet-spells input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-details {
+    background: #B7FFAA;    
+}
+
+.sheet-spells input.sheet-checkbox[type="checkbox"] {
+    opacity: 1;
+    height: 16px;
+}
+
+.sheet-spells .sheet-col0 { width: calc(100% - 620px); }
+.sheet-spells .sheet-col0 input { text-align:left; }
+.sheet-spells .sheet-col1 { width: 25px; }
+.sheet-spells .sheet-col1 input { text-align:left; }
+.sheet-spells .sheet-col2 { width: 30px; }
+.sheet-spells .sheet-col3 { width: 45px; }
+.sheet-spells .sheet-col4 { width: 30px; }
+.sheet-spells .sheet-col5 { width: 30px; }
+.sheet-spells .sheet-col6 { width: 75px; }
+.sheet-spells .sheet-col7 { width: 60px; }
+.sheet-spells .sheet-col8 { width: 85px; }
+.sheet-spells .sheet-col9 { width: 110px; }
+.sheet-spells .sheet-col10 { width: 80px; }
+.sheet-spells .sheet-col11 { width: 65px; }
+.sheet-spells .sheet-col12 { width: 30px; }
+
+.sheet-spells .sheet-tooltip-spell-time {
+    margin-left: -80px;
+}
+
+.sheet-spells .sheet-tooltip-spell-ref {
+    margin-left: -200px;
+}
+
+.sheet-spells .sheet-row-stats .sheet-col0 { margin-left: 44px; width: calc(100% - 667px); }
+
+.sheet-spells .sheet-row-college .sheet-col0 { margin-left: 44px; width: calc(100% - 668px); }
+
+.sheet-spells .sheet-row-college .sheet-cell.sheet-align-right {
+    float: right;
+}
+
+.sheet-spells .sheet-row-college .sheet-cell.sheet-ref-label {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.sheet-spells .sheet-spell-mod-notes {
+    width: calc(100% - 355px);
+}
+
+.sheet-spells .sheet-text-college-width {
+    width: 184px;
+}
+
+/* -- if edit mode, hide toggle notes -- */
+.sheet-spells .repcontainer.ui-sortable.editmode .sheet-checkbox,
+.sheet-spells .repcontainer.ui-sortable.editmode .sheet-toggle {
+    opacity: 0;
+    z-index: -1;
+}
+
+.sheet-spells .sheet-row-college .sheet-tooltip.sheet-alt-indent {
+    margin-left: -15px;
+}
+
+.sheet-spells .sheet-row-details.sheet-notebox {
+    min-height: 460px;
+    height: 100%;
+    padding: 0 4px;
+}
+
+.sheet-spells.sheet-spell-stats {
+    height: 40px;    
+}
+
+
+/* -- Roll Templates -- */
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result {
+    width: 100%;
+    border: 1px solid;
+    color: black;
+    border-color: rgba(112, 32, 130,1);
+    font-size: 12px;
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result th {
+    color: darkred;
+    padding: 2px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: bold;
+    background: white;
+}
+
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result th {
+    color: darkred;
+    padding: 2px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: bold;
+    background: white;
+    border-bottom: 1px solid black;
+    font-size: 12px;
+}
+
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result .sheet-roll-made-by .inlinerollresult {
+    background: green;
+    color: white;
+    border: 2px solid green;
+}
+
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result .sheet-roll-missed-by .inlinerollresult {
+    background: red;
+    color: white;
+    border: 2px solid red;
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result td.sheet-subhead {
+    padding: 2px;
+    border-bottom: 1px solid black;
+    background: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result td,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result td {
+    padding: 4px 2px;
+    text-align: left;
+    font-style: normal;
+    /*border-bottom: 1px solid black;*/
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result td.sheet-label,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result td.sheet-label {
+    width: 65px;
+    line-height: 14px;
+    font-weight: bold;
+    /*border-bottom: 1px solid black;*/
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result span.sheet-damageType,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result span.sheet-damageType {
+    font-style: italic;
+    font-size: .9em;
+    color: darkred;
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result tr:nth-child(odd),
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result tr:nth-child(odd) {
+    background: rgba(217, 217, 214,1);
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result tr:nth-child(even),
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result tr:nth-child(even) {
+    background: rgba(233, 233, 233,1);
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result span.sheet-success .inlinerollresult,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result span.sheet-success .inlinerollresult {
+    background: green;
+    color: white;
+    border: 2px solid green;
+}
+
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result span.sheet-failure .inlinerollresult,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result span.sheet-failure .inlinerollresult {
+    background: red;
+    color: white;
+    border: 2px solid red;
+}
+
+/* remove default crit and fail borders */
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result .inlinerollresult.fullfail,
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result .inlinerollresult.fullcrit,
+.sheet-rolltemplate-addToTracker .sheet-container table.sheet-result .inlinerollresult.importantroll,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result .inlinerollresult.fullfail,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result .inlinerollresult.fullcrit,
+.sheet-rolltemplate-rollStats .sheet-container table.sheet-result .inlinerollresult.importantroll {
+    border: none;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container hr.sheet-border {
+    margin: 5px 0 5px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result {
+    width: 100%;
+    border: 1px solid;
+    color: var(--main-text);
+    border-color: rgba(112, 32, 130,1);
+    font-size: 12px;
+    line-height: 1.2em;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result p {
+    font-size: 12px;
+    font-family: "Proxima Nova","ProximaNova-Regular",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result th {
+    color: var(--header-text) !important;
+    padding: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    background: var(--header-bg);
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result td.sheet-private-roll,
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result td.sheet-secret-roll {
+    padding: 6px;
+    border-bottom: 1px solid black;
+    background: var(--secondary-highlight);
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--secondary-highlight-color);
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result td.sheet-subhead {
+    padding: 4px;
+    border-bottom: 1px solid black;
+    background: var(--box-bg);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result td.sheet-subhead .sheet-normal {
+    font-weight: normal;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result td {
+    padding: 5px 2px;
+    /*border-bottom: 1px solid black;*/
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result td.sheet-label {
+    width: 45px;
+    font-weight: bold;
+    line-height: 14px;
+    /*border-bottom: 1px solid black;*/
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result td span.sheet-ref-label {
+    float: right;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result span.sheet-damageType {
+    font-weight: bold;
+    color: var(--highlight-text);
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result span.sheet-title {
+    font-weight: bold;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result tr:nth-child(odd) {
+    background: var(--odd-row-bg);
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result tr:nth-child(even) {
+    background: var(--row-bg);
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result span.sheet-success .inlinerollresult {
+    background: green;
+    color: white;
+    border: 2px solid green;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .sheet-success-text {
+    background: green;
+    color: white;
+    margin-left: 10px;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result span.sheet-failure .inlinerollresult {
+    background: red;
+    color: white;
+    border: 2px solid red;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result span.sheet-failure p,
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result span.sheet-success p{
+    margin: 6px 0 4px 0;
+    line-height: 14px;
+    font-size: 11px;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .sheet-failure-text {
+    background: red;
+    color: white;
+    margin-left: 10px;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .sheet-failure-note-label {
+    font-weight: bold; 
+    font-style: italic;    
+}
+
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .sheet-effective-skill .inlinerollresult {
+    background: black;
+    border: 2px solid black;
+    color: white;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .sheet-damage-roll .inlinerollresult {
+    background: darkred;
+    border: 2px solid darkred;
+    color: white;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-tool-modifier-title {
+    text-align: center; 
+    font-weight: bold;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-tool-modifier-title.sheet-highlight-red {
+    color: white;
+    background-color: red;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-tool-modifier-title.sheet-short-row {
+    height: 0px;
+}
+
+
+.sheet-rolltemplate-skillRoll .sheet-alert-notice {
+    color: red;
+}
+
+
+/* remove default crit and fail borders */
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .inlinerollresult.fullfail,
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .inlinerollresult.fullcrit,
+.sheet-rolltemplate-skillRoll .sheet-container table.sheet-result .inlinerollresult.importantroll {
+    border: none;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-recoil-margin {
+    margin-right: 5px;
+}
+
+.sheet-rolltemplate-skillRoll .sheet-normal-text-content .inlinerollresult {
+    font-weight: normal;
+    background-color: transparent;
+    border: none;
+    color: var(--main-text);
+    font-size: 12px;
+    line-height: 1em;
+    padding: 0;
+}
+
+/* -- spell grid -- */
+.sheet-rolltemplate-spell-grid {
+    display: grid;
+    grid-template-columns: 40px 75px 40px auto;
+}
+
+.sheet-rolltemplate-spell-grid .sheet-label {
+    font-weight: bold;
+}
+
+/**********************************/
+/* Custom rolltemplate for macros */
+
+/* see: https://wiki.roll20.net/Building_Character_Sheets/Roll_Templates */
+.withoutavatars .sheet-rolltemplate-macro {
+    margin-left: -7px;
+}
+
+.sheet-rolltemplate-macro .sheet-container {
+    border: 1px solid;
+    border-color: var(--border-color);
+	border-radius: 3px 3px 3px 3px;
+}
+
+.sheet-rolltemplate-macro .sheet-header {
+	text-align: left;
+	padding: 0;
+}
+
+.sheet-rolltemplate-macro .sheet-header .sheet-text {
+    padding: 5px;
+}
+
+.sheet-rolltemplate-macro .sheet-header .sheet-title {
+    color: var(--header-text);
+    background-color: var(--header-bg);
+	font-size: 1.1em;
+    font-weight: bold;
+}
+
+.sheet-rolltemplate-macro .sheet-header .sheet-subtitle {
+    color: var(--secondary-highlight);
+    background: var(--odd-row-bg);
+    font-size: .9em;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+  /* Allprops part */
+.sheet-rolltemplate-macro .sheet-content {
+    display: grid;
+    background: var(--sheet-bg);
+    /* Header formatting - modify the column layout below */
+    grid-template-columns: 40% auto;
+    /* Line height to match default roll template */
+    line-height:1.2em;
+}
+
+.sheet-rolltemplate-macro .sheet-content > div {
+    padding: 5px;
+}
+  
+/* Left column */
+.sheet-rolltemplate-macro .sheet-content .sheet-key {
+    font-weight: bold;
+    padding-right: 10px;
+    text-align: right;
+}
+  
+/* Empty rule, use this if you want to change the right column 
+.sheet-rolltemplate-custom .sheet-value {
+}
+*/
+  
+/* Make even-numbered rows grey */
+.sheet-rolltemplate-macro .sheet-content :nth-child(4n+3),
+.sheet-rolltemplate-macro .sheet-content :nth-child(4n) {
+    background: var(--row-bg);
+}
+
+/* Description field */
+.sheet-rolltemplate-macro .sheet-content .sheet-desc {
+    grid-column: span 2;
+    padding: 5px;
+    text-align: left;
+}
+
+/* die styles */
+/* remove default crit and fail borders */
+.sheet-rolltemplate-macro .inlinerollresult,
+.sheet-rolltemplate-macro .inlinerollresult.fullfail,
+.sheet-rolltemplate-macro .inlinerollresult.fullcrit,
+.sheet-rolltemplate-macro .inlinerollresult.importantroll {
+    background: blue;
+    color: white;
+    border: 2px solid blue;
+}
+
+.sheet-rolltemplate-macro .sheet-roll .inlinerollresult {
+    background: green;
+    color: white;
+    border: 2px solid green;
+}
+
+.sheet-rolltemplate-macro .sheet-target .inlinerollresult {
+    background: black;
+    border: 2px solid black;
+    color: white;
+}
+
+/* rolltemplate dnd5e */
+
+.sheet-rolltemplate-macro .sheet-template-dnd5e .sheet-header .sheet-title {
+    font-variant: small-caps;
+    font-size: 1.2em;
+    background: white;
+    color: rgb(126, 45, 64);
+    font-family: "Times New Roman", Times, serif;
+}
+
+.sheet-rolltemplate-macro .sheet-template-dnd5e .sheet-header .sheet-subtitle {
+    font-style: italic;
+    font-size: 1em;
+    border-bottom: none;
+    background: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.sheet-rolltemplate-macro .sheet-template-dnd5e .sheet-arrow-right {
+    border-bottom: 2px solid transparent;
+    border-left: 180px solid rgb(126, 45, 64);
+    border-top: 2px solid transparent;
+    background: white;
+    padding: 2px;
+}
+
+/* Make even-numbered rows grey */
+.sheet-rolltemplate-macro .sheet-template-dnd5e .sheet-content :nth-child(4n+3),
+.sheet-rolltemplate-macro .sheet-template-dnd5e .sheet-content :nth-child(4n) {
+    background: white;
+}
+
+/* rolltemplate pathfinder */
+
+.sheet-rolltemplate-macro .sheet-template-pathfinder {
+    background:url(http://i.imgur.com/BLb0XMU.jpg) top left repeat;
+}
+
+.sheet-rolltemplate-macro .sheet-template-pathfinder .sheet-header .sheet-title {
+    text-transform: uppercase;
+    font-family: "Arial", Helvetica, sans-serif;
+    color: rgb(233, 223, 151);
+    background-color: rgb(63, 32, 33);
+}
+
+.sheet-rolltemplate-macro .sheet-template-pathfinder .sheet-header .sheet-subtitle {
+    font-style: italic;
+    font-family: "Arial", Helvetica, sans-serif;
+    color: rgb(233, 223, 151);
+    background-color: rgb(63, 32, 33);
+    border-bottom: none;
+}
+
+.sheet-rolltemplate-macro .sheet-template-pathfinder .sheet-content {
+    background: transparent;
+}
+
+/* Make even-numbered rows grey */
+.sheet-rolltemplate-macro .sheet-template-pathfinder .sheet-content :nth-child(4n+3),
+.sheet-rolltemplate-macro .sheet-template-pathfinder .sheet-content :nth-child(4n) {
+    background: transparent;
+}
+
+/* rolltemplate columnlayout */
+.sheet-rolltemplate-columnlayout .sheet-container {
+    border: 1px solid;
+    border-color: var(--border-color);
+    border-radius: 3px 3px 3px 3px;
+    background: var(--sheet-bg);
+}
+
+.sheet-rolltemplate-columnlayout label {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.sheet-rolltemplate-columnlayout .sheet-grid-3-column-auto {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.sheet-rolltemplate-columnlayout .sheet-grid-4-column-auto {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.sheet-rolltemplate-columnlayout .sheet-grid-5-column-auto {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+
+.sheet-grid-6-column-auto {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+}
+
+.sheet-grid-throwing-table {
+    display: grid;
+    grid-template-columns: 92px 40px 40px 40px 56px 40px 30px 60px 40px 40px 40px 40px 40px 40px auto;
+}
+
+.sheet-grid-range-calculator-table {
+    display: grid;
+    grid-template-columns: 75px 48px 48px 48px 47px 91px 48px 48px 55px 50px 66px auto;
+}
+
+.sheet-grid-shotgun-tool-table {
+    display: grid;
+    grid-template-columns: 75px 48px 58px 70px 47px 91px 70px 70px 32px auto;
+}
+
+.sheet-rolltemplate-columnlayout .sheet-header__bg {
+    background-color: white;
+}
+
+.sheet-rolltemplate-columnlayout .sheet-data__item {
+    background: var(--row-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.sheet-rolltemplate-columnlayout .sheet-grid__padding .sheet-grid-item {
+    padding: 5px;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number].sheet-hide-spinner::-webkit-inner-spin-button,
+input[type=number].sheet-hide-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number].sheet-hide-spinner {
+    -moz-appearance: textfield;
+}
+
+/*************************/
+/* damage type notes box */
+.sheet-damage-type-notes {
+    margin: 10px;
+    width: 250px;
+}
+
+.sheet-damage-type-notes h3 {
+    text-align: center;
+}
+
+.sheet-damage-type-notes .sheet-toggle-notes {
+    margin: 10px 0 10px 0;
+}
+
+.sheet-damage-type-notes th {
+    vertical-align: top;
+    font-size: 1.1em;
+}
+
+
+.sheet-damage-type-notes td {
+    vertical-align: top;
+    text-align: left;
+}
+
+.sheet-damage-type-notes textarea {
+    margin-right: 10px;
+    width: 180px;
+    height: 75px;
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.sheet-damage-type-notes textarea.sheet-defensive-notes {
+    width: 228px;
+    height: 198px;
+}
+
+.sheet-mark-updates-as-read {
+    margin: 10px 0;
+}
+
+.sheet-mark-updates-as-read span {
+    color: var(--highlight-text);
+    font-weight: bold;
+}
+

@@ -1,0 +1,90 @@
+/* -- INVENTORY -- */
+.sheet-quick-inventory { width: calc(100% - 0.4em); }
+.sheet-items .sheet-col0 { width: calc(100% - 0.4em); }
+.sheet-items { width: calc(100% - 0.4em); }
+.sheet-items .sheet-col0 { width: calc(100% - 509px); }
+.sheet-items .sheet-col0 input { text-align:left; }
+.sheet-items .sheet-col-button { width: 30px; }
+.sheet-items .sheet-col-location { width: 94px; }
+.sheet-items .sheet-col-location input { text-align: left; }
+.sheet-items .sheet-col1 { width: 30px; }
+.sheet-items .sheet-col2 { width: 60px; }
+.sheet-items .sheet-col3 { width: 20px; }
+.sheet-items .sheet-col3 input { text-align:left; }
+.sheet-items .sheet-col4 { width: 50px; }
+.sheet-items .sheet-col5 { width: 60px; }
+.sheet-items .sheet-col5 input { text-align:right; }
+.sheet-items .sheet-col6 { width: 55px; }
+.sheet-items .sheet-col6 input { text-align:right; }
+.sheet-items .sheet-col7 { width: 60px; }
+.sheet-items .sheet-col8 { width: 50px; }
+.sheet-items .sheet-row-stats .sheet-col0 { margin-left: 48px; width: calc(100% - 588px); }
+.sheet-items .sheet-row-totals .sheet-col0 { width: calc(100% - 710px); }
+.sheet-items .sheet-row-totals .sheet-col1 { width: 140px; }
+.sheet-items .sheet-row-totals .sheet-col2 { width: 100px; }
+.sheet-items .sheet-row-totals .sheet-col3 { width: 145px; }
+.sheet-items .sheet-row-totals .sheet-col4 { width: 100px; }
+.sheet-items .sheet-row-totals .sheet-col5 { width: 125px; }
+.sheet-items .sheet-row-totals .sheet-col6 { width: 100px; }
+
+/* -- highlight row -- */
+.sheet-items .repcontainer.ui-sortable.editmode .sheet-toggle-notes {
+    display: none;
+}
+
+.sheet-items input.sheet-toggle-highlight[type="checkbox"] {
+    width: 16px;
+    height: 22px;
+    opacity: 1;
+    position: absolute;
+    margin-left: 25px;
+}
+
+.sheet-items .sheet-toggle-notes {
+    position: absolute;
+    left: 0px;
+}
+
+.sheet-items input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats,
+.sheet-items input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats input:enabled,
+.sheet-items input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-details {
+    background: #B7FFAA;    
+}
+
+.sheet-items .sheet-row-details.sheet-notebox {
+    min-height: 110px;
+    height: 100%;
+}
+
+.sheet-items .sheet-row-details.sheet-notebox .sheet-col-notebox {
+    min-height: 110px;
+    height: 100%;
+    width: 100%;
+}
+
+/* -- Bold Carried Items -- */
+input[name="attr_carried"][value="1"] ~ span.sheet-item-weight-total {
+    font-weight: bold;
+}
+
+/* Text Area Box Styling */
+.sheet-quick-inventory .sheet-header .sheet-col0 {
+    padding-left: 6px;
+}
+
+.sheet-quick-inventory-textarea {
+    box-sizing: border-box;
+    float: left;
+    padding: 5px;
+    width: 100%;
+    margin: 0;
+}
+
+.sheet-quick-inventory-textarea textarea {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 150px;
+}
+
+

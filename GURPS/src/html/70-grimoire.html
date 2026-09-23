@@ -1,0 +1,670 @@
+<!-- ===== ===== ===== ===== GRIMOIRE TAB ===== ===== ===== ===== -->
+	<div class="tab6">
+
+		<div class="box skills" style="margin-bottom:6px;">
+			<div class="table table-generic-notes">
+				
+				<div class="header">
+					<div class="cell">
+						<div class="item">
+							<input type="checkbox" value="1" name="attr_toggle_grimoire_notes" class="arrow-toggle margin-left-sm" title="View notes for grimoire." />
+						</div>
+					</div>
+					<div class="cell">
+						<span data-i18n="notes-label">Notes</span>
+					</div>
+				</div>
+				
+				<input type="hidden" name="attr_toggle_grimoire_notes" class="hidden-generic-notes-toggle" />
+				<div class="row wrapper-generic-textarea-notes tall-row">
+					<div class="cell full-width">
+						<textarea name="attr_grimoire_notes" class="generic-textrea-notes"></textarea>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- _____ _____ SPELLS SETUP _____ _____ -->
+		<div class="box spells spell-stats">
+			<div class="table">
+				<div class="header spell-stats-header">
+					<div class="cell"><span data-i18n="spells-based-on-label">Spells Based on:</span></div>
+					<div class="cell margin-right">
+						<input type="hidden" class="option-alert" name="attr_spell_base" />
+						<select name="attr_spell_base" title="Macro: @{NAME|spell_base}">
+							<option value="@{strength}"><span data-i18n="abbreviation-strength">ST</span></option>
+							<option value="@{dexterity}"><span data-i18n="abbreviation-dexterity">DX</span></option>
+							<option value="@{intelligence}" selected><span data-i18n="abbreviation-intelligence">IQ</span></option>
+							<option value="@{health}"><span data-i18n="abbreviation-health">HT</span></option>
+							<option value="@{willpower}"><span data-i18n="option-will">Will</span></option>
+							<option value="@{perception}"><span data-i18n="abbreviation-perception">Per</span></option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					<div class="cell"><span data-i18n="magery-power-investiture-bonus-label">Magery/PI/Bonus Level:</span></div>
+					<div class="cell margin-right">
+						<input type="number" name="attr_spell_bonus" value="0" title="Macro: @{NAME|spell_bonus}" />
+					</div>
+					<div class="cell">
+						<div class="popup"><span data-i18n="on-penalty-label">On Penalty</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-on-penalty-tooltip">
+								Total Spell Skill Penalty based on number of <b>ON</b> spells.<br />
+								Penalty will automatically be applied to the spell skill level.<br />
+								<input type="hidden" name="attr_spell_on_count" value="0" />
+								Number of spells <b>ON:</b> <span name="attr_spell_on_count"></span>.<br />
+								<i>NOTE:</i> Use the options tab to adjust the penalty per spell <b>ON</b>.
+							</span>
+						</div>
+					</div>
+					<div class="cell margin-right">
+						<input type="number" name="attr_spell_on_penalty_total" value="0" title="Macro: @{NAME|spell_on_penalty_total}" readonly="readonly" />
+					</div>
+					<div class="cell">
+						<div class="popup"><span data-i18n="cencentration-penalty-label">Concentration Penalty</span></div>
+						<div class="tooltip">
+							<span data-i18n="cocentration-penalty-tooltip">
+								Total <b>Concentration</b> spell penalty<br>
+								<input type="hidden" name="attr_spell_maintained_count" value="0" />
+								Number of spells: <span name="attr_spell_maintained_count">0</span>.<br>
+								<i>NOTE:</i> Use options tab to adjust the penalty.
+							</span>
+						</div>
+					</div>
+					<div class="cell margin-right">
+						<input type="number" name="attr_spell_maintained_penalty_total" value="0" title="Macro: @{NAME|spell_maintained_penalty_total}" readonly="readonly" />
+					</div>
+					<div class="cell">
+						<div class="popup"><span data-i18n="abbreviation-modifier-label">Mod</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-modifification-tooltip">
+								Enter a positive or negative value that affects the Effective Spell level of all spells. For example, you are wearing an enchanted item with Wisdom of 1 level - M135. This increases your IQ by 1. Spell levels are based on IQ, HOWEVER, that particular spell states "Raises the subject's IQ temporarily. This raises his ability with skills, <b>but not with spells!</b>.<br />Use the <i>notes</i> box above to keep track of the reason why there is a modifier." 
+							</span>
+						</div>
+					</div>
+					<div class="cell margin-right">
+						<input type="number" name="attr_spell_custom_modifier" value="0" title="Macro: @{NAME|spell_custom_modifier}" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- _____ _____ SPELLS BOX _____ _____ -->
+
+		<div class="box spells">
+
+			<div class="roll-modifiers-table">
+
+				<div class="modifier-caption header">
+					<div class="popup">
+						<span data-i18n="spell-modifiers-label">Spell Roll Modifiers</span>
+					</div>
+					<div class="tooltip">
+						<span data-i18n="spell-modifiers-tooltip">These modifiers affect all spell rolls, use the reset button to clear modifiers. These modifiers will be cleared the next time you load your character sheet.</span>
+					</div>
+				</div>
+
+				<div class="modifier-row">
+
+					<div class="modifier-cell modifier-align-top">
+						<button type="action" name="act_show_roll_modifiers_for_spell" class="btn modifier-line-height-fix" title="Select Skill Modifiers"><span data-i18n="select-skill-modifiers-button">Select Skill Modifiers</span></button>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<div class="summary-group">
+							<div class="icon"><span data-i18n="notes-label">Notes</span></div>
+							<div class="summary">
+								<div class="roll-traits">
+									<b>Traits:</b>
+									<div>
+										<textarea name="attr_spell_roll_trait_summary" class="trait-summary" readonly></textarea>
+									</div>
+								</div>
+								<div class="roll-summary">
+									<b>Summary:</b>
+									<div>
+										<textarea name="attr_spell_roll_modifier_summary" class="roll-summary" readonly></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<div class="popup label">
+							<span data-i18n="modifier-label">Modifier:</span>
+						</div>
+						<div class="tooltip">
+							<span data-i18n="modifier-dialog-tooltip">Enter a custom modifier and optional reason to apply to any rolls on the this table.</span>
+						</div>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<input type="number" value="0" step="1" name="attr_spell_custom_roll_modifier" />
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<div class="popup label">
+							<span data-i18n="reason-label">Reason</span>:
+						</div>
+						<div class="tooltip">
+							<span data-i18n="roll-modifier-reason-tooltip">Describe the reasons why you entered the custom modifier.</span>
+						</div>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<textarea class="reason-textarea" name="attr_spell_custom_roll_modifier_reason"></textarea>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<div>
+							<div class="popup">
+								<b><span data-i18n="rule-of-16-label">Rule of 16 (B349)</span></b>
+							</div>
+							<div class="tooltip max-skill-9">
+								<span data-i18n="rule-of-16-help-tooltip">Enter target's resistance level to use with Rule of 16 B349.<br />To use Rule of 16, the option needs to be turned on and the spell must have a value for the resistance column.</span>
+							</div>
+						</div>
+						<div class="grid-2-column-auto">
+							<div>
+								<input type="number" min="0" step="1" name="attr_spell_rule_of_16_target_resistance" value="10" />
+							</div>
+							<div>
+								<div class="popup">
+									<b><span data-i18n="target-resistance-label">Target Resistance</span></b>
+								</div>
+								<div class="tooltip max-skill-9">
+									<span data-i18n="rule-of-16-target-resistance-tooltip">Enter target's resistance level to use with Rule of 16 B349.<br />To use Rule of 16, the option needs to be turned on and the spell must have a value for the resistance column.</span>
+								</div>
+							</div>
+							
+						</div>
+						<div>
+							
+						</div>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<div class="popup label">
+							<span data-i18n="final-modifier-label">Final Modifier</span>:
+						</div>
+						<div class="tooltip">
+							<span data-i18n="final-modifier-dialog-tooltip">The final modifier that will be applied to the effective skill level.</span>
+						</div>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<div class="number-input">
+							<input type="hidden" name="attr_spell_roll_modifier_status" value="neutral" class="modifier-status" />
+							<input type="number" value="0" step="1" name="attr_spell_roll_modifier" class="final-modifier" readonly />
+							<input type="hidden" value="" name="attr_spell_roll_modifier_summary" />
+							<input type="hidden" value="" name="attr_spell_roll_trait_summary" />
+							<input type="hidden" value="" name="attr_spell_roll_hit_location" />
+							<input type="hidden" value="" name="attr_spell_roll_maneuver" />
+							<input type="hidden" value="" name="attr_spell_roll_allout_attack" />
+						</div>
+					</div>
+
+					<div class="modifier-cell modifier-align-top">
+						<button type="action" name="act_spell_roll_reset" class="btn tool-modifier-reset modifier-line-height-fix" title="Reset Skill Modifiers"><span data-i18n="reset-label">Reset</span></button>
+					</div>
+
+				</div><!-- end row -->
+
+			</div>
+
+			<div class="table">
+				<div class="header">
+					<div class="cell col0">
+						<div class="popup"><span data-i18n="spell-label">Spell</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-roll-modifier-tooltip">You can use the <b>Roll Modifiers Bar</b> or the <b>Roll Modifiers Tool Box</b> to modifier the effective skill.</span>
+						</div>
+					</div>
+					<div class="cell col1"></div>
+					<div class="cell col2">
+						<div class="popup"><span data-i18n="abbreviation-level-label">LVL</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-skill-level-tooltip">
+								Skill level with spell
+							</span>
+						</div>
+					</div>
+					<div class="cell col3">
+						<div class="popup"><span data-i18n="abbreviation-difficulty-label">Diff</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-difficulty-tooltip">Difficulty</span>
+						</div>
+					</div>
+					<div class="cell col4">
+						<div class="popup"><span data-i18n="abbreviation-modifier-label">Mod</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-skill-level-modifier-tooltip">
+								Modifier applied to skill level.<br />
+								Can be a positive or a negative number.<br />
+								Examples include a bonus from a Talent,<br />
+								default from another Skill or Technique,<br />
+								a piece of equipment, or a Perk.
+							</span>
+						</div>
+					 </div>
+					<div class="cell col5">
+						<div class="popup"><span data-i18n="abbreviation-character-points-label">Pts</span></div>
+						<div class="tooltip">
+							<span data-i18n="points-tooltip">Points</span>
+						</div>
+					</div>
+					<div class="cell col12">
+						<div class="popup"><span data-i18n="on-label">On</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-is-on-tooltip">
+								Enter a 1 or more to mark the spell as <b>ON</b><br />
+								<b><span name="attr_penalty_per_spell_on"></span></b> skill penalty for each spell that is <b>ON</b>.<br />
+								See B238 or M10.<br/>
+								Click one at a time, wait until each penalty is applied before clicking the next one.
+							</span>
+						</div>
+					</div>
+					<div class="cell col12">
+						<div class="popup"><span data-i18n="abbreviation-concentration-label">CT</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-concentration-tooltip">
+								Enter a 1 or more to mark the spell as <b>Under Concentration</b>.<br />
+								<b><span name="attr_penalty_per_spell_maintained"></span></b> skill penalty for each spell.<br />
+								See B238 or M10.<br/>
+								Click one at a time, wait until each penalty is applied before clicking the next one.
+							</span>
+						</div>
+					</div>
+					<div class="cell col7">
+						<div class="popup"><span data-i18n="abbreviation-resisted-by-label">RESIST</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-resisted-by-tooltip">
+								Resisted By
+							</span>
+						</div>
+					</div>
+					<div class="cell col8">
+						<div class="popup"><span data-i18n="duration-label">Duration</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-duration-tooltip">
+								Duration of Spell
+							</span>
+						</div>
+					</div>
+					<div class="cell col9">
+						<div class="popup"><span data-i18n="cost-label">Cost</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-energy-cost-tooltip">
+								Energy cost for casting the spell.
+							</span>
+						</div>
+					</div>
+					<div class="cell col10">
+						<div class="popup"><span data-i18n="time-label">Time</span></div>
+						<div class="tooltip tooltip-spell-time">
+							<span data-i18n="spell-casting-time-tooltip">
+								Amount of time to cast the spell.
+							</span>
+						</div>
+					</div>
+					<div class="cell col11">
+						<div class="popup"><span data-i18n="maintain-label">Maintain</span></div>
+						<div class="tooltip">
+							<span data-i18n="spell-cost-to-maintain-tooltip">
+								Energy cost to maintain the spell.
+							</span>
+						</div>
+					</div>
+				</div> <!-- .header -->
+
+				<fieldset class="repeating_spells">
+					<input class="toggle-highlight" type="checkbox" title="Check to highlight row" name="attr_highlight" />
+					<input class="toggle toggle-notes" type="checkbox" title="Click to show/hide more information." name="attr_spell_toggle_notes" />
+					<span class="checkbox"></span>
+					<div class="row row-stats">
+						<div class="cell col0">
+							<input type="hidden" class="indent-field" name="attr_indent_level" value="0" />
+							<input type="text" class="field-to-indent" name="attr_name" title="Macro: @{NAME|repeating_spells_$[row #]_name}" />
+							<input type="hidden" name="attr_idkey" />
+						</div>
+						<div class="cell col1">
+							<input type="hidden" name="attr_rule_of_16_value" value="100" />
+							<button type="action" name="act_skillroll" class="button-roll-template btn ui-draggable" value="@{roll}&{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Spell Skill Roll}} {{spellRoll=true}} {{activeDefense=[[0]]}} {{isSkillRoll=[[1]]}} {{showSuccessLabel=[[1]]}} {{characterName=@{character_name}}} {{rollResult=[[3d6cs<1cf>6]]}} {{useModTool=[[1]]}} {{rollModifier=[[@{spell_roll_modifier}]]}} {{displayRollModifierSummary=[[@{display_roll_modifier_summary}]]}} {{rollModifierSummary=@{spell_roll_modifier_summary}}} {{popupModifier=@{popup_modifier}}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{spellCriticalSuccessNote=@{spell_critical_success_notes}}} {{spellFailNote=@{spell_fail_notes}}} {{spellCriticalFailureNote=@{spell_critical_failure_notes}}} {{showCastingDetails=[[@{show_casting_details}]]}}" />
+						</div>
+						<div class="cell col2">
+							<input type="text" name="attr_level" title="Macro: @{NAME|repeating_spells_$[row #]_level}" readonly="readonly" value="10"/>
+							<!-- TODO: replace this hidden field with a drop-down instead of using one drop-down for all spells!  -->
+							<input type="hidden" name="attr_base" value="new" />
+							<input type="hidden" name="attr_sync" value="0" />
+						</div>
+						<div class="cell col3">
+							<select name="attr_difficulty" title="Macro: @{NAME|repeating_spells_$[row #]_difficulty}">
+								<option value="-2"><span data-i18n="abbreviation-option-average">A</span></option>
+								<option value="-3" selected="selected"><span data-i18n="abbreviation-option-hard">H</span></option>
+								<option value="-4"><span data-i18n="abbreviation-option-very-hard">VH</span></option>
+								<option value="0"><span data-i18n="abbreviation-option-very-hard">T/H</span></option>
+							</select>
+						</div>
+						<div class="cell col4">
+							<!-- TODO: its possible that a character could have different types, maybe add drop-down for spell bonus -->
+							<input type="hidden" name="attr_bonus" value="0" title="Synced with attr_spell_bonus, reduces code" />
+							<input type="hidden" name="attr_custom_modifier" value="0" title="Synced with attr_spell_custom_modifier, reduces code" />
+							<input type="hidden" name="attr_on_penalty" value="0" title="Synced with attr_on_penalty, reduces code" />
+							<input type="hidden" name="attr_maintained_penalty" value="0" title="Synced with attr_maintained_penalty, reduces code" />
+							<input type="number" name="attr_spell_modifier" value="0" title="Macro: @{NAME|repeating_spells_$[row #]_spell_modifier}" />
+						</div>
+						<div class="cell col5">
+							<input type="number" name="attr_points" value="1" title="Macro: @{NAME|repeating_spells_$[row #]_points}" />
+						</div>
+						<div class="cell col12">
+							<input type="number" value="" min="0" max="20" step="1" title="Adjust to mark spell as on." name="attr_spell_on_checked" />
+						</div>
+						<div class="cell col12">
+							<input type="number" value="" min="0" max="20" step="1" title="Adjust to mark spell as on." name="attr_spell_maintained_checked" />
+						</div>
+						<div class="cell col7">
+							<input type="text" name="attr_spell_resisted_by" placeholder="Resist" title="Macro: @{NAME|repeating_spells_$[row #]_spell_resisted_by}" />
+							<input type="hidden" name="attr_spell_resisted_by_macro" value="" title="@{NAME|repeating_spells_$[row #]_spell_resisted_by}" />
+						</div>
+						<div class="cell col8">
+							<input type="text" name="attr_duration" placeholder="Duration" title="Macro: @{NAME|repeating_spells_$[row #]_duration}" />
+						</div>
+						<div class="cell col9">
+							<input type="text" name="attr_cost" placeholder="Cost to Cast" title="Macro: @{NAME|repeating_spells_$[row #]_cost}" />
+						</div>
+						<div class="cell col10">
+							<input type="text" name="attr_casttime" placeholder="Casting Time" title="Macro: @{NAME|repeating_spells_$[row #]_casttime}" />
+						</div>
+						<div class="cell col11">
+							<input type="text" name="attr_maintain" placeholder="Cost to Maintain" title="Macro: @{NAME|repeating_spells_$[row #]_maintain}" />
+						</div>
+					</div> <!-- .row -->
+					
+					<div class="row row-details notebox">
+						
+						<div class="row-misc row-college">
+							<div class="cell label">
+								<div class="popup"><span data-i18n="row-id-label">Row ID:</span></div>
+								<span class="tooltip">
+									<span data-i18n="row-id-tooltip">
+										The row id can be used with macros.<br />
+										NOTE: Future use for linking to techniques<br />
+										and combat skills.<br />
+										Example field name: repeating_skills_[the row id]_level<br />
+										This example would represent the skill level on that row.
+									</span>
+								</span> 
+							</div>
+							<div class="cell">
+								<input type="text" readonly="readonly" name="attr_row_id" value="" />
+							</div>
+							<div class="cell align-right col3">
+								<input type="text" name="attr_ref" title="Macro: @{NAME|repeating_spells_$[row #]_ref}" />	
+							</div>
+							<div class="cell align-right ref-label">
+								<div class="popup"><span data-i18n="abbreviation-book-reference-label">Ref</span></div>
+								<div class="tooltip tooltip-spell-ref">
+									<span data-i18n="book-reference-tooltip">
+										Reference to book and page numbers.<br />
+										Examples:<br />
+										B238 = GURPS Basic, Page 238<br />
+										PU2:126 = Power-Ups 2. Page 126
+									</span>
+								</div>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row-misc">
+							<div class="cell label">
+								<div class="popup">
+									<span data-i18n="parent-id-label">Parent ID</span>:
+								</div>
+								<span class="tooltip">
+									<span data-i18n="spell-parent-id-tooltip">
+For spells, the row id can used to link a spell to a parent spell.<br /><b>Tip:</b> You could name the parent a college name or some other group name.
+									</span>
+								</span> 
+							</div>
+							<div class="cell">
+								<input type="text" name="attr_parent_id" value="" />
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row-misc">
+							<div class="cell label">
+								<div class="popup">
+									<span data-i18n="indent-label">Indent</span>:
+								</div>
+								<span class="tooltip">
+									<span data-i18n="spell-indent-tooltip">
+Select the indent level of the spell. This is handy to help show the spell belongs to a parent spell.
+									</span>
+								</span> 
+							</div>
+							<div class="cell">
+								<select name="attr_indent_level">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>									
+								</select>
+							</div>
+						</div> <!-- .row -->
+
+						<div class="row-misc row-college">
+							<div class="cell label">
+								<span data-i18n="reason-for-modifier-label">Reason for MOD (Modifier):</span>
+							</div>
+							<div class="cell spell-mod-notes">
+								<input type="text" name="attr_spell_mod_notes" title="Macro: @{NAME|repeating_spells_$[row #]_spell_mod_notes}" />
+							</div>
+						</div> <!-- .row -->
+						
+						<div class="row-misc row-college">
+							<div class="cell label">
+								<div class="popup">
+									<span data-i18n="class-label">Class</span>
+								</div>
+								<div class="tooltip">
+									<span data-i18n="spell-class-tooltip">
+										Spell class; Area, Blocking, Information, Melee,<br />
+										Missile, Regular, Regular (Jet), Resisted, Special
+									</span>
+								</div>
+							</div>
+							<div class="cell">
+								<input type="text" name="attr_spell_class" title="Macro: @{NAME|repeating_spells_$[row #]_spell_class}" />
+							</div>
+							<div class="cell label">
+								<span data-i18n="colleges-label">Primary College:</span>
+							</div>
+							<div class="cell text-college-width">
+								<input type="text" name="attr_spell_college" title="Macro: @{NAME|repeating_spells_$[row #]_spell_college}" />
+							</div>
+							<div class="cell label">
+								<span data-i18n="colleges-secondary-label">Secondary College:</span>
+							</div>
+							<div class="cell text-college-width">
+								<input type="text" name="attr_spell_college_secondary" title="Macro: @{NAME|repeating_spells_$[row #]_spell_college_secondary}" />
+							</div>
+							
+						</div> <!-- .row -->
+
+						<div class="header">
+							<div class="popup"><span data-i18n="notes-label">Notes</span></div>
+							<span class="tooltip">
+								<span data-i18n="custom-success-fail-notes-tooltip">
+									Success, critical success, fail, and critical fail<br />
+									notes will be added to roll results.<br />
+									You can add macros to these notes.<br />
+									The width of these note boxes are set to help you<br />
+									visualize what it will look like in chat.
+								</span>
+							</span>
+						</div>
+						<div class="col-notebox">
+							<div class="show-notes">
+								<input type="checkbox" name="attr_show_notes" value="1" />
+								<span class="label">
+									<span data-i18n="show-notes-below-label">Show notes below in roll template</span>
+								</span>
+							</div>
+							<textarea name="attr_notes" title="Macro: @{NAME|repeating_spells_$[row #]_notes}"></textarea>
+						</div>
+						
+						<div class="col-notebox">
+							<div class="show-notes">
+								<input type="checkbox" name="attr_show_spell_notes" value="1" />
+								<span class="label">
+									<span data-i18n="show-spell-modifier-notes-label">Show Spell Modifier notes (see actual spell description)</span>
+								</span>
+							</div>
+							<textarea name="attr_spell_notes" title="Macro: @{NAME|repeating_spells_$[row #]_spell_notes}"></textarea>
+						</div>
+						
+						<div class="rolltable-result-notes">
+							
+							<div class="note-input">
+								<div class="note-title">
+									<span data-i18n="success-note-label">Success Note:</span>
+								</div>
+								<textarea name="attr_spell_success_note" title="Macro: @{NAME|repeating_spells_$[row #]_spell_success_note}"></textarea>
+							</div>
+							
+							<div class="note-input">
+								<div class="note-title"><span data-i18n="critical-success-note-label">Critical Success Note:</span></div>
+								<textarea name="attr_spell_critical_success_note" title="Macro: @{NAME|repeating_spells_$[row #]_spell_critical_success_note}"></textarea>
+							</div>
+							
+						</div>
+						
+						<div class="rolltable-result-notes">
+							
+							<div class="note-input">
+								<div class="note-title"><div data-i18n="fail-note-label">Fail Note:</div></div>
+								<textarea name="attr_spell_fail_note" title="Macro: @{NAME|repeating_spells_$[row #]_spell_fail_note}"></textarea>
+							</div>
+							
+							<div class="note-input">
+								<div class="note-title"><span data-i18n="critical-fail-note-label">Critical Fail Note:</span></div>
+								<textarea name="attr_spell_critical_fail_note" title="Macro: @{NAME|repeating_spells_$[row #]_spell_critical_fail_note}"></textarea>
+							</div>
+							
+						</div>
+
+						<div class="header">
+							<div class="popup">
+								<span data-i18n="custom-macros-label">Custom Macros</span>
+							</div>
+							<span class="tooltip">
+								<span data-i18n="custom-macros-tooltip">Select the custom macros that you would like to use with this skill.</span>
+							</span>
+						</div>
+
+						<div class="grid-standard grid-custom-skills-macros">
+							
+							<div class="grid-cell">
+								<div class="container-label-input">
+									<span>
+										<input type="checkbox" name="attr_macro_one_checked" class="margin_right_small" value="1" />
+										<input type="hidden" name="attr_macro_one_name" value="Skill" />
+										<input type="hidden" name="attr_macro_one" value="" />
+									</span>
+									<span>
+										<b><span data-i18n="macro-label">Macro</span>:</b>
+										<span name="attr_macro_one_name"></span>
+									</span>
+								</div>
+							</div>	
+							
+							<div class="grid-cell">
+								<div class="container-label-input">
+									<span>
+										<input type="hidden" name="attr_macro_two_name" value="Defense" />
+										<input type="hidden" name="attr_macro_two" value="" />
+										<input type="checkbox" name="attr_macro_two_checked" class="margin_right_small" value="1" />
+									</span>
+									<span>
+										<b><span data-i18n="macro-label">Macro</span>:</b>
+										<span name="attr_macro_two_name"></span>
+									</span>
+								</div>
+							</div>	
+
+							<div class="grid-cell">
+								<div class="container-label-input">
+									<span>
+										<input type="hidden" name="attr_macro_three_name" value="Melee" />
+										<input type="hidden" name="attr_macro_three" value="" />
+										<input type="checkbox" name="attr_macro_three_checked" class="margin_right_small" value="1" />
+									</span>
+									<span>
+										<b><span data-i18n="macro-label">Macro</span>:</b>
+										<span name="attr_macro_three_name"></span>
+									</span>
+								</div>
+							</div>	
+
+							<div class="grid-cell">
+								<div class="container-label-input">
+									<span>
+										<input type="hidden" name="attr_macro_four_name" value="Ranged" />
+										<input type="hidden" name="attr_macro_four" value="" />
+										<input type="checkbox" name="attr_macro_four_checked" class="margin_right_small" value="1" />
+									</span>
+									<span>
+										<b><span data-i18n="macro-label">Macro</span>:</b>
+										<span name="attr_macro_four_name"></span>
+									</span>
+								</div>
+							</div>
+							
+							<div class="grid-cell">
+								<div class="container-label-input">
+									<span>
+										<input type="hidden" name="attr_macro_five_name" value="Spell" />
+										<input type="hidden" name="attr_macro_five" value="" />
+										<input type="checkbox" name="attr_macro_five_checked" class="margin_right_small" value="1" />
+									</span>
+									<span>
+										<b><span data-i18n="macro-label">Macro</span>:</b>
+										<span name="attr_macro_five_name"></span>
+									</span>
+								</div>
+							</div>
+
+							<div class="grid-cell">
+								<div class="container-label-input">
+									<span>
+										<input type="hidden" name="attr_macro_six_name" value="Macro Six" />
+										<input type="hidden" name="attr_macro_six" value="" />
+										<input type="checkbox" name="attr_macro_six_checked" class="margin_right_small" value="1" />
+									</span>
+									<span>
+										<b><span data-i18n="macro-label">Macro</span>:</b>
+										<span name="attr_macro_six_name"></span>
+									</span>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div> <!-- .row -->
+				</fieldset> <!-- .repeating_spells -->
+				<div class="sort-control">
+					<button type="action" name="act_sort_spells" class="btn sort">Sort & Indent</button>
+					<div>
+						<i>After sorting, please open/close the notes for one spell. This will fix the weirdness caused by the Roll20 sorter.</i>
+					</div>
+				</div>
+			</div> <!-- .table -->
+		</div> <!-- .box .spells -->
+	</div> <!-- .tab6 -->
+
+	

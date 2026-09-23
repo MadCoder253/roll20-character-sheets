@@ -1,0 +1,346 @@
+/* -- TRAITS -- */
+.sheet-language { width: calc(60% - 0.4em); }
+.sheet-language .sheet-col0 { 
+    margin-left: 22px;
+    width: calc(100% - 351px); 
+}
+.sheet-language .sheet-col0 input { text-align:left; }
+.sheet-language .sheet-col1 { width: 120px; }
+.sheet-language .sheet-col1-pts { width: 30px; }
+.sheet-language .sheet-col2 { width: 120px; }
+.sheet-language .sheet-col2-pts { width: 30px; }
+.sheet-language .sheet-col3 { width: 28px; }
+
+.sheet-language-notebox {
+    display: none;
+}
+
+.sheet-language textarea.sheet-reason-notes {
+    width: 444px;
+    height: 33px;
+}
+
+.sheet-language textarea.sheet-notes {
+    width: 444px;
+    height: 55px;
+}
+
+input[type="checkbox"].sheet-talent-checkbox {
+    width: 22px!important;
+    float: left;
+    margin-right: 5px;
+    opacity: 1;
+}
+
+input[name="attr_has_language_talent"][value="0"] ~ .repcontainer .sheet-language-select select[name="attr_spoken"],
+input[name="attr_has_language_talent"][value="0"] ~ .repcontainer .sheet-language-select select[name="attr_written"] {
+    display: block;
+}
+
+input[name="attr_has_language_talent"][value="0"] ~ .repcontainer .sheet-language-select select[name="attr_spoken_talent"],
+input[name="attr_has_language_talent"][value="0"] ~ .repcontainer .sheet-language-select select[name="attr_written_talent"] {
+    display: none;
+}
+
+input[name="attr_has_language_talent"][value="1"] ~ .repcontainer .sheet-language-select select[name="attr_spoken"],
+input[name="attr_has_language_talent"][value="1"] ~ .repcontainer .sheet-language-select select[name="attr_written"] {
+    display: none;
+}
+
+input[name="attr_has_language_talent"][value="1"] ~ .repcontainer .sheet-language-select select[name="attr_spoken_talent"],
+input[name="attr_has_language_talent"][value="1"] ~ .repcontainer .sheet-language-select select[name="attr_written_talent"] {
+    display: block;
+}
+
+.sheet-culture  { width: calc(40% - 0.4em); }
+.sheet-culture .sheet-col0 { 
+    margin-left: 20px;
+    width: calc(100% - 54px);
+}
+.sheet-culture .sheet-col0 input { text-align:left; }
+.sheet-culture .sheet-col1 { width: 30px; }
+
+.sheet-culture textarea.sheet-notes {
+    width: 162%;
+    height: 55px;
+}
+
+/* -- repeating traits -- */
+.sheet-traits { width: calc(100% - 0.4em); }
+
+.sheet-traits .sheet-half-size {
+    width: calc(50% - 0.1em);
+    float: left;
+}
+
+.sheet-traits .sheet-half-size.sheet-border {
+    border-right: 1px solid gray;
+}
+
+.sheet-traits .sheet-header {
+    background: var(--header-bg);
+}
+
+.sheet-traits .sheet-col0 { width: calc(100% - 169px); }
+
+.sheet-traits .sheet-col0 input { text-align:left; }
+.sheet-traits .sheet-col1 { width: 28px; }
+.sheet-traits .sheet-col2 { width: 22px; }
+.sheet-traits .sheet-col3 { width: 30px; }
+.sheet-traits .sheet-col4 { width: 60px; }
+.sheet-traits .sheet-row-stats .sheet-col0 { 
+    margin-left: 20px; 
+    width: calc(100% - 191px); 
+}
+
+.sheet-traits.sheet-perks-disadvantages .sheet-col0 { 
+    width: calc(100% - 140px); 
+}
+
+.sheet-traits.sheet-perks-disadvantages .sheet-row-stats .sheet-col0 { 
+    width: calc(100% - 161px);
+}
+
+/* -- show/hide die for FOA roll -- */
+.sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-melee-notebox .sheet-row.sheet-success-fail-notes {
+    display: none !important;
+}
+
+/* -- check to show dice under advantages and perks table -- */
+.sheet-traits input[type="hidden"][name="attr_foa"][value="3"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="4"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="5"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="6"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="7"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="8"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="9"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="10"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="11"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="12"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="13"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="14"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="15"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="16"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="17"] ~ .sheet-row-stats button[name="roll_vsAFOA"],
+.sheet-traits input[type="hidden"][name="attr_foa"][value="18"] ~ .sheet-row-stats button[name="roll_vsAFOA"] {
+    display: block !important;
+}
+
+/* -- check to show success/fail notes under advantages table -- */
+.sheet-traits input[type="hidden"][name="attr_foa"][value="3"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="4"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="5"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="6"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="7"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="8"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="9"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="10"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="11"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="12"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="13"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="14"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="15"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="16"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="17"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-traits input[type="hidden"][name="attr_foa"][value="18"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes {
+    display: block !important;
+}
+
+/* -- check to show success/fail notes under disadvantages table -- */
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="3"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="4"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="5"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="6"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="7"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="8"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="9"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="10"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="11"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="12"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="13"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="14"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="15"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="16"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="17"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="18"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes {
+    display: block !important;
+}
+
+/* -- check to show success/fail notes under racial traits table -- */
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="3"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="4"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="5"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="6"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="7"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="8"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="9"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="10"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="11"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="12"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="13"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="14"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="15"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="16"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="17"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes,
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="18"] ~ .sheet-melee-notebox .sheet-row.sheet-success-fail-notes {
+    display: block !important;
+}
+
+/* -- if edit mode, hide toggle notes -- */
+.sheet-traits .repcontainer.ui-sortable.editmode .sheet-checkbox,
+.sheet-traits .repcontainer.ui-sortable.editmode .sheet-toggle,
+.sheet-culture .repcontainer.ui-sortable.editmode .sheet-checkbox,
+.sheet-culture .repcontainer.ui-sortable.editmode .sheet-toggle {
+    opacity: 0;
+    z-index: -1;
+}
+
+.sheet-traits .sheet-row-details.sheet-notebox .sheet-col-notebox {
+    height: 100%;
+    width: 100%;
+}
+
+/* -- repeating disadvantages -- */
+.sheet-disadvantages { width: calc(100% - 0.4em); }
+
+.sheet-disadvantages .sheet-header {
+    background: var(--header-bg);
+}
+
+.sheet-disadvantages .sheet-col0 { width: calc(100% - 168px); }
+.sheet-disadvantages .sheet-col0 input { text-align:left; }
+.sheet-disadvantages .sheet-col1 { width: 28px; }
+.sheet-disadvantages .sheet-col2 { width: 22px; }
+.sheet-disadvantages .sheet-col3 { width: 30px; }
+.sheet-disadvantages .sheet-col4 { width: 60px; }
+.sheet-disadvantages .sheet-row-stats .sheet-col0 { margin-left: 20px; width: calc(100% - 189px); }
+
+/* -- show/hide die for Control roll -- */
+.sheet-row-stats button[name="roll_vsDSCR"] {
+    display: none;
+}
+
+/* -- check to show dice under disadvantages and quirks table -- */
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="3"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="4"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="5"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="6"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="7"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="8"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="9"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="10"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="11"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="12"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="13"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="14"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="15"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="16"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="17"] ~ .sheet-row-stats button[name="roll_vsDSCR"],
+.sheet-perks-disadvantages input[type="hidden"][name="attr_control_rating"][value="18"] ~ .sheet-row-stats button[name="roll_vsDSCR"] {
+    display: block;
+}
+
+/* -- if edit mode, hide toggle notes -- */
+.sheet-disadvantages .repcontainer.ui-sortable.editmode .sheet-checkbox,
+.sheet-disadvantages .repcontainer.ui-sortable.editmode .sheet-toggle {
+    opacity: 0;
+    z-index: -1;
+}
+
+.sheet-disadvantages .sheet-row-details.sheet-notebox {
+    min-height: 110px;
+    height: 100%;
+}
+
+.sheet-disadvantages .sheet-row-details.sheet-notebox .sheet-col-notebox {
+    min-height: 110px;
+    height: 100%;
+    width: 100%;
+}
+
+/* -- repeating racial traits -- */
+.sheet-racial { width: calc(100% - 0.4em); }
+
+.sheet-racial .sheet-header {
+    background: var(--header-bg);
+}
+
+.sheet-racial .sheet-col0 { width: calc(100% - 168px); }
+
+.sheet-racial .sheet-col0 input { 
+    text-align:left; 
+}
+
+.sheet-racial .sheet-col-race { 
+    width: calc(100% - 200px); 
+    margin-left: 32px;
+}
+
+.sheet-racial .sheet-col-race input { 
+    text-align:left; 
+    width: calc(100% - 37px) !important;
+}
+
+.sheet-racial .sheet-col-template { 
+    width: calc(100% - 173px);
+    margin-left: 5px;
+}
+
+.sheet-racial .sheet-col-template input { 
+    text-align:left; 
+    width: calc(100% - 67px) !important;
+}
+
+.sheet-racial .sheet-col1 { width: 28px; }
+.sheet-racial .sheet-col2 { width: 22px; }
+.sheet-racial .sheet-col3 { width: 30px; }
+.sheet-racial .sheet-col4 { width: 60px; }
+.sheet-racial .sheet-row-stats .sheet-col0 { 
+    margin-left: 20px; 
+    width: calc(100% - 188px); }
+
+/* -- if edit mode, hide toggle notes -- */
+.sheet-racial .repcontainer.ui-sortable.editmode .sheet-checkbox,
+.sheet-racial .repcontainer.ui-sortable.editmode .sheet-toggle {
+    opacity: 0;
+    z-index: -1;
+}
+
+.sheet-racial .sheet-row-details.sheet-notebox {
+    min-height: 110px;
+    height: 100%;
+}
+
+.sheet-racial .sheet-row-details.sheet-notebox .sheet-col-notebox {
+    min-height: 110px;
+    height: 100%;
+    width: 100%;
+}
+
+
+/* -- show/hide die for Control roll -- */
+.sheet-row-stats button[name="roll_vsRSCR"] {
+    display: none;
+}
+
+/* -- check to show dice under disadvantages and quirks table -- */
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="3"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="4"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="5"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="6"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="7"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="8"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="9"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="10"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="11"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="12"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="13"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="14"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="15"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="16"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="17"] ~ .sheet-row-stats button[name="roll_vsRSCR"],
+.sheet-racial input[type="hidden"][name="attr_control_rating"][value="18"] ~ .sheet-row-stats button[name="roll_vsRSCR"] {
+    display: block;
+}
+

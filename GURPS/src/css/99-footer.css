@@ -1,0 +1,2471 @@
+/* -- FOOTER -- */
+.sheet-logo {
+    text-align: center; 
+    margin-top: 10px; 
+    clear: both;
+}
+
+.sheet-logo div.sheet-control {
+    margin-bottom: 10px;
+}
+
+button.sheet-no-decoration {
+    border: none;
+    background: none;
+    text-decoration: underline;
+}
+
+button.sheet-announcement-block-link {
+    padding: 0!important;
+    margin: 0!important;
+    font-size: 13px!important;
+}
+
+button[type=roll].sheet-no-decoration::before {
+    content: none;
+}
+
+button[type=roll].sheet-inline-decoration {
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+/** roll modifier dialog box                       **/
+/** see: https://webdevtrick.com/css-modal-box/    **/
+
+.sheet-margin-left-small {
+    margin-left: 5px;
+}
+
+/* roll modifier button tools used outside of modal box */
+
+/* roll modifier status */
+.sheet-number-input input.sheet-modifier-status[value="positive"] ~ input.sheet-final-modifier {
+    background-color: blue !important;
+    color: white;
+}
+
+.sheet-number-input input.sheet-modifier-status[value="negative"] ~ input.sheet-final-modifier {
+    background-color: red !important;
+    color: white;
+}
+
+.sheet-roll-modifiers .sheet-number-input {
+    width: 30px;
+}
+
+.sheet-roll-modifiers .sheet-cell-popup div {
+    float: left;
+    width: auto;
+}
+
+.sheet-roll-modifiers .sheet-cell-popup div.sheet-popup {
+    padding-left: 5px;
+}
+
+.sheet-roll-modifiers input[type="checkbox"],
+.sheet-roll-modifiers-table input[type="checkbox"] {
+    width: 16px!important;
+    opacity: 1;
+}
+
+.sheet-roll-modifiers-table input[type="checkbox"]  {
+    margin-top: 0;
+}
+
+.sheet-roll-modifiers-table .sheet-popup {
+    margin-top: -2px;
+}
+
+.sheet-roll-modifiers button[type="action"] {
+    background: none;
+    line-height: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.sheet-roll-modifier-button {
+    margin: 0 !important;
+    height: 12px;
+    border-radius: 0;
+    border: none;
+}
+
+.sheet-reset-button {
+    margin: 0 !important;
+    height: 12px;
+    border-radius: 0;
+    border: none;
+}
+
+.sheet-roll-modifiers-table button[type="action"],
+button[type="action"].sheet-roll-modifier-button,
+button[type="action"].sheet-reset-button {
+    background: none;
+}
+
+
+.sheet-roll-modifiers button[type="action"] span,
+.sheet-roll-modifiers-table button[type="action"] span,
+button[type="action"].sheet-roll-modifier-button span,
+button[type="action"].sheet-reset-button span {
+    display: none;
+}
+
+.sheet-roll-modifiers button[type="action"]::before,
+.sheet-roll-modifiers-table button[type="action"]::before,
+button[type="action"].sheet-roll-modifier-button::before,
+button[type="action"].sheet-reset-button::before {
+    font-family: "Pictos";
+    content: "W";
+    font-size: 24px;
+}
+
+button.sheet-tool-modifier-reset[type="action"]::before,
+button.sheet-tool-modifier-reset[type="action"]::before {
+    font-family: "Pictos";
+    content: "0";
+    font-size: 24px;
+    color: red;
+}
+
+
+/* Roll Modifier Tool - Modal box */
+
+/* activate :before to prevent access to lower elements */
+input[type="hidden"][name="attr_show_roll_modifiers"][value="1"] ~ .sheet-modal:before {
+    display: block;
+}
+
+/* move the model dialog into place */
+input[type="hidden"][name="attr_show_roll_modifiers"][value="1"] ~ .sheet-modal .sheet-modal-dialog {
+    transform: translate(0, 0);
+    top: 10%;
+}
+    
+/* when active disable elements underneath this box */
+.sheet-modal:before {
+    content: "";
+    display: none;
+    background: rgba(228, 165, 174, 0.315);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+.sheet-modal-dialog {
+    background: #fefefe;
+    border: #333333 solid 0px;
+    border-radius: 5px;
+    margin-left: -432px;
+    text-align:center;
+    position: fixed;
+    left: 50%;
+    top: -100%;
+    z-index: 21;
+    width: 800px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.3);
+    transform: translate(0, -500%);
+    transition: transform 0.3s ease-out;
+  }
+
+.sheet-modal-body {
+    padding: 0 10px 10px 10px;
+}
+
+.sheet-modal-header {
+    padding: 0 10px 0 10px;
+}
+
+.sheet-modal-footer {
+    padding: 0 10px 10px 10px;
+}
+
+.sheet-modal-header {
+    border-bottom: #eeeeee solid 1px;
+}
+
+.sheet-modal-header h2 {
+    font-size: 20px;
+}
+
+.sheet-modal-header .sheet-close-button {
+    float: right;
+}
+
+.sheet-modal-body hr {
+    margin: 3px 0 3px 0;
+}
+
+.sheet-modal-body .sheet-modal-main-content {
+    height: 330px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/**
+ * tooltip style
+ * see: https://www.w3schools.com/css/css_tooltip.asp 
+ */
+
+.sheet-modal .sheet-tooltip {
+    color: var(--highlight-text);
+    line-height: 22px;
+    position: relative;
+    display: inline-block;
+}
+
+.sheet-modal .sheet-tooltip .sheet-tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background: #66ffff;
+    color: #111;
+    line-height: 14px;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 120%;
+    left: 0;
+    border: 2px solid var(--border-color);
+    box-shadow: 5px 10px 8px #888888;
+}
+  
+.sheet-modal .sheet-tooltip .sheet-tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+  
+/* fit tooltip when located to right-hand side of dialog box */
+.sheet-modal .sheet-tooltip .sheet-tooltiptext.sheet-move-left {
+    left: 0;
+    margin-left: -171px;
+}
+
+.sheet-modal .sheet-tooltip .sheet-tooltiptext.sheet-move-left::after {
+    left: 180px;
+}
+
+.sheet-modal .sheet-tooltip:hover .sheet-tooltiptext {
+    visibility: visible;
+}
+
+/* display selected sections of roll modifier box */
+.sheet-modal-main-content input[name="attr_display_visibility_section"][value="0"] ~ div.sheet-visiblity {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_afflictions_section"][value="0"] ~ div.sheet-afflictions {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_tasks_section"][value="0"] ~ div.sheet-tasks {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_equipment_section"][value="0"] ~ div.sheet-equipment {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_attack_section"][value="0"] ~ div.sheet-attack {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_melee_maneuvers_section"][value="0"] ~ div.sheet-melee-maneuvers {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_melee_maneuvers_section"][value="0"] ~ .sheet-tooltiptext.sheet-melee {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_ranged_maneuvers_section"][value="0"] ~ div.sheet-ranged-maneuvers {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_ranged_maneuvers_section"][value="0"] ~ .sheet-tooltiptext.sheet-ranged {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_defense_maneuvers_section"][value="0"] ~ div.sheet-defense-maneuvers {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_display_spell_modifiers_section"][value="0"] ~ div.sheet-spell-modifiers {
+    display: none;
+}
+
+/* display hit location drop-down based on hit location type */
+.sheet-modal-main-content select.sheet-hit-location {
+    display: none;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="humanoid"] ~ select[name="attr_humanoid_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="arachnoid"] ~ select[name="attr_arachnoid_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="avian"] ~ select[name="attr_avian_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="cancroid"] ~ select[name="attr_cancroid_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="centaur"] ~ select[name="attr_centaur_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="hexapod"] ~ select[name="attr_hexapod_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="quadruped"] ~ select[name="attr_quadruped_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="humanoid_low_tech"] ~ select[name="attr_humanoid_low_tech_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="humanoid_martial_arts"] ~ select[name="attr_humanoid_martial_arts_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="ichthyoid"] ~ select[name="attr_ichthyoid_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="octopod"] ~ select[name="attr_octopod_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="vehicle"] ~ select[name="attr_vehicle_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="vermiform"] ~ select[name="attr_vermiform_location"] {
+    display: block;
+}
+
+.sheet-modal-main-content input[name="attr_hit_location_type"][value="weapon"] ~ select[name="attr_weapon_location"] {
+    display: block;
+}
+
+/* CSS Grid containers */
+
+.sheet-modal-body .sheet-modal-main-content .sheet-section {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 5px 0;
+}
+
+.sheet-modal-body .sheet-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 2px;
+    padding: 2px;
+    justify-content: start;
+}
+
+.sheet-modal-body .sheet-container > div {
+    padding: 2px 5px 2px 5px;
+    text-align: left;
+}
+
+.sheet-modal-body .sheet-container > div select {
+    margin-bottom: 0;
+}
+
+.sheet-modal-body .sheet-container > div select.sheet-medium-width {
+    width: 200px;
+}
+
+.sheet-modal-body .sheet-container > div select,
+.sheet-modal-body .sheet-container > div input {
+    height: 26px;
+}
+
+.sheet-modal-body .sheet-container > div input:disabled,
+.sheet-modal-body .sheet-container > div input:read-only {
+    background: var(--input-disabled-bg);
+}
+
+.sheet-modal-body .sheet-container > div input[type="checkbox"] {
+    height: 16px;
+    width: 16px;
+}
+
+.sheet-modal-body .sheet-container .sheet-item .sheet-block {
+    clear: both;
+}
+
+.sheet-modal-body .sheet-container .sheet-item .sheet-block.sheet-add-min-height {
+    min-height: 28px;
+}
+
+.sheet-modal-body .sheet-container .sheet-item .sheet-block.sheet-reason-for-mod div {
+    float: left;
+}
+
+.sheet-modal-body .sheet-container .sheet-item .sheet-block.sheet-reason-for-mod div textarea {
+    height: auto;
+    width: 265px;
+    margin-bottom: 0;
+}
+
+.sheet-modal-body .sheet-container .sheet-item.sheet-full-width {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    text-align: left;
+}
+
+.sheet-modal-body .sheet-container .sheet-item.sheet-border-left {
+    border-left: 1px solid #ddd;
+}
+
+.sheet-modal-body .sheet-container .sheet-item.sheet-border-right {
+    border-right: 1px solid #ddd;
+}
+
+
+.sheet-modal-body .sheet-container .sheet-item.sheet-item3-5 {
+    grid-column-start: 3;
+    grid-column-end: 6;
+}
+
+.sheet-modal-body .sheet-container .sheet-item.sheet-item7-8 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.sheet-modal-body .sheet-container .sheet-item.sheet-item2-5 {
+    grid-column-start: 2;
+    grid-column-end: 6;
+}
+
+.sheet-modal-body .sheet-container .sheet-item.sheet-item8-9 {
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+
+.sheet-modal-body .sheet-container .sheet-item .sheet-select-hit-location {
+    width: 170px;
+}
+
+.sheet-modal-body .sheet-container input[name="attr_hit_location"] {
+    width: 550px;
+}
+
+.sheet-modal-body .sheet-container .sheet-item label {
+    font-weight: normal;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.sheet-modal-body .sheet-container .sheet-item label > div {
+    float: left;
+    margin-right: 5px;
+}
+
+.sheet-modal-body .sheet-container .sheet-item select {
+    width: 100%;
+}
+
+.sheet-modal-body .sheet-container .sheet-item select.sheet-number-only-width {
+    width: 4em;
+}
+
+.sheet-modal-body .sheet-container .sheet-item h4.sheet-font-color-red {
+    color: var(--highlight-text);
+}
+
+/* button styles */
+.sheet-modal .sheet-btn {
+    background: #e60023;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 15px;
+    text-decoration: none;
+    text-align: center;
+    min-width: 60px;
+    position: relative;
+    transition: color .1s ease;
+}
+
+.sheet-modal .sheet-btn:hover {
+    background: #c72339;
+}
+
+.sheet-modal .sheet-btn.sheet-close {
+    min-width: 9px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #cccccc;
+    font-size: 19px;
+}
+
+.sheet-modal .sheet-btn.sheet-close:hover {
+    background: #e0dfdf;
+    color: #415063;
+}
+
+.sheet-modal .sheet-btn.sheet-btn-big {
+    font-size: 18px;
+    padding: 15px 20px;
+    min-width: 100px;
+}
+
+.sheet-modal .sheet-btn-close {
+    color: #e60023;
+    font-size: 30px;
+    text-decoration: none;
+    padding:10px;
+    position: absolute;
+    right: 7px;
+    top: 0;
+}
+
+.sheet-modal .sheet-btn-close:hover {
+    color: #333;
+}
+
+/** Combat sub-tabs **/
+
+.sheet-tabbed {
+    width: 98%;
+    height: 100%;
+}
+
+.sheet-tabbed label input.sheet-tab-control {
+    display: none;
+}
+
+.sheet-tabbed > label > span {
+    display: block;
+    float: left;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: background-color .3s;
+    font-size: 12px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+}
+
+.sheet-tabbed > label > span:hover,
+.sheet-tabbed > label > input:checked + span {
+    background: var(--input-disabled-bg);
+}
+
+.sheet-tabbed > label > input:not(:checked) + span {
+    color: var(--highlight-text);
+    background: var(--tabbed-header-bg);
+}
+
+.sheet-tabs {
+    clear: both;
+    border-top: 2px solid var(--input-disabled-bg);
+}
+
+.sheet-tabs > div {
+    width: 100%;
+    padding: 5px 0 0 0;
+    line-height: 1.4em;
+    display: none;
+}
+
+.sheet-tabs > div.sheet-tabbed-header {
+    display: block;
+}
+
+input[name="attr_combat_tabs"][value="damage"] ~ .sheet-tabs > div:nth-of-type(2),
+input[name="attr_combat_tabs"][value="defense"] ~ .sheet-tabs > div:nth-of-type(3),
+input[name="attr_combat_tabs"][value="melee"] ~ .sheet-tabs > div:nth-of-type(4),
+input[name="attr_combat_tabs"][value="ranged"] ~ .sheet-tabs > div:nth-of-type(5),
+input[name="attr_combat_tabs"][value="tools"] ~ .sheet-tabs > div:nth-of-type(6) {
+  display: block;
+}
+
+input[name="attr_bio_tabs"][value="bio"] ~ .sheet-tabs > div:nth-of-type(1),
+input[name="attr_bio_tabs"][value="reactions"] ~ .sheet-tabs > div:nth-of-type(2),
+input[name="attr_bio_tabs"][value="training"] ~ .sheet-tabs > div:nth-of-type(3),
+input[name="attr_bio_tabs"][value="campaign"] ~ .sheet-tabs > div:nth-of-type(4) {
+  display: block;
+}
+
+/* hit points and movement section of combat tab */
+.sheet-tabbed-header .sheet-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 98%;
+    justify-content: start;
+}
+
+/* thrust/swing is initially invisible */
+.sheet-tabbed-header .sheet-container > .sheet-item3 {
+    display: none;
+}
+
+/* if melee or ranged show thrust/swing */
+input[name="attr_combat_tabs"][value="melee"] ~ .sheet-tabs .sheet-tabbed-header .sheet-container > .sheet-item3,
+input[name="attr_combat_tabs"][value="ranged"] ~ .sheet-tabs .sheet-tabbed-header .sheet-container > .sheet-item3 {
+    display: block;
+}
+
+/* if melee or ranged temple has 3 columns */
+input[name="attr_combat_tabs"][value="melee"] ~ .sheet-tabs .sheet-tabbed-header .sheet-container,
+input[name="attr_combat_tabs"][value="ranged"] ~ .sheet-tabs .sheet-tabbed-header .sheet-container {
+    grid-template-columns: auto auto auto;
+}
+
+.sheet-tabbed-header .sheet-container .sheet-item {
+    text-align: center;
+    background: var(--tabbed-header-bg);
+}
+
+.sheet-tabbed-header .sheet-hit-points {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 2px;
+    justify-content: start;
+    border-right: 2px solid var(--header-bg);
+}
+
+.sheet-tabbed-header .sheet-movement-table {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-gap: 2px;
+    justify-content: start;
+    border-right: 2px solid var(--header-bg);
+}
+
+.sheet-tabbed-header .sheet-thrust-swing-damage {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 2px;
+    justify-content: start;
+}
+
+.sheet-tabbed-header .sheet-popup > span {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.sheet-tabbed-header input {
+    width: 62px;
+    margin: 0 2px;
+    text-align: center;
+}
+
+.sheet-tabbed-header input[readonly="readonly"] {
+    background: var(--input-disabled-bg);
+}
+
+.sheet-tabbed-header .sheet-thrust-swing-damage input {
+    width: 55px;
+}
+
+.sheet-tabbed-header .sheet-load input {
+    width: 70px;
+}
+
+/* ---------------------------------- */
+/* Options Tab > sub tabs             */
+input[name="attr_options_tabs"][value="sheet"] ~ .sheet-tabs.sheet-options > div:nth-of-type(1),
+input[name="attr_options_tabs"][value="rules"] ~ .sheet-tabs.sheet-options > div:nth-of-type(2),
+input[name="attr_options_tabs"][value="import"] ~ .sheet-tabs.sheet-options > div:nth-of-type(3),
+input[name="attr_options_tabs"][value="import-json"] ~ .sheet-tabs.sheet-options > div:nth-of-type(4) {
+  display: block;
+}
+
+/* ---------------------------------- */
+/* Help Tab > Options Tab > sub tabs             */
+input[name="attr_help_tabs"][value="get-started"] ~ .sheet-tabs.sheet-options > div:nth-of-type(1),
+input[name="attr_help_tabs"][value="general"] ~ .sheet-tabs.sheet-options > div:nth-of-type(2),
+input[name="attr_help_tabs"][value="traits"] ~ .sheet-tabs.sheet-options > div:nth-of-type(3),
+input[name="attr_help_tabs"][value="bio"] ~ .sheet-tabs.sheet-options > div:nth-of-type(4),
+input[name="attr_help_tabs"][value="skills"] ~ .sheet-tabs.sheet-options > div:nth-of-type(5),
+input[name="attr_help_tabs"][value="combat"] ~ .sheet-tabs.sheet-options > div:nth-of-type(6),
+input[name="attr_help_tabs"][value="inventory"] ~ .sheet-tabs.sheet-options > div:nth-of-type(7),
+input[name="attr_help_tabs"][value="grimoire"] ~ .sheet-tabs.sheet-options > div:nth-of-type(8),
+input[name="attr_help_tabs"][value="gear"] ~ .sheet-tabs.sheet-options > div:nth-of-type(9),
+input[name="attr_help_tabs"][value="other"] ~ .sheet-tabs.sheet-options > div:nth-of-type(10) {
+  display: block;
+}
+
+
+/* ---------------------------------- */
+/* Combat tab : Damage tab. Flex Grid */
+
+/* --------------------------------------- */
+/* grid to select armor layer's to display */
+.sheet-armor-layer-controller-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    width: 100%;
+    grid-gap: 4px;
+    padding: 2px;
+    justify-content: start;
+}
+
+.sheet-armor-layer-controller-grid .sheet-item select {
+    width: auto;
+    margin: 0;
+}
+
+.sheet-armor-layer-controller-grid .sheet-flexible-armor {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.sheet-armor-layer-controller-grid .sheet-item {
+    line-height: 1.8em;
+}
+
+.sheet-armor-layer-controller-grid .sheet-hit-location-notes {
+    height: 42px;
+    line-height: 14px;
+    font-size: 12px;
+    margin: 0;
+    width: 321px;
+}
+
+/* headings */
+.sheet-armor-layer-controller-grid .sheet-item.sheet-heading {
+    font-weight: bold;
+}
+
+.sheet-armor-layer-controller-grid .sheet-item .sheet-popup {
+    background: var(--tabbed-header-bg);
+}
+
+.sheet-armor-layer-controller-grid .sheet-item label {
+    margin: 0;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.sheet-armor-layer-controller-grid .sheet-item label > div {
+    float: left;
+    margin-right: 5px;
+}
+
+.sheet-hit-location-action-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    margin: 5px 0;
+}
+
+.sheet-hit-location-action-bar .sheet-buttons {
+    margin-left: auto;
+}
+
+/* grid for hit location header and repeating section */
+.sheet-hit-location-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    border: 1px solid black;
+}
+
+.sheet-hit-location-container .sheet-item div.sheet-front,
+.sheet-hit-location-container .sheet-item div.sheet-back {
+    width: 72px;
+}
+
+.sheet-hit-location-container input[name="attr_toggle_notes"][value="0"] ~ .sheet-expandable-section {
+    display: none;
+}
+
+/* --------------------------------------------------- */
+/* by default columns layer 2-4 are hidden, only show  */
+.sheet-hit-location-grid {
+    display: grid;
+    grid-template-columns: 25px 90px 43px 43px 43px 50px 43px 43px max-content;
+    grid-gap: 0;
+    padding: 0;
+}
+
+.sheet-hit-location-grid .sheet-highlight-input {
+    border: 1px solid var(--highlight-text);
+    box-shadow: 2px 2px 2px #8b8b8b;
+}
+
+/* by default, hide layer 2,3,4 */
+.sheet-hit-location-grid .sheet-layer-2,
+.sheet-hit-location-grid .sheet-layer-3,
+.sheet-hit-location-grid .sheet-layer-4,
+.sheet-hit-location-grid .sheet-summary {
+    display: none;
+}
+
+/* show armor layer 2 & summary */
+input[name="attr_armor_layers"][value="2"] ~ .sheet-hit-location-grid, 
+input[name="attr_armor_layers"][value="2"] ~ .repcontainer .repitem .sheet-hit-location-grid {
+    grid-template-columns: 25px 90px 43px 43px 43px 50px 43px 43px max-content max-content max-content;
+}
+
+input[name="attr_armor_layers"][value="2"] ~ .sheet-hit-location-grid .sheet-layer-2, 
+input[name="attr_armor_layers"][value="2"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-layer-2,
+input[name="attr_armor_layers"][value="2"] ~ .sheet-hit-location-grid .sheet-summary, 
+input[name="attr_armor_layers"][value="2"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-summary {
+    display: block;
+}
+
+/* show armor layer 2-3 & summary */
+input[name="attr_armor_layers"][value="3"] ~ .sheet-hit-location-grid, 
+input[name="attr_armor_layers"][value="3"] ~ .repcontainer .repitem .sheet-hit-location-grid {
+    grid-template-columns: 25px 90px 43px 43px 43px 50px 43px 43px max-content max-content max-content max-content;
+}
+
+input[name="attr_armor_layers"][value="3"] ~ .sheet-hit-location-grid .sheet-layer-2, 
+input[name="attr_armor_layers"][value="3"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-layer-2,
+input[name="attr_armor_layers"][value="3"] ~ .sheet-hit-location-grid .sheet-layer-3, 
+input[name="attr_armor_layers"][value="3"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-layer-3,
+input[name="attr_armor_layers"][value="3"] ~ .sheet-hit-location-grid .sheet-summary, 
+input[name="attr_armor_layers"][value="3"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-summary {
+    display: block;
+}
+
+/* show armor layer 2-4 & summary */
+input[name="attr_armor_layers"][value="4"] ~ .sheet-hit-location-grid, 
+input[name="attr_armor_layers"][value="4"] ~ .repcontainer .repitem .sheet-hit-location-grid {
+    grid-template-columns: 25px 97px 42px 42px 43px 50px 40px 40px max-content max-content max-content max-content max-content;
+}
+
+input[name="attr_armor_layers"][value="4"] ~ .sheet-hit-location-grid .sheet-layer-2, 
+input[name="attr_armor_layers"][value="4"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-layer-2,
+input[name="attr_armor_layers"][value="4"] ~ .sheet-hit-location-grid .sheet-layer-3, 
+input[name="attr_armor_layers"][value="4"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-layer-3,
+input[name="attr_armor_layers"][value="4"] ~ .sheet-hit-location-grid .sheet-layer-4, 
+input[name="attr_armor_layers"][value="4"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-layer-4,
+input[name="attr_armor_layers"][value="4"] ~ .sheet-hit-location-grid .sheet-summary, 
+input[name="attr_armor_layers"][value="4"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-summary {
+    display: block;
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-grid-header {
+    border-bottom: 1px solid #ccc;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-grid-header > .sheet-popup {
+    background: var(--tabbed-header-bg);
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-grid-header > span,
+.sheet-hit-location-grid .sheet-item.sheet-grid-header > div.sheet-popup {
+    font-weight: bold;
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-grid-header > span.sheet-tooltip {
+    font-weight: normal;
+    margin-left: 0;
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-layer .sheet-front {
+    float: left;
+    width: 100%;
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-layer .sheet-back {
+    float: left;
+    width: 50%;
+}
+
+.sheet-hit-location-grid .sheet-item input {
+    width: 100%;
+    background: var(--input-bg);
+    padding: 1px;
+    line-height: 15px;
+    font-size: 12px;
+}
+
+.sheet-hit-location-grid .sheet-item input[type="checkbox"] {
+    width: auto;
+}
+
+.sheet-hit-location-grid .sheet-item input[readonly="readonly"],
+.sheet-hit-location-grid .sheet-item input[disabled="disabled"] {
+    background: var(--input-disabled-bg);
+    text-align: center;
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-layer-1,
+.sheet-hit-location-grid .sheet-item.sheet-layer-3, 
+.sheet-hit-location-grid .sheet-item.sheet-summary {
+    background: rgb(233, 233, 233);
+}
+
+.sheet-hit-location-grid .sheet-item {
+    padding: 2px;
+}
+
+/* set default width of layer columns */
+.sheet-hit-location-grid .sheet-item.sheet-layer {
+    width: 84px;
+}
+
+.sheet-hit-location-grid .sheet-item.sheet-layer.sheet-summary {
+    width: 120px;
+}
+
+/* hide header front/back labels. Hide back armor input textbox by default */
+.sheet-hit-location-grid .sheet-grid-header div.sheet-front,
+.sheet-hit-location-grid .sheet-grid-header div.sheet-back,
+.sheet-hit-location-grid .sheet-grid-header h4.sheet-spacer,
+.repcontainer .repitem .sheet-hit-location-grid .sheet-item div.sheet-back {
+    display: none;
+}
+
+/* wounds and notes grid for damage table */
+.sheet-hit-location-notes-grid {
+    display: grid;
+    grid-template-columns: 51px 300px 40px 300px;
+    grid-gap: 2px;
+    padding: 5px 0 5px 0;
+}
+
+.sheet-hit-location-notes-grid .sheet-item > .sheet-popup {
+    background: var(--tabbed-header-bg);
+}
+
+/* show/hide hit location layer labels */
+.sheet-hit-location-container .sheet-item > .sheet-layer-label > span {
+    display: none;
+}
+
+input[name="attr_hit_location_layer_use_custom_labels"][value="0"] ~ .sheet-item .sheet-layer-label span.sheet-default {
+    display: inline-block;
+}
+
+input[name="attr_hit_location_layer_use_custom_labels"][value="1"] ~ .sheet-item .sheet-layer-label span.sheet-custom {
+    display: inline-block;
+}
+
+.sheet-text-right-align {
+    text-align: right;
+}
+
+input[type="text"].sheet-textbox-full-width {
+    width: 100%;
+}
+
+/* show layers based on select option */
+
+/* if checked, increase default width of layer columns */
+input[name="attr_armor_show_back"][value="on"] ~ .sheet-hit-location-grid .sheet-item.sheet-layer,
+input[name="attr_armor_show_back"][value="on"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-item.sheet-layer {
+    width: 169px;
+}
+
+input[name="attr_armor_show_back"][value="on"] ~ .sheet-hit-location-grid .sheet-item.sheet-layer.sheet-summary,
+input[name="attr_armor_show_back"][value="on"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-item.sheet-layer.sheet-summary {
+    width: 240px;
+}
+
+/* If "show back armor" is checked, show header front/back labels. show back armor input textbox by default */
+input[name="attr_armor_show_back"][value="on"] ~ .sheet-hit-location-grid .sheet-grid-header div.sheet-front,
+input[name="attr_armor_show_back"][value="on"] ~ .sheet-hit-location-grid .sheet-grid-header div.sheet-back,
+input[name="attr_armor_show_back"][value="on"] ~ .sheet-hit-location-grid .sheet-grid-header h4.sheet-spacer,
+input[name="attr_armor_show_back"][value="on"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-item div.sheet-back {
+    display: block;
+}
+
+/* if "show back armor" is checked, change the front divs to 50% */
+input[name="attr_armor_show_back"][value="on"] ~ .sheet-hit-location-grid .sheet-item div.sheet-front,
+input[name="attr_armor_show_back"][value="on"] ~ .repcontainer .repitem .sheet-hit-location-grid .sheet-item div.sheet-front {
+    width: 50%;
+}
+
+/*************************************************************/
+/* Checkbox Switch                                           */
+
+/* sample html
+<div class="custom-checkbox">
+    <label class="switch">
+        <input type="checkbox" name="attr_select_token" />
+        <span class="icon select"></span>
+    </label>
+</div>
+*/
+
+.sheet-speed-range-images .sheet-group {
+    margin: 5px 0 5px 5px;
+}
+
+.sheet-speed-range-images .sheet-group > div {
+    float: left;
+    line-height: 24px;
+}
+
+.sheet-speed-range-images .sheet-group .sheet-popup span {
+    font-weight: bold;
+}
+
+.sheet-speed-range-images .sheet-group div.sheet-select-popup {
+    margin-right: 5px;
+}
+
+/* see: https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.sheet-custom-checkbox label {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 1em;
+}
+
+.sheet-custom-checkbox .sheet-switch {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.sheet-custom-checkbox .sheet-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sheet-custom-checkbox .sheet-switch .sheet-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.sheet-custom-checkbox .sheet-switch .sheet-icon.sheet-select:before {
+    font-family: "Pictos";
+    content: "~";
+    font-size: 24px;
+    color: lightgray;
+}
+
+.sheet-custom-checkbox .sheet-switch input:checked ~ .sheet-icon.sheet-select:before {
+    color: green;
+}
+
+.sheet-custom-checkbox .sheet-switch .sheet-icon.sheet-target:before {
+    content: "◎";
+    font-size: 24px;
+    color: lightgray;
+}
+
+.sheet-custom-checkbox .sheet-switch input:checked ~ .sheet-icon.sheet-target:before {
+    color: red;
+}
+
+.sheet-target-token-help {
+    display: none;
+}
+
+input[name="attr_target_token"][value="on"] ~ .sheet-target-token-help {
+    display: block;
+    font-size: 11px;
+    color: var(--highlight-text);
+    padding: 0 0 3px 0;
+    line-height: 1.2em;
+}
+
+/*******************************/
+/* tool modifier summary notes */
+.sheet-summary-group .sheet-summary {
+    display: none;
+}
+
+.sheet-summary-group div.sheet-icon {
+    cursor: pointer;
+}
+
+.sheet-summary-group div.sheet-icon span {
+    display: none;
+}
+
+.sheet-summary-group div.sheet-icon:before {
+    font-family: "Pictos";
+    content: "F";
+    font-size: 22px;
+}
+
+.sheet-summary-group div.sheet-icon:hover ~ .sheet-summary {
+    width: auto;
+    height: auto;
+    white-space: normal;
+    display: inline !important;
+    position: absolute;
+    color: #111;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background: #66ffff;
+    line-height: 1.5em;
+    font-size: 11px;
+    box-shadow: 5px 10px 8px #888888;
+    z-index: 10;
+    padding: 4px;
+    text-align: left;
+    margin-left: -40px;
+    width: 250px;
+}
+
+.sheet-summary-group textarea.sheet-hit-location-summary {
+    width:95%;
+    height:18px;
+}
+
+.sheet-summary-group textarea.sheet-all-out-attack-summary {
+    width:95%;
+    height:18px;
+}
+
+.sheet-summary-group textarea.sheet-maneuver-summary {
+    width:95%;
+    height:18px;
+}
+
+.sheet-summary-group textarea.sheet-trait-summary {
+    width:95%;
+    height:50px;
+}
+
+.sheet-summary-group textarea.sheet-roll-summary {
+    width:95%;
+    height:100px
+}
+
+/* Importer Tab */
+
+/* --- controls --- */
+.sheet-grid-import-controls {
+    display: grid;
+    grid-template-columns: auto auto auto 1fr auto;
+}
+
+.sheet-grid-standard textarea.sheet-json-data {
+    height: 150px;
+    overflow-y: scroll;
+}
+
+div.sheet-gca5-instructions,
+div.sheet-gcs-instructions {
+    display: none;
+}
+
+input[name="attr_gca5_instructions_toggle"][value="1"] ~ div.sheet-gca5-instructions {
+    display: block;
+}
+
+input[name="attr_gcs_instructions_toggle"][value="1"] ~ div.sheet-gcs-instructions {
+    display: block;
+}
+
+button[name="act_import_delete_tables"] {
+    width: 83px;
+}
+
+.sheet-importer {
+    width: 65%;
+    float: left;
+}
+
+.sheet-importer .sheet-json-data {
+    width: 100%;
+}
+
+.sheet-importer .sheet-controls {
+    clear: both;
+    margin-top: 10px;
+}
+
+.sheet-importer .sheet-controls .sheet-import-reset {
+    float: right;
+}
+
+.sheet-importer .sheet-controls .sheet-import-button {
+    float:left; 
+    margin-right: 10px;
+}
+
+.sheet-importer .sheet-controls .sheet-import-message {
+    float:left; 
+    margin-right: 10px;
+}
+
+.sheet-importer .sheet-controls .sheet-import-option .sheet-import-notes {
+    float:left; 
+}
+
+.sheet-importer .sheet-controls .sheet-import-option .sheet-import-notes-popup {
+    margin-left: 17px; 
+}
+
+.sheet-importer .sheet-tips {
+    clear: both;
+    margin-top: 20px;
+}
+
+.sheet-clearfix::after { 
+    content: " ";
+    display: block; 
+    height: 0; 
+    clear: both;
+}
+
+input[name="attr_import_confirm_delete_tables"][value="0"] ~ button[name="act_import_delete_tables"] {
+    background-color: gray;
+}
+
+input[name="attr_import_confirm_delete_tables"][value="1"] ~ button[name="act_import_delete_tables"] {
+    background-color: var(--highlight-text);
+}
+
+/* --- Generic Styles --- */
+
+.sheet-div-spacer > div {
+    margin-bottom: 10px;
+}
+
+.sheet-custom__margin_bottom_medium {
+    margin-bottom: 10px;
+}
+
+.sheet-grid-chase-leader-table .sheet-grid-cell input.sheet-half-width {
+    width: 50%;
+}
+
+.sheet-section-header {
+    text-transform: lowercase;
+    color:var(--header-text);
+    background: var(--header-bg);
+    font-variant: small-caps;
+}
+
+.sheet-section-header h3 {
+    color:var(--header-text);
+}
+
+.sheet-header-subscript {
+    text-transform: none;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 11px;
+}
+
+.sheet-padding__left_small {
+    padding-left: 4px;
+}
+
+.sheet-text-align__center {
+    text-align: center;
+}
+
+/* Generic link button */
+button.sheet-link {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Add hover effect */
+button.sheet-link:hover {
+    color: #00a;
+    text-decoration: none;
+}
+
+.sheet-standard-button {
+    height: 20px;
+    background: var(--secondary-highlight);
+    color: var(--secondary-highlight-color);
+    border-radius: 3px;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+    min-width: 60px;
+    transition: color .1s ease;
+    line-height: normal;
+}
+
+.sheet-standard-button:hover {
+    background: #c72339;
+}
+
+.sheet-margin_right_small {
+    margin-right: 3px;
+}
+
+.sheet-margin_left_medium {
+    margin-left: 10px;
+}
+
+/* toggle section button */
+.sheet-toggle-button input {
+    display: none;
+}
+
+/* Create a custom checkbox */
+
+/* fix the label style */
+label.sheet-toggle-button {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.sheet-toggle-button span {
+width: 20px;
+height: 20px;
+display: inline-block;
+position: relative;
+cursor: pointer;
+}
+
+.sheet-toggle-button span:hover {
+ border-color: #ccc;
+}
+
+/* Create a plus sign inside the custom checkbox */
+.sheet-toggle-button span:before,
+.sheet-toggle-button span:after {
+content: "";
+position: absolute;
+background-color: black;
+}
+
+.sheet-toggle-button span:hover:before,
+.sheet-toggle-button span:hover:after{
+ background-color: #ccc;
+}
+
+/* Position the plus sign horizontally */
+.sheet-toggle-button span:before {
+width: 14px;
+height: 3px;
+top: 50%;
+left: 3px;
+transform: translateY(-50%);
+}
+
+/* Position the plus sign vertically */
+.sheet-toggle-button span:after {
+width: 3px;
+height: 14px;
+top: 3px;
+left: 50%;
+transform: translateX(-50%);
+}
+
+/* Change the plus sign to a minus sign when the checkbox is checked */
+.sheet-toggle-button input:checked + span:before {
+width: 14px;
+height: 3px;
+top: 50%;
+left: 3px;
+transform: translateY(-50%);
+}
+
+.sheet-toggle-button input:checked + span:after {
+display: none;
+}
+
+/* --- 2 column grid --- */
+.sheet-grid-2-column-auto {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.sheet-grid-2-column-equal-width {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sheet-grid-2-column-big-small {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+/* --- 3 Column Grid --- */
+.sheet-grid-3-column-auto {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+}
+
+.sheet-grid-3-column-equal-width {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* --- 4 Column Grid --- */
+.sheet-grid-4-column-equal {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.sheet-grid-4-column-auto {
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr;
+}
+
+.sheet-grid-5-column-auto-repeat {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+}
+
+.sheet-grid-damage-tool {
+    display: grid;
+    grid-template-columns: repeat(4, auto) 1fr;
+}
+
+.sheet-grid-2-column-offset {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.sheet-grid-aiming-stats {
+    display: grid;
+    grid-template-columns: 65px auto auto 65px auto auto auto auto auto 1fr;
+}
+
+.sheet-grid-targeting-systems {
+    display: grid;
+    grid-template-columns: 65px 65px 35px 1fr;
+}
+
+/* --- generic grid class layouts --- */
+
+.sheet-grid-standard label {
+    margin: 0 5px 0 0;
+    display: inline-block;
+    padding: 0;
+    width: auto;
+    font-size: 1em;
+}
+
+.sheet-grid-standard label.sheet-toggle-button {
+    margin: 6px 5px 0 0;
+}
+
+.sheet-grid-standard input,
+.sheet-grid-standard textarea,
+.sheet-grid-standard .sheet-grid-cell select {
+    margin: 0;
+    line-height: normal;
+}
+
+.sheet-grid-standard .sheet-grid-cell select {
+    font-size: 11px;
+}
+
+.sheet-grid-standard input[type="radio"] {
+    width: auto!important;
+}
+
+.sheet-grid-standard input[type="checkbox"] {
+    opacity: 1;
+    width: auto!important;
+}
+
+.sheet-grid-standard select {
+    width: auto;
+    margin: 0;
+}
+
+.sheet-grid-standard input,
+.sheet-grid-standard select {
+    height: 26px;
+}
+
+.sheet-grid-standard input,
+.sheet-grid-standard textarea {
+    width: 100%!important;
+}
+
+.sheet-grid__input input,
+.sheet-grid__input textarea {
+    width: 100%!important;
+}
+
+.sheet-grid-standard textarea {
+    height: 50px;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+}
+
+.sheet-grid-standard input.sheet-small-medium-width {
+    width: 47px!important;
+}
+
+.sheet-grid-standard input.sheet-medium-width {
+    width: 60px!important;
+}
+
+.sheet-grid-standard input.sheet-medium-large-width {
+    width: 78px!important;
+}
+
+.sheet-grid-standard input.sheet-large-width {
+    width: 100px!important;
+}
+
+.sheet-grid-standard input.sheet-full-width {
+    width: 100%!important;
+}
+
+.sheet-grid-standard .sheet-margin_right_small {
+    margin-right: 5px;
+}
+
+.sheet-grid-standard .sheet-heading {
+    background: var(--header-bg);
+    color: var(--header-text);
+    font-weight: bold;
+    text-align: center;
+}
+
+.sheet-grid__border_cell > .sheet-grid-cell {
+    border: 1px solid black;
+}
+
+.sheet-grid__border {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.sheet-grid__align_center {
+    align-items: center;
+}
+
+.sheet-grid__align_top {
+    align-items: baseline;
+}
+
+.sheet-grid__text_align_left {
+    text-align: left;
+}
+
+.sheet-grid__gap_large {
+    gap: 10px;
+}
+
+.sheet-grid__gap_medium {
+    gap: 5px;
+}
+
+.sheet-grid__gap_small {
+    gap: 3px;
+}
+
+.sheet-grid__padding > .sheet-grid-cell {
+    padding: 4px;
+}
+
+.sheet-grid__border > div {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.sheet-grid-cell__callout_left {
+    border-left: 1px solid black;
+    padding-left: 5px;
+}
+
+.sheet-grid__margin_bottom_small {
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-fragmentation-modifiers {
+    display: grid;
+    grid-template-columns: auto auto auto auto 1fr;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.sheet-grid-fragmentation-modifiers > div:first-child {
+    padding-left: 5px;
+}
+
+/* -- DEMOLITION - MATERIAL DESTRUCTION SECTION -- */
+.sheet-material-destruction-wall-breach-grid {
+    display: grid;
+    grid-template-columns: 90px 80px 108px 1fr 100px;
+    gap: 5px;
+}
+
+.sheet-material-destruction-shatter-timber-grid {
+    display: grid;
+    grid-template-columns: 90px 80px 108px 1fr 100px;
+    gap: 5px;
+}
+
+.sheet-material-destruction-break-girders-grid {
+    display: grid;
+    grid-template-columns: 90px 80px 1fr 100px;
+    gap: 5px;
+}
+    
+.sheet-material-destruction-hole-in-wall-grid {
+    display: grid;
+    grid-template-columns: 90px 80px 108px 108px 1fr 100px;
+    gap: 5px;
+}
+/* --- CHASE CONTROL SHEET --- */
+
+input[name="attr_chase_sequence"][value="quarry_chooses"] ~ h3.sheet-quarry,
+input[name="attr_chase_sequence"][value="quarry_rolls"] ~ h3.sheet-quarry {
+    color: var(--highlight-text);
+}
+
+input[name="attr_chase_sequence"][value="pursuer_chooses"] ~ h3.sheet-pursuer,
+input[name="attr_chase_sequence"][value="pursuer_rolls"] ~ h3.sheet-pursuer {
+    color: var(--highlight-text);
+}
+
+.sheet-container-label-input {
+    display: flex;
+    align-items: center;
+}
+
+.sheet-container-label-input.sheet-margin-bottom-small {
+    margin-bottom: 2px;
+}
+
+.sheet-container-label-input.sheet-height-standard {
+    height: 22px;
+}
+
+
+.sheet-chase-row {
+    margin-bottom: 10px;
+}
+
+.sheet-chase-row label {
+    font-size: 1em;
+}
+
+.sheet-grid-chase-setup {
+    display: grid;
+    grid-template-columns: 100px 330px 125px auto;
+    gap: 10px;
+}
+
+/* align reset button to the right */
+.sheet-grid-chase-setup > div:nth-child(4) {
+    text-align: right;
+}
+
+.sheet-grid-chase-leader-table {
+    display: grid;
+    grid-template-columns: 230px 80px 45px 45px 54px 52px 1fr 100px;
+    grid-template-rows: minmax(25px,auto);
+    gap: 2px;
+    border: 1px solid black;
+}
+
+.sheet-grid-chase-leader-table .sheet-grid-cell.sheet-header-bg {
+    background: var(--header-bg);
+}
+
+.sheet-grid-chase-leader-table .sheet-grid-cell {
+    padding: 4px;
+}
+
+.sheet-standard-tooltip h3,
+.sheet-standard-tooltip h4 {
+    color: var(--header-text);
+}
+
+.sheet-standard-tooltip h3.sheet-header-bg,
+.sheet-standard-tooltip h4.sheet-header-bg {
+    background: var(--header-bg);
+    padding-right: 5px;
+}
+
+.sheet-grid-chase-leader-table .sheet-grid-cell input,
+.sheet-grid-chase-leader-table .sheet-grid-cell textarea,
+.sheet-grid-chase-leader-table .sheet-grid-cell select {
+    width: 100%;
+}
+
+.sheet-grid-chase-leader-table .sheet-grid-cell textarea {
+    height: 50px;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+}
+
+.sheet-grid-chase-support-actions-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    font-weight: bold;
+    gap: 3px;
+}
+
+.sheet-grid-chase-support-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 10px 3px;
+}
+
+.sheet-grid__padding_bottom_small > .sheet-grid-cell {
+    padding-bottom: 6px;
+}
+
+.sheet-grid-chase-modifiers-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    font-weight: bold;
+    gap: 3px;
+}
+
+.sheet-grid-chase-modifiers {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3px;
+}
+
+.sheet-grid-chase-maneuver {
+    display: grid;
+    grid-template-columns: 217px 188px 152px 143px auto;
+    gap: 3px;
+}
+
+/* standard tooltip */
+
+/**
+ * tooltip style
+ * see: https://www.w3schools.com/css/css_tooltip.asp 
+ */
+
+.sheet-standard-tooltip {
+    color: var(--highlight-text);
+    position: relative;
+    display: inline-block;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext {
+    visibility: hidden;
+    background: #66ffff;
+    width: 275px;
+    color: #111;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 120%;
+    left: 0;
+    border: 2px solid var(--border-color);
+    box-shadow: 5px 10px 8px #888888;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    white-space: normal;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-small-width {
+    width: 150px;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-large-width {
+    width: 400px;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+  
+/* fit tooltip when located to right-hand side of dialog box */
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-move-left {
+    left: 0;
+    margin-left: -171px;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-move-left::after {
+    left: 180px;
+}
+
+/* fit tooltip when located to the extreme right-hand side of dialog box */
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-move-far-left {
+    left: 0;
+    margin-left: -225px;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-move-far-left::after {
+    left: 230px;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-move-extreme-left {
+    left: 0;
+    margin-left: -245px;
+}
+
+.sheet-standard-tooltip .sheet-tooltiptext.sheet-move-extreme-left::after {
+    left: 243px;
+}
+
+.sheet-standard-tooltip:hover .sheet-tooltiptext {
+    visibility: visible;
+}
+
+/* --- TOOLS MAIN TAB --- */
+
+input[name="attr_gurps_sheet_type"] ~ label {
+    display: none;
+}
+
+input[name="attr_gurps_sheet_type"][value="character"] ~ label.sheet-tools-character {
+    display: block;
+}
+
+input[name="attr_gurps_sheet_type"][value="chase"] ~ label.sheet-tools-chase {
+    display: block;
+}
+
+.sheet-tools-container {
+    border: 1px solid black;
+    background: var(--row-bg);
+}
+
+.sheet-tools-container > div {
+    padding: 0 4px 0 4px;
+    margin-bottom: 5px;
+}
+
+.sheet-tools-container.sheet-no-margin-bottom > div {
+    margin-bottom: 0;
+}
+
+.sheet-bottom-margin-zero {
+    margin-bottom: 0 !important;
+}
+
+.sheet-bottom-margin-small {
+    margin-bottom: 2px;
+}
+
+.sheet-bottom-margin-medium {
+    margin-bottom: 5px;
+}
+
+.sheet-bottom-margin-large {
+    margin-bottom: 10px;
+}
+
+.sheet-top-margin-zero {
+    margin-top: 0 !important;
+}
+
+.sheet-top-margin-small {
+    margin-top: 2px;
+}
+
+.sheet-top-margin-medium {
+    margin-top: 5px;
+}
+
+.sheet-top-margin-large {
+    margin-top: 10px;
+}
+
+.sheet-tools-container input[name="attr_object_weights"] {
+    width: 84px;
+}
+
+.sheet-hearing-source {
+    display: none;
+}
+
+input[name="attr_hearing_sound_source_sort_by"][value="decibel"] ~ select.sheet-hearing-source-sort-decibel {
+    display: inline-block;
+}
+
+input[name="attr_hearing_sound_source_sort_by"][value="alphabetical"] ~ select.sheet-hearing-source-sort-alpha {
+    display: inline-block;
+}
+
+/* ---------------------------------- */
+/* Options Tab > sub tabs             */
+input[name="attr_tool_tabs"][value="general"] ~ .sheet-tabs.sheet-options > div:nth-of-type(1),
+input[name="attr_tool_tabs"][value="structural"] ~ .sheet-tabs.sheet-options > div:nth-of-type(2),
+input[name="attr_tool_tabs"][value="senses"] ~ .sheet-tabs.sheet-options > div:nth-of-type(3),
+input[name="attr_tool_tabs"][value="feats"] ~ .sheet-tabs.sheet-options > div:nth-of-type(4),
+input[name="attr_tool_tabs"][value="environmental"] ~ .sheet-tabs.sheet-options > div:nth-of-type(5),
+input[name="attr_tool_tabs"][value="macros"] ~ .sheet-tabs.sheet-options > div:nth-of-type(6) {
+  display: block;
+}
+
+.sheet-grid-team-efforts {
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr;
+}
+
+.sheet-grid-custom-skills-macros {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 5px;
+    margin: 15px 0 15px 0;
+}
+
+/* melee quick modifiers */
+.sheet-melee-quick-modifiers-block {
+    display: none;
+}
+
+input[name="attr_melee_quick_mod_show"][value="1"] ~ .sheet-melee-quick-modifiers-block {
+    display: block;
+}
+
+.sheet-grid-melee-quick-modifier-header {
+    display: grid;
+    grid-template-columns: 30px 50px 1fr 75px;
+    font-weight: bold;
+    gap: 5px;
+}
+
+.sheet-grid-melee-quick-modifiers {
+    display: grid;
+    grid-template-columns: 30px 50px 1fr 75px;
+    gap: 0 5px;
+}
+
+.sheet-grid-melee-quick-modifiers .sheet-toggle-button {
+    padding-left: 5px;
+}
+
+.sheet-grid-melee-quick-modifiers .sheet-expandable-section {
+    grid-column: 2 / 5;
+    display: none;
+    border-left: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.sheet-grid-melee-quick-modifiers input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section {
+    display: block;
+}
+
+/* Range quick modifiers */
+.sheet-range-quick-modifiers-block {
+    display: none;
+}
+
+input[name="attr_range_quick_mod_show"][value="1"] ~ .sheet-range-quick-modifiers-block {
+    display: block;
+}
+
+.sheet-grid-range-quick-modifier-header {
+    display: grid;
+    grid-template-columns: 30px 50px 1fr 75px;
+    font-weight: bold;
+    gap: 5px;
+}
+
+.sheet-grid-range-quick-modifiers {
+    display: grid;
+    grid-template-columns: 30px 50px 1fr 75px;
+    gap: 0 5px;
+}
+
+.sheet-grid-range-quick-modifiers .sheet-toggle-button {
+    padding-left: 5px;
+}
+
+.sheet-grid-range-quick-modifiers .sheet-expandable-section {
+    grid-column: 2 / 5;
+    display: none;
+    border-left: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.sheet-grid-range-quick-modifiers input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section {
+    display: block;
+}
+
+/* Travel Tools */
+
+.sheet-grid-travel-options {
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+}
+
+.sheet-grid-travel-results {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto 1fr;
+}
+
+.sheet-grid-travel-mitigation-header {
+    display: grid;
+    grid-template-columns: 30px 50px 1fr 75px;
+    font-weight: bold;
+    gap: 5px;
+}
+
+.sheet-grid-travel-mitigation-options {
+    display: grid;
+    grid-template-columns: 30px 50px 1fr 75px;
+    gap: 0 5px;
+}
+
+.sheet-grid-travel-mitigation-options .sheet-expandable-section {
+    grid-column: 2 / 5;
+    display: none;
+    border-left: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.sheet-grid-travel-mitigation-options input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section {
+    display: block;
+}
+
+div.sheet-united-states-customary-units, 
+div.sheet-metric-units {
+    display: none;
+}
+
+input[name="attr_use_metric_distances"][value="0"] ~ div.sheet-united-states-customary-units {
+    display: block;
+}
+
+input[name="attr_use_metric_distances"][value="1"] ~ div.sheet-metric-units {
+    display: block;
+}
+
+.sheet-grid-climbing-tool {
+    display: grid;
+    grid-template-columns: 1fr 70px 82px 52px;
+    gap: 3px 5px;
+}
+
+.sheet-grid-digging-tool {
+    display: grid;
+    grid-template-columns: 65px repeat(3, auto);
+    gap: 3px 5px;
+}
+
+.sheet-grid-damage-to-objects-measurements {
+    display: grid;
+    grid-template-columns: 65px 190px 25px auto;
+    gap: 3px 5px;
+}
+
+.sheet-grid-damage-to-objects-attributes {
+    display: grid;
+    grid-template-columns: 75px 104px 65px auto;
+    gap: 3px 5px;
+}
+
+.sheet-grid-damage-to-objects-checkboxes {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 3px 5px;
+}
+
+.sheet-grid-damage-to-objects-injury-effects {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3px 5px;
+}
+
+.sheet-grid-damage-to-objects-injury-effects {
+    display: none;
+}
+
+input[name="attr_toggle_injury_effects"][value="1"] ~ .sheet-grid-damage-to-objects-injury-effects {
+    display: grid;
+}
+
+.sheet-grid-damage-to-objects-injury-effects .sheet-injury-tolerance {
+    display: none;
+}
+
+input[name="attr_object_injury_tolerance"][value="unliving"] ~ .sheet-unliving {
+    display: block;
+}
+
+input[name="attr_object_injury_tolerance"][value="homogenous"] ~ .sheet-homogenous {
+    display: block;
+}
+
+input[name="attr_object_injury_tolerance"][value="diffuse"] ~ .sheet-diffuse {
+    display: block;
+}
+
+.sheet-grid-damage-to-objects-injury-effects .sheet-fragile {
+    display: none;
+}
+
+input[name="attr_object_is_brittle"][value="1"] ~ .sheet-brittle {
+    display: block;
+}
+
+input[name="attr_object_is_combustible"][value="1"] ~ .sheet-combustible {
+    display: block;
+}
+
+input[name="attr_object_is_explosive"][value="1"] ~ .sheet-explosive {
+    display: block;
+}
+
+input[name="attr_object_is_flammable"][value="1"] ~ .sheet-flammable {
+    display: block;
+}
+
+input[name="attr_object_is_unnatural"][value="1"] ~ .sheet-unnatural {
+    display: block;
+}
+
+.sheet-repair-type-description {
+    display: none;
+}
+
+input[name="attr_repair_type"][value="minor"] ~ .sheet-minor-repair {
+    display: block;
+}
+
+input[name="attr_repair_type"][value="major"] ~ .sheet-major-repair {
+    display: block;
+}
+
+.sheet-grid-repairs-equipment {
+    display: grid;
+    grid-template-columns: 205px 65px auto;
+    gap: 3px 5px;
+}
+
+.sheet-grid-repairs-times {
+    display: grid;
+    grid-template-columns: 80px 80px 80px auto;
+    gap: 3px 5px;
+}
+
+.sheet-grid-repairs-skill {
+    display: grid;
+    grid-template-columns: 80px 80px 80px auto;
+    gap: 3px 5px;
+}
+
+.sheet-grid-stealth-perception {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 3px 5px;
+}
+
+.sheet-grid-stealth-perception .sheet-column-checkbox {
+    grid-column: span 2;
+}
+
+.sheet-grid-stealth-perception-rolls {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 2px;
+}
+
+/* --- TOOLS COLD & HEAT EXPOSURE --- */
+input[name="attr_cold_exposure_must_roll"][value="0"] ~ span.sheet-cold-exposure-roll {
+    display: none;
+}
+
+input[name="attr_heat_exposure_must_roll"][value="0"] ~ span.sheet-heat-exposure-roll {
+    display: none;
+}
+
+span.sheet-frequency-minutes,
+span.sheet-frequency-intense-heat {
+    display: none;
+}
+
+input[name="attr_is_intense_heat"][value="0"] ~ span.sheet-frequency-minutes {
+    display: inline;
+}
+
+input[name="attr_is_intense_heat"][value="1"] ~ span.sheet-frequency-intense-heat {
+    display: inline;
+}
+
+/* --- TOOLS DRINKING INTOXICATIONS -- */
+.sheet-drinking-intoxication-health-roll,
+.sheet-drinking-intoxication-no-health-roll {
+    display: none;
+}
+
+input[name="attr_drinking_intoxication_should_roll"][value="1"] ~ .sheet-drinking-intoxication-health-roll {
+    display: block;
+}
+
+input[name="attr_drinking_intoxication_should_roll"][value="0"] ~ .sheet-drinking-intoxication-no-health-roll {
+    display: block;
+}
+
+/* --- VEHICLE SHEET --- */
+.sheet-container-vehicle-notes {
+    display: none;
+    margin-top: 5px;
+}
+
+.sheet-container-vehicle-notes textarea {
+    height: 110px;
+}
+
+input[name="attr_toggle_vehicle_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_location_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_crew_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_loadout_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_crew_member_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_defense_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_active_defense_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_melee_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_ranged_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+input[name="attr_toggle_vehicle_tools_notes"][value="1"] ~ .sheet-container-vehicle-notes {
+    display: block;
+}
+
+.sheet-grid-vehicle-stats-row-one {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto auto auto auto auto;
+    margin-bottom: 10px;
+}
+
+.sheet-grid-vehicle-stats-row-two {
+    display: grid;
+    grid-template-columns: 50px 50px 65px 65px 60px 60px 60px 60px auto 111px 150px;
+    margin-bottom: 10px;
+}
+
+.sheet-grid-vehicle-stats-row-three {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+    margin-bottom: 10px;
+}
+
+.sheet-grid-vehicle-maneuvering-base-fields {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-status-fields {
+    display: grid;
+    grid-template-columns: 78px 100px auto 48px 48px 48px 48px 60px 60px 60px auto;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-status-fields .sheet-grid-item input[name="attr_vehicle_health"] {
+    width: 46px!important;
+}
+
+input[type="hidden"][name="attr_vehicle_hit_point_scale"] ~ .sheet-vehicle_hit_point_scale {
+    display: none;
+}
+
+input[type="hidden"][name="attr_vehicle_hit_point_scale"][value="normal"] ~ .sheet-vehicle_hit_point_scale.sheet-normal-scale {
+    display: inline;
+}
+
+input[type="hidden"][name="attr_vehicle_hit_point_scale"][value="d-scale"] ~ .sheet-vehicle_hit_point_scale.sheet-decade-scale {
+    display: inline;
+}
+
+input[type="hidden"][name="attr_vehicle_hit_point_scale"][value="c-scale"] ~ .sheet-vehicle_hit_point_scale.sheet-century-scale {
+    display: inline;
+}
+
+.sheet-grid-vehicle-location-status-bar {
+    display: grid;
+    grid-template-columns: 65px auto 112px auto auto auto;
+    margin-bottom: 10px!important;
+    padding-top: 5px;
+}
+
+.sheet-grid-vehicle-hit-location-table {
+    display: grid;
+    grid-template-columns: 20px 184px 50px 50px 50px 50px 50px 50px 35px 35px 35px 58px 55px 55px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-hit-location-table .sheet-highlight-input {
+    border: 1px solid var(--highlight-text);
+    box-shadow: 2px 2px 2px #8b8b8b;
+}
+
+.sheet-vehicle-hit-location-container .sheet-expandable-section {
+    display: none;
+}
+
+.sheet-vehicle-hit-location-container input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section {
+    display: block;
+}
+
+.sheet-vehicle-hit-location-notes-grid {
+    display: grid;
+    grid-template-columns: 28px auto 5px 40px auto;
+    grid-gap: 2px;
+}
+
+.sheet-vehicle-hit-location-notes-grid .sheet-grid-cell__heading {
+    margin: auto;
+}
+
+.sheet-grid-vehicle-crew-table {
+    display: grid;
+    grid-template-columns: 20px 20px auto 100px 70px 25px 172px 45px 45px 45px 26px 27px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-crew-table.sheet-summary-row {
+    padding: 4px;
+    margin-bottom: 0px !important;
+}
+
+
+.sheet-grid-vehicle-defense-table {
+    display: grid;
+    grid-template-columns: 20px 20px auto 150px 35px 52px 45px 45px 27px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-melee-table {
+    display: grid;
+    grid-template-columns: 20px 20px auto 65px 28px 59px 52px 41px 40px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-ranged-table {
+    display: grid;
+    grid-template-columns: 20px 13px auto 55px 28px 59px 47px 80px 47px 47px 47px 47px 48px 25px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-collision {
+    display: grid;
+    grid-template-columns: 60px 80px 60px 60px 70px 70px 60px 36px 60px 60px 34px 70px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-vehicle-demolition {
+    display: grid;
+    grid-template-columns: 75px 127px 61px 55px 66px 60px 12px 45px 46px 46px 47px 34px 70px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-vehicle-hit-location-container .sheet-expandable-section, 
+.sheet-vehicle-crew-container .sheet-expandable-section,
+.sheet-vehicle-defense-container .sheet-expandable-section,
+.sheet-vehicle-melee-container .sheet-expandable-section,
+.sheet-vehicle-ranged-container .sheet-expandable-section,
+.sheet-vehicle-tools-container .sheet-expandable-section {
+    margin-bottom: 5px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    margin-left: 27px;
+    padding: 5px;
+    display: none;
+}
+
+.sheet-vehicle-crew-container input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section,
+.sheet-vehicle-defense-container input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section,
+.sheet-vehicle-melee-container input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section,
+.sheet-vehicle-ranged-container input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section,
+.sheet-vehicle-tools-container input[name="attr_toggle_notes"][value="1"] ~ .sheet-expandable-section {
+    display: block;
+}
+
+.sheet-grid-skill-roll-modifier {
+    display: grid;
+    grid-template-columns: 35px 35px 110px 250px 140px 40px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-melee-skill-roll-modifier {
+    display: grid;
+    grid-template-columns: 35px 35px 110px 250px 115px 140px 40px;
+    margin-bottom: 10px!important;
+}
+
+.sheet-grid-crew-skill-roll-modifier {
+    display: grid;
+    grid-template-columns: 35px 35px 110px 250px 140px 170px 40px;
+    margin-bottom: 10px!important;
+}
+
+input[name="attr_vehicle_is_overloaded"][value="1"] ~ input[name="attr_vehicle_load_weight_display"],
+input[name="attr_vehicle_is_overloaded"][value="1"] ~ .sheet-vehicle-overloaded,
+input[name="attr_vehicle_is_overloaded"][value="1"] ~ b span.sheet-vehicle-overloaded {
+    color: red;
+}
+
+.sheet-vehicle-overloaded-message {
+    font-weight: bold;
+}
+
+.sheet-vehicle-defense-container input[name="attr_highlight"][value="1"] ~ .sheet-grid-vehicle-defense-table {
+    background: #B7FFAA;    
+}

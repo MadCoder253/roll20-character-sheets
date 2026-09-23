@@ -1,0 +1,741 @@
+<!-- ===== ===== ===== ===== CHASE CONTROL SHEET TAB ===== ===== ===== ===== -->
+	<div class="tab-chase">
+
+		<div class="chase-grid">
+		
+			<div class="chase-row div-spacer plain-text">
+				<div>
+					<span data-i18n="chase-control-sheet-description">Use this sheet to help run chase scenes from GURPS Action 2 Exploits, please refer to pages 31-34. The next iteration will include tooltips and revisions based on input.</span>
+				</div>
+				<div>
+					<span data-i18n="chase-wipeouts-description"><b>Wipeouts:</b> If relevant roll fails by <b>Stability Rating</b> or less, but if on foot, on a regular failure, the result is a <b>Close Call</b>. If roll is over <b>Stability Rating</b>, then result is a <b>Wreck</b>. See GURPS Action 2 page 35.</span>
+				</div>
+				<div>
+					<span data-i18n="chase-collateral-damage-description"><b>Collateral Damage:</b> On crowded streets, any wipeout causes an accident. If the quarry causes an accident, pursuer has -(1d6-1) to their next chase roll. See GURPS Action 2 page 35.</span>
+				</div>
+				<div>
+					<span data-i18n="chase-lucky-break-description"><b>Lucky Break:</b> The use of luck advantages or character points to manipulate the chase to help you perform a maneuver that normally can't. See GURPS Action 2 page 41.</span>
+				</div>
+			</div>
+			
+			<div class="chase-row">
+				<div class="grid-standard grid-chase-setup">
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<span data-i18n="round-label">Round</span>:
+							</label>	
+							<input type="number" name="attr_chase_round" min="1" step="1" value="1" />
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="current-sequence-label">Current Sequence</span>:
+									<span class="tooltiptext">
+										<span data-i18n="current-sequence-tooltip">Use the drop-down to keep track of the current sequence, some options will update the Chase Control Sheet.<br />If it's the quarry's turn, the title will be turned red, same with the pursuer's turn. Selecting <b>Proceed to next round</b> will start the sequence over, increment the round counter, clear some of the fields to prep for the next round.</span>
+									</span>
+								</div>
+							</label>
+							<select name="attr_chase_sequence">
+								<option value="none" selected>--<span data-i18n="select-label">Select</span>--</option>
+								<option value="quarry_chooses"><span data-i18n="chase-sequence-option-quarry-chooses">Quarry chooses maneuver</span></option>
+								<option value="pursuer_chooses"><span data-i18n="chase-sequence-option-pursuer-chooses">Pursuer chooses maneuver</span></option>
+								<option value="pursuer_rolls"><span data-i18n="chase-sequence-option-pursuer-rolls">Pursuer resolves all rolls</span></option>
+								<option value="quarry_rolls"><span data-i18n="chase-sequence-option-quarry-rolls">Quarry resolves all rolls</span></option>
+								<option value="quick_contest"><span data-i18n="chase-sequence-option-quick-contest">Quick Contest of Chase Rolls</span></option>
+								<option value="adjust_band"><span data-i18n="chase-sequence-option-range-band">Adjust range band</span></option>
+								<option value="next_round"><span data-i18n="chase-sequence-option-next-round">Proceed to next round</span></option>
+							</select>
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<button type="action" name="act_chase_get_result" class="standard-button margin_right_small">
+								<span data-i18n="get-results-label">Get Quick Contest Results</span>
+							</button>
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="help-label">Help</span>
+									<span class="tooltiptext">
+										<span data-i18n="chase-get-results-help-tooltip">Press this button to Get the Results of the chase.<br /><br />Make sure have selected a maneuver, entered Chase Modifiers, and entered the <b>Roll made by</b> fields.</span>
+									</span>
+								</div>
+							</label>							
+						</div>
+					</div>
+					<div class="grid-cell">
+						<button type="action" name="act_chase_reset" class="standard-button margin_right_small">
+							<span data-i18n="reset-label">Reset</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="chase-row">
+				<input type="hidden" name="attr_chase_content_result" />
+				<div>
+					<span name="attr_chase_content_result"></span>
+				</div>
+			</div>
+
+			<div class="chase-row">
+				<div class="grid-standard grid-2-column-auto grid__gap_large">
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<span data-i18n="range-band-label">Range Band</span>:<br />
+								<select name="attr_chase_range_band">
+									<option value="none">--<span data-i18n="select-label">Select</span>--</option>
+									<option value="close"><span data-i18n="chase-range-band-option-close">Close (0 to 5 hexes)</span></option>
+									<option value="short"><span data-i18n="chase-range-band-option-short">Short (6 to 20 hexes)</span></option>
+									<option value="medium" selected><span data-i18n="chase-range-band-option-medium">Medium (21 to 100 hexes)</span></option>
+									<option value="long"><span data-i18n="chase-range-band-option-long">Long (101 to 500 hexes)</span></option>
+									<option value="extreme"><span data-i18n="chase-range-band-option-extreme">Extreme (501+ hexes)</span></option>
+									<option value="escape"><span data-i18n="chase-range-band-option-escape">Escape!</span></option>
+								</select>
+							</label>
+						</div>
+					</div>
+					<div class="grid-cell grid-cell__callout_left">
+						<label>Description</label>
+						<input type="hidden" name="attr_chase_range_band_description_range" value="" />
+						<input type="hidden" name="attr_chase_range_band_description" value="" />
+						<div>
+							<i>Range Penalty:</i> <span name="attr_chase_range_band_description_range"></span><br />
+							<i>Description:</i> <span name="attr_chase_range_band_description"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Quarry Section -->
+			<div class="chase-row section-header">
+				<div class="padding__left_small">
+					<input type="hidden" name="attr_chase_sequence" value="none" />
+					<h3 class="quarry"><span data-i18n="quarry-label">Quarry</span></h3>
+				</div>
+			</div>
+
+			<div class="chase-row">
+				<div class="grid-standard grid-chase-maneuver">
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								
+								<div class="standard-tooltip">
+									<span data-i18n="maneuver-label">Maneuver</span>:
+									<span class="tooltiptext">
+										<span data-i18n="chase-maneuver-tooltip">Select a maneuver and use the notes box to explain the chase roll modifier you're using.<br /><br />For example, you selected <b>Stunt</b>, in the notes you could enter, "+3 chase roll for -6 to stunt skill."</span>
+									</span>
+								</div>
+								
+								<select name="attr_chase_quarry_maneuver">
+									<option value="none">--<span data-i18n="select-label">Select</span>--</option>
+									<option value="attack"><span data-i18n="attack-label">Attack</span></option>
+									<option value="disembark-embark"><span data-i18n="disembark-embark-label">Disembark/Embark</span></option>
+									<option value="take-control"><span data-i18n="take-control-label">Take Control</span></option>
+									<option value="emergency-action"><span data-i18n="emergency-action-label">Emergency Action</span></option>
+									<option value="force"><span data-i18n="force-label">Force</span></option>
+									<option value="hide"><span data-i18n="hide-label">Hide</span></option>
+									<option value="mobility-escape"><span data-i18n="mobility-escape-label">Mobility Escape</span></option>
+									<option value="move"><span data-i18n="move-label">Move</span></option>
+									<option value="move-attack"><span data-i18n="move-and-attack-label">Move and Attack</span></option>
+									<option value="reverse"><span data-i18n="reverse-label">Reverse</span></option>
+									<option value="stop"><span data-i18n="stop-label">Stop</span></option>
+									<option value="stunt"><span data-i18n="stunt-label">Stunt</span></option>
+									<option value="stunt-escape"><span data-i18n="stunt-escape-label">Stunt Escape</span></option>
+								</select>
+								<input type="hidden" name="attr_quarry_maneuver_description" value="Select a maneuver." />
+								<input type="hidden" name="attr_quarry_maneuver_conditions" />
+								<input type="hidden" name="attr_quarry_maneuver_actions" />
+								<input type="hidden" name="attr_quarry_maneuver_chase_rolls" />
+							</label>
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<input type="text" name="attr_chase_quarry_notes" placeholder="Notes..." title="Macro: @{NAME|chase_quarry_notes}" />
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="chase-modifier-label">Chase Modifier</span>:
+									<span class="tooltiptext">
+										<span data-i18n="chase-modifier-tooltip">After selecting a maneuver, enter the chase modifier based on the suggestion under the <b>Chase Rolls</b> column.</span>
+									</span>
+								</div>
+								<input type="number" name="attr_chase_quarry_modifier" step="1" value="0" title="Macro: @{NAME|chase_quarry_modifier}" />
+							</label>
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="final-modifier-label">Final Modifier</span>:
+									<span class="tooltiptext small-width">
+										<span data-i18n="chase-modifier-label">Chase Modifier</span>: <span name="attr_chase_quarry_modifier"></span><br />
+										<span data-i18n="handling-modifier-label">Handling Modifier</span>: <span name="attr_quarry_handling"></span><br />
+										<span data-i18n="speed-modifier-label">Speed Modifier</span>: <span name="attr_quarry_speed_chase_mod"></span><br />
+										<span data-i18n="chase-modifier-table-label">Chase Modifier Table</span>: <span name="attr_chase_quarry_chase_mod_table_total"></span>
+									</span>
+								</div>
+								<input type="number" name="attr_chase_quarry_final_modifier" readonly="readonly" value="0" class="input-disabled" title="Macro: @{NAME|chase_quarry_final_modifier}" />
+							</label>
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="roll-made-by-label">Roll made by</span>:
+									<span class="tooltiptext move-left">
+										<span data-i18n="roll-made-by-tooltip">Enter how much you missed or made your roll by, negative value means you rolled too high, positive value is a successful roll. You can have the player roll against their appropriate skill or use the skill roll button below.</span>
+									</span>
+								</div>
+								<input type="number" name="attr_chase_quarry_made_by" step="1" value="0" title="Macro: @{NAME|chase_quarry_made_by}" />
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="chase-row">
+				<div class="grid-4-column-equal grid__border grid__padding">
+					<div class="grid-cell">
+						<h4>Description</h4>
+						<div class="content"><span name="attr_quarry_maneuver_description"></span></div>
+					</div>
+					<div class="grid-cell">
+						<h4>Conditions</h4>
+						<div class="content"><span name="attr_quarry_maneuver_conditions"></span></div>
+					</div>
+					<div class="grid-cell">
+						<h4>Actions</h4>
+						<div class="content"><span name="attr_quarry_maneuver_actions"></span></div>
+					</div>
+					<div class="grid-cell">
+						<h4>Chase Rolls</h4>
+						<div class="content"><span name="attr_quarry_maneuver_chase_rolls"></span></div>
+					</div>					
+				</div>
+
+			</div>
+
+			<div class="chase-row">
+				<div class="grid-chase-leader-table">
+
+					<!-- row 1 -->
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="leader-label">Leader</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-leader-tooltip">If it's just one person, enter that character's name. If there's a group of people, select a <b>leader</b> that will make the chase skill roll.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="mode-label">Mode</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-mode-tooltip">A brief description of the mode of travel; land, water, air. You could enter land/water for a hovercraft.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="abbreviation-stability-rating-label">SR</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-stability-rating-tooltip">Stability Rating of vehicle, if applicable. Used when checking for Wipeouts.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="abbreviation-handling-label">Hnd</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-handling-tooltip">Handling of vehicle, if applicable. This value is applied to the Chase's <b>Final Modifier</b>.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="speed-label">Speed</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-speed-tooltip">Speed in yards per second, which is used to get a Chase Speed Modifier and applied to the Chase's <b>Final Modifier</b>.</span><br />
+								<span data-i18n="speed-modifier-label">Speed Modifier</span>: <span name="attr_quarry_speed_chase_mod"></span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="static-label">Static</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-static-tooltip">Check if you selected a static maneuver or you forced into a static state.<br />If static...<ul><li>No speed bonus</li><li>If opponent is non-static they get an extra range shift, no matter who wins the contest.</li><li>If both if you are static, the range band doesn't change. </li><li>To remove the <b>static</b> you must change your mobility (if possible) or perform a stunt.</li></ul></span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="notes-label">Notes</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-notes-tooltip">You could use the notes field to show what skill you're using for Chase Quick Contest and additional remember notes.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="chase-skill-label">Chase Skill</span></h4>
+							<span class="tooltiptext move-far-left">
+								<span data-i18n="chase-skill-tooltip">Enter the level of the skill chosen for the chase. You can either have the player roll their own skill applying the <b>Final Modifier</b> or use the provided skill button.</span>
+							</span>
+						</div>
+					</div>
+
+					<!-- row 2 -->
+					<div class="grid-cell">
+						<input type="text" name="attr_quarry_leader_name" value="" title="Macro: @{NAME|quarry_leader_name}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="text" name="attr_quarry_mobility" value="" title="Macro: @{NAME|quarry_mobility}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_quarry_stability_rating" value="0" title="Macro: @{NAME|quarry_stability_rating}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_quarry_handling" value="0" title="Macro: @{NAME|quarry_handling}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_quarry_speed" value="0" title="Macro: @{NAME|quarry_handling}" />
+						<input type="hidden" name="attr_quarry_speed_chase_mod" value="0" title="Macro: @{NAME|quarry_speed_chase_mod}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="checkbox" name="attr_quarry_is_static" value="1" title="Macro: @{NAME|quarry_is_static}" />
+					</div>
+
+					<div class="grid-cell">
+						<textarea name="attr_quarry_condition_notes" title="Macro: @{NAME|quarry_condition_notes}"></textarea>
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_quarry_chase_skill" class="half-width" value="10" title="Macro: @{NAME|quarry_chase_skill}" />
+						<input type="hidden" name="attr_chase_quarry_modifier_description" value="" />
+						<button type="roll" value="@{roll}&amp;{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Skill Roll}} {{activeDefense=[[0]]}} {{isSkillRoll=[[1]]}} {{showHitLabel=[[0]]}} {{characterName=Quarry}} {{skillName=Chase Skill Roll}} {{rollResult=[[3d6cs<1cf>6]]}} {{effectiveSkill=[[@{quarry_chase_skill} + @{chase_quarry_final_modifier}]]}} {{showNotes=[[1]]}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{rollModifier=@{chase_quarry_final_modifier}}} {{rollModifierSummary=@{chase_quarry_modifier_description}}} {{popupModifier=@{popup_modifier}}} {{useModTool=[[1]]}} {{displayRollModifierSummary=[[1]]}} {{maneuver=@{chase_quarry_maneuver}}}" class="btn ui-draggable"></button>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="chase-row">
+
+				<div class="grid-standard grid-2-column-big-small grid__gap_large grid__border_cell grid__padding">
+
+					<div class="grid-cell">
+						
+						<div class="standard-tooltip">
+							<h4 class="header-bg"><span data-i18n="support-actions-label">Support Actions</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="support-actions-tooltip">Support actions can be used to list passengers, characters in other vehicles, and then detailing actions and how it can impact the chase rolls.</span>
+							</span>
+						</div>
+
+						<div class="grid-chase-support-actions-header">
+							<div class="grid-cell"><span data-i18n="name-label-no-colon">Name</span></div>
+							<div class="grid-cell">
+								<div class="standard-tooltip">
+									<span data-i18n="action-label">Action</span>
+									<span class="tooltiptext">
+										<span data-i18n="chase-support-actions-tooltip">Typical passenger actions are Attack, Board, Seize Control, and noncombat tasks like disarming a bomb.<br />Boarding: Round starts at Close Range, roll contest of Acrobatics or Jumping vs opponents operatoring skill. See book for info.<br />Seize Control: Take control of an unmanned vehicle or seize control from a driver. See book for info.<br />GURPS Action 2 page 33.</span>
+									</span>
+								</div>
+							</div>
+							<div class="grid-cell">
+								<div class="standard-tooltip">
+									<span data-i18n="notes-label">Notes</span>
+									<span class="tooltiptext">
+										<span data-i18n="chase-support-actions-notes-tooltip">Useful for entering information of a how Chase Maneuver may affect an action.<br />For example, you could enter "-2 or weapon's Bulk with ranged attacks."</span>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<fieldset class="repeating_chase-quarry-support-actions">
+							<div class="grid-chase-support-actions grid__padding_bottom_small">
+								<div class="grid-cell">
+									<input type="text" name="attr_name" value="" title="Macro: @{NAME|repeating_chase-quarry-support-actions_$[row #]_name}" />
+								</div>
+								<div class="grid-cell">
+									<input type="text" name="attr_action" value="" title="Macro: @{NAME|repeating_chase-quarry-support-actions_$[row #]_action}" />
+								</div>
+								<div class="grid-cell">
+									<input type="text" name="attr_notes" value="" title="Macro: @{NAME|repeating_chase-quarry-support-actions_$[row #]_notes}" />
+								</div>
+							</div>
+						</fieldset>
+
+					</div>
+
+					<div class="grid-cell">
+						
+						<div class="standard-tooltip">
+							<h4><span data-i18n="chase-modifiers-label">Chase Modifiers</span></h4>
+							<span class="tooltiptext move-left">
+								<span data-i18n="chase-modifiers-table-tooltip">Use this table to track various modifiers to the Final Chase Modifier.<br />Examples include Higher Purpose for a +1 to chase rolls or results of a complementary skills.</span>
+							</span>
+						</div>
+
+						<div class="grid-chase-modifiers-header">
+							<div class="grid-cell">Name</div>
+							<div class="grid-cell">Mod</div>
+						</div>
+
+						<input type="hidden" name="attr_chase_quarry_chase_mod_table_total" value="0" />
+						<fieldset class="repeating_chase-quarry-modifiers">
+							<div class="grid-chase-modifiers grid__padding_bottom_small">
+								<div class="grid-cell">
+									<input type="text" name="attr_name" value="" title="Macro: @{NAME|repeating_chase-quarry-modifiers_$[row #]_name}" />
+								</div>
+								<div class="grid-cell">
+									<input type="number" name="attr_mod" value="0" step="1" title="Macro: @{NAME|repeating_chase-quarry-modifiers_$[row #]_mod}" />
+								</div>
+							</div>
+						</fieldset>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- Pursuer Section -->
+			<div class="chase-row section-header">
+				<div class="padding__left_small">
+					<input type="hidden" name="attr_chase_sequence" value="none" />
+					<h3 class="pursuer"><span data-i18n="pursuer-label">Pursuer</span></h3>
+				</div>
+			</div>
+
+			<div class="chase-row">
+				<div class="grid-standard grid-chase-maneuver">
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								
+								<div class="standard-tooltip">
+									<span data-i18n="maneuver-label">Maneuver</span>:
+									<span class="tooltiptext">
+										<span data-i18n="chase-maneuver-tooltip">Select a maneuver and use the notes box to explain the chase roll modifier you're using.<br /><br />For example, you selected <b>Stunt</b>, in the notes you could enter, "+3 chase roll for -6 to stunt skill."</span>
+									</span>
+								</div>
+								
+								<select name="attr_chase_pursuer_maneuver">
+									<option value="none">--<span data-i18n="select-label">Select</span>--</option>
+									<option value="attack"><span data-i18n="attack-label">Attack</span></option>
+									<option value="disembark-embark"><span data-i18n="disembark-embark-label">Disembark/Embark</span></option>
+									<option value="take-control"><span data-i18n="take-control-label">Take Control</span></option>
+									<option value="emergency-action"><span data-i18n="emergency-action-label">Emergency Action</span></option>
+									<option value="force"><span data-i18n="force-label">Force</span></option>
+									<option value="mobility-pursuit"><span data-i18n="mobiliy-pursuit-label">Mobility Pursuit</span></option>
+									<option value="move"><span data-i18n="move-label">Move</span></option>
+									<option value="move-attack"><span data-i18n="move-and-attack-label">Move and Attack</span></option>
+									<option value="ram"><span data-i18n="ram-label">Ram</span></option>
+									<option value="stop"><span data-i18n="stop-label">Stop</span></option>
+									<option value="stunt"><span data-i18n="stunt-label">Stunt</span></option>
+								</select>								
+								<input type="hidden" name="attr_pursuer_maneuver_description" value="Select a maneuver." />
+								<input type="hidden" name="attr_pursuer_maneuver_conditions" />
+								<input type="hidden" name="attr_pursuer_maneuver_actions" />
+								<input type="hidden" name="attr_pursuer_maneuver_chase_rolls" />
+							</label>
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<input type="text" name="attr_chase_pursuer_notes" placeholder="Notes..." title="Macro: @{NAME|chase_pursuer_notes}" />
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="chase-modifier-label">Chase Modifier</span>:
+									<span class="tooltiptext">
+										<span data-i18n="chase-modifier-tooltip">After selecting a maneuver, enter the chase modifier based on the suggestion under the <b>Chase Rolls</b> column.</span>
+									</span>
+								</div>
+								<input type="number" name="attr_chase_pursuer_modifier" step="1" value="0" title="Macro: @{NAME|chase_pursuer_modifier}" />
+							</label>
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="final-modifier-label">Final Modifier</span>:
+									<span class="tooltiptext small-width">
+										<span data-i18n="chase-modifier-label">Chase Modifier</span>: <span name="attr_chase_pursuer_modifier"></span><br />
+										<span data-i18n="handling-modifier-label">Handling Modifier</span>: <span name="attr_pursuer_handling"></span><br />
+										<span data-i18n="speed-modifier-label">Speed Modifier</span>: <span name="attr_pursuer_speed_chase_mod"></span><br />
+										<span data-i18n="chase-modifier-table-label">Chase Modifier Table</span>: <span name="attr_chase_pursuer_chase_mod_table_total"></span>
+									</span>
+								</div>
+								<input type="number" name="attr_chase_pursuer_final_modifier" readonly="readonly" value="0" class="input-disabled" title="Macro: @{NAME|chase_pursuer_final_modifier}" />
+							</label>
+						</div>
+					</div>
+					<div class="grid-cell">
+						<div class="container-label-input">
+							<label>
+								<div class="standard-tooltip">
+									<span data-i18n="roll-made-by-label">Roll made by</span>:
+									<span class="tooltiptext move-left">
+										<span data-i18n="roll-made-by-tooltip">Enter how much you missed or made your roll by, negative value means you rolled too high, positive value is a successful roll. You can have the player roll against their appropriate skill or use the skill roll button below.</span>
+									</span>
+								</div>
+								<input type="number" name="attr_chase_pursuer_made_by" step="1" value="0" title="Macro: @{NAME|chase_pursuer_made_by}" />
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="chase-row">
+				<div class="grid-4-column-equal grid__border grid__padding">
+					<div class="grid-cell">
+						<h4>Description</h4>
+						<div class="content"><span name="attr_pursuer_maneuver_description"></span></div>
+					</div>
+					<div class="grid-cell">
+						<h4>Conditions</h4>
+						<div class="content"><span name="attr_pursuer_maneuver_conditions"></span></div>
+					</div>
+					<div class="grid-cell">
+						<h4>Actions</h4>
+						<div class="content"><span name="attr_pursuer_maneuver_actions"></span></div>
+					</div>
+					<div class="grid-cell">
+						<h4>Chase Rolls</h4>
+						<div class="content"><span name="attr_pursuer_maneuver_chase_rolls"></span></div>
+					</div>					
+				</div>
+
+			</div>
+
+			<div class="chase-row">
+				<div class="grid-chase-leader-table">
+
+					<!-- row 1 -->
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="leader-label">Leader</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-leader-tooltip">If it's just one person, enter that character's name. If there's a group of people, select a <b>leader</b> that will make the chase skill roll.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="mode-label">Mode</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-mode-tooltip">A brief description of the mode of travel; land, water, air. You could enter land/water for a hovercraft.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="abbreviation-stability-rating-label">SR</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-stability-rating-tooltip">Stability Rating of vehicle, if applicable. Used when checking for Wipeouts.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="abbreviation-handling-label">Hnd</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-handling-tooltip">Handling of vehicle, if applicable. This value is applied to the Chase's <b>Final Modifier</b>.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="speed-label">Speed</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-speed-tooltip">Speed in yards per second, which is used to get a Chase Speed Modifier and applied to the Chase's <b>Final Modifier</b>.</span><br />
+								<span data-i18n="speed-modifier-label">Speed Modifier</span>: <span name="attr_quarry_speed_chase_mod"></span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="static-label">Static</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-static-tooltip">Check if you selected a static maneuver or you forced into a static state.<br />If static...<ul><li>No speed bonus</li><li>If opponent is non-static they get an extra range shift, no matter who wins the contest.</li><li>If both if you are static, the range band doesn't change. </li><li>To remove the <b>static</b> you must change your mobility (if possible) or perform a stunt.</li></ul></span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="notes-label">Notes</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="chase-notes-tooltip">You could use the notes field to show what skill you're using for Chase Quick Contest and additional remember notes.</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="grid-cell header-bg">
+						<div class="standard-tooltip">
+							<h4><span data-i18n="chase-skill-label">Chase Skill</span></h4>
+							<span class="tooltiptext move-far-left">
+								<span data-i18n="chase-skill-tooltip">Enter the level of the skill chosen for the chase. You can either have the player roll their own skill applying the <b>Final Modifier</b> or use the provided skill button.</span>
+							</span>
+						</div>
+					</div>
+
+					<!-- row 2 -->
+					<div class="grid-cell">
+						<input type="text" name="attr_pursuer_leader_name" value="" title="Macro: @{NAME|pursuer_leader_name}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="text" name="attr_pursuer_mobility" value="" title="Macro: @{NAME|pursuer_mobility}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_pursuer_stability_rating" value="0" title="Macro: @{NAME|pursuer_stability_rating}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_pursuer_handling" value="0" title="Macro: @{NAME|pursuer_handling}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_pursuer_speed" value="0" title="Macro: @{NAME|pursuer_handling}" />
+						<input type="hidden" name="attr_pursuer_speed_chase_mod" value="0" title="Macro: @{NAME|pursuer_speed_chase_mod}" />
+					</div>
+
+					<div class="grid-cell">
+						<input type="checkbox" name="attr_pursuer_is_static" value="1" title="Macro: @{NAME|pursuer_is_static}" />
+					</div>
+
+					<div class="grid-cell">
+						<textarea name="attr_pursuer_condition_notes" title="Macro: @{NAME|pursuer_condition_notes}"></textarea>
+					</div>
+
+					<div class="grid-cell">
+						<input type="number" step="1" name="attr_pursuer_chase_skill" class="half-width" value="10" title="Macro: @{NAME|pursuer_chase_skill}" />
+						<input type="hidden" name="attr_chase_pursuer_modifier_description" value="" />
+						<button type="roll" value="@{roll}&amp;{template:skillRoll} {{sheetStyle=@{chatstyle}}} {{type=Skill Roll}} {{activeDefense=[[0]]}} {{isSkillRoll=[[1]]}} {{showHitLabel=[[0]]}} {{characterName=Pursuer}} {{skillName=Chase Skill Roll}} {{rollResult=[[3d6cs<1cf>6]]}} {{effectiveSkill=[[@{pursuer_chase_skill} + @{chase_pursuer_final_modifier}]]}} {{showNotes=[[1]]}} {{useCriticalPlusTen=[[@{use_critical_plus_10}]]}} {{rollModifier=@{chase_pursuer_final_modifier}}} {{rollModifierSummary=@{chase_pursuer_modifier_description}}} {{popupModifier=@{popup_modifier}}} {{useModTool=[[1]]}} {{displayRollModifierSummary=[[1]]}} {{maneuver=@{chase_pursuer_maneuver}}}" class="btn ui-draggable"></button>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="chase-row" style="margin-bottom: 120px;">
+
+				<div class="grid-standard grid-2-column-big-small grid__gap_large grid__border_cell grid__padding">
+
+					<div class="grid-cell">
+						
+						<div class="standard-tooltip">
+							<h4 class="header-bg"><span data-i18n="support-actions-label">Support Actions</span></h4>
+							<span class="tooltiptext">
+								<span data-i18n="support-actions-tooltip">Support actions can be used to list passengers, characters in other vehicles, and then detailing actions and how it can impact the chase rolls.</span>
+							</span>
+						</div>
+
+						<div class="grid-chase-support-actions-header">
+							<div class="grid-cell">Name</div>
+							<div class="grid-cell">
+								<div class="standard-tooltip">
+									<span data-i18n="action-label">Action</span>
+									<span class="tooltiptext">
+										<span data-i18n="chase-support-actions-tooltip">Typical passenger actions are Attack, Board, Seize Control, and noncombat tasks like disarming a bomb.<br />Boarding: Round starts at Close Range, roll contest of Acrobatics or Jumping vs opponents operatoring skill. See book for info.<br />Seize Control: Take control of an unmanned vehicle or seize control from a driver. See book for info.<br />GURPS Action 2 page 33.</span>
+									</span>
+								</div>
+							</div>
+							<div class="grid-cell">
+								<div class="standard-tooltip">
+									<span data-i18n="notes-label">Notes</span>
+									<span class="tooltiptext">
+										<span data-i18n="chase-support-actions-notes-tooltip">Useful for entering information of a how Chase Maneuver may affect an action.<br />For example, you could enter "-2 or weapon's Bulk with ranged attacks."</span>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<fieldset class="repeating_chase-pursuer-support-actions">
+							<div class="grid-chase-support-actions grid__padding_bottom_small">
+								<div class="grid-cell">
+									<input type="text" name="attr_name" value="" title="Macro: @{NAME|repeating_chase-pursuer-support-actions_$[row #]_name}" />
+								</div>
+								<div class="grid-cell">
+									<input type="text" name="attr_action" value="" title="Macro: @{NAME|repeating_chase-pursuer-support-actions_$[row #]_action}" />
+								</div>
+								<div class="grid-cell">
+									<input type="text" name="attr_notes" value="" title="Macro: @{NAME|repeating_chase-pursuer-support-actions_$[row #]_notes}" />
+								</div>
+							</div>
+						</fieldset>
+
+					</div>
+
+					<div class="grid-cell">
+						
+						<div class="standard-tooltip">
+							<h4><span data-i18n="chase-modifiers-label">Chase Modifiers</span></h4>
+							<span class="tooltiptext move-left">
+								<span data-i18n="chase-modifiers-table-tooltip">Use this table to track various modifiers to the Final Chase Modifier.<br />Examples include Higher Purpose for a +1 to chase rolls or results of a complementary skills.</span>
+							</span>
+						</div>
+
+						<div class="grid-chase-modifiers-header">
+							<div class="grid-cell">Name</div>
+							<div class="grid-cell">Mod</div>
+						</div>
+
+						<input type="hidden" name="attr_chase_pursuer_chase_mod_table_total" value="0" />
+						<fieldset class="repeating_chase-pursuer-modifiers">
+							<div class="grid-chase-modifiers grid__padding_bottom_small">
+								<div class="grid-cell">
+									<input type="text" name="attr_name" value="" title="Macro: @{NAME|repeating_chase-pursuer-modifiers_$[row #]_name}" />
+								</div>
+								<div class="grid-cell">
+									<input type="number" name="attr_mod" value="0" step="1" title="Macro: @{NAME|repeating_chase-pursuer-modifiers_$[row #]_mod}" />
+								</div>
+							</div>
+						</fieldset>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	

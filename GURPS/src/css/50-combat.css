@@ -1,0 +1,1029 @@
+/* -- COMBAT -- */
+.sheet-active-defense { width: calc(100% - 190px - 0.8em); }
+
+.sheet-active-defense .sheet-margin-left {
+    margin-left: 0px;
+}
+
+.sheet-active-defense .sheet-static-defense-width {
+    margin-left: 43px;
+    width: calc(100% - 43px);
+}
+
+.sheet-row-static-defense {
+    position: relative;
+}
+
+.sheet-combat-reflexes {
+    margin: 5px 0 0 5px;
+    height: 22px;
+}
+
+.sheet-combat-reflexes .sheet-popup {
+    width: 165px;
+}
+
+.sheet-combat-reflexes .sheet-tooltip {
+    margin-left: 0;
+}
+
+.sheet-active-defense input.sheet-combat-reflex-check {
+    width: 22px!important; 
+    float: left; 
+    margin-right: 5px;
+}
+
+.sheet-active-defense .sheet-defense-note {
+    width: fit-content;
+    float: left;
+    margin-right: 3px;
+}
+
+.sheet-active-defense .sheet-defense-encumbrance-notes {
+    width: fit-content;
+    float: right;
+    margin-left: 5px;
+    font-style: italic;
+    font-size: 10px;
+}
+
+/* Show/Hide dodge notes */
+.sheet-active-defense .sheet-col1 input[name="attr_dodge_reduced_notes"][value="0"] ~ .sheet-halved-dodge,
+.sheet-active-defense .sheet-col1 input[name="attr_dodge_reduced_notes"][value="0"] ~ .sheet-quartered-dodge {
+	display: none !important;
+}
+
+.sheet-active-defense .sheet-col1 input[name="attr_dodge_reduced_notes"][value="1"] ~ .sheet-halved-dodge {
+	display: block !important;
+}
+
+.sheet-active-defense .sheet-col1 input[name="attr_dodge_reduced_notes"][value="1"] ~ .sheet-quartered-dodge {
+	display: none !important;
+}
+
+.sheet-active-defense .sheet-col1 input[name="attr_dodge_reduced_notes"][value="2"] ~ .sheet-halved-dodge {
+	display: none !important;
+}
+
+.sheet-active-defense .sheet-col1 input[name="attr_dodge_reduced_notes"][value="2"] ~ .sheet-quartered-dodge {
+	display: block !important;
+}
+
+.sheet-active-defense input[name="attr_encumbrance_level"][value="0"] ~ .sheet-defense-encumbrance-notes {
+    display: none;
+}
+
+/* -- ACTIVE DEFENSE -- */
+.sheet-active-defense .sheet-hide-row,
+.sheet-active-defense .sheet-row-details .sheet-hide-row {
+    display: none;
+}
+.sheet-active-defense .sheet-col0 {
+    margin-left: 42px;
+    width: calc(100% - 326px);
+}
+
+.sheet-active-defense .sheet-reset  {
+    height: 19px;
+    line-height: 19px;
+    color: white;
+    background: darkred;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.sheet-active-defense .sheet-col-input-wide {
+    width: calc(100% - 177px);
+}
+
+.sheet-active-defense .sheet-col-input-number {
+    width: 50px;
+}
+
+.sheet-active-defense .sheet-col0 input { text-align:left; }
+.sheet-active-defense .sheet-col-dodge-label { width: 305px; }
+.sheet-active-defense .sheet-col1 { width: 105px; }
+.sheet-active-defense .sheet-col2 { width: 40px; }
+.sheet-active-defense .sheet-col1-plus-col2 { width: 145px; }
+.sheet-active-defense .sheet-col3 { width: 30px; }
+.sheet-active-defense .sheet-col4 { width: 22px; }
+
+/* -- Active Defense Note Box -- */
+.sheet-active-defense .repcontainer.ui-sortable.editmode .sheet-toggle-notes {
+    display: none;
+}
+
+.sheet-active-defense input.sheet-toggle-highlight[type="checkbox"] {
+    width: 16px;
+    height: 22px;
+    opacity: 1;
+    position: absolute;
+    margin-left: 25px;
+}
+
+.sheet-active-defense .sheet-toggle-notes {
+    position: absolute;
+    left: 0px;
+}
+
+.sheet-box.sheet-active-defense .sheet-toggle.sheet-toggle-notes ~ .sheet-checkbox {
+    left: 22px;
+}
+
+/* show/hide row id knockback defense  */
+.sheet-active-defense input[name="attr_knockback_defense_row_type"][value="ST"] ~ .sheet-show-hide-row-id,
+.sheet-active-defense input[name="attr_knockback_defense_row_type"][value="STRIKING"] ~ .sheet-show-hide-row-id,
+.sheet-active-defense input[name="attr_knockback_defense_row_type"][value="DX"] ~ .sheet-show-hide-row-id,
+.sheet-active-defense input[name="attr_knockback_defense_row_type"][value="IQ"] ~ .sheet-show-hide-row-id,
+.sheet-active-defense input[name="attr_knockback_defense_row_type"][value="WILL"] ~ .sheet-show-hide-row-id,
+.sheet-active-defense input[name="attr_knockback_defense_row_type"][value="HT"] ~ .sheet-show-hide-row-id,
+.sheet-active-defense input[name="attr_knockback_defense_row_type"][value="10"] ~ .sheet-show-hide-row-id {
+    display: none;
+}
+
+/* styling linked item for active defense */
+.repcontainer .repitem .sheet-linked-stats .sheet-cell {
+    margin-right: 10px;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox .sheet-formula-talent input[type="number"] {
+    width: 25px!important;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox .sheet-formula-combat-reflexes input[type="checkbox"] {
+    opacity: 1;
+    height: 15px;
+    width: auto ! important;
+}
+
+/* show/hide defense formula for repeating active defenses */
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"] ~ .sheet-active-defense-formula .sheet-formula {
+    display: none;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Dodge"] ~ .sheet-active-defense-formula .sheet-formula-as-is,
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Magic"] ~ .sheet-active-defense-formula .sheet-formula-as-is,
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Other"] ~ .sheet-active-defense-formula .sheet-formula-as-is {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_defense_row_type"][value="DODGE"] ~ .sheet-active-defense-formula .sheet-formula-as-is,
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_defense_row_type"][value="CURRENT_DODGE"] ~ .sheet-active-defense-formula .sheet-formula-as-is 
+ {
+    display: none!important;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_defense_row_type"][value="DODGE"] ~ .sheet-active-defense-formula .sheet-formula-base-dodge {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_defense_row_type"][value="CURRENT_DODGE"] ~ .sheet-active-defense-formula .sheet-formula-current-dodge {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Parry"] ~ .sheet-active-defense-formula .sheet-formula-parry,
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Unarmed Parry"] ~ .sheet-active-defense-formula .sheet-formula-parry {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Block"] ~ .sheet-active-defense-formula .sheet-formula-block {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Power Dodge"] ~ .sheet-active-defense-formula .sheet-formula-power-dodge {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Power Parry"] ~ .sheet-active-defense-formula .sheet-formula-power-parry {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Power Block"] ~ .sheet-active-defense-formula .sheet-formula-power-block-physical {
+    display: block;
+}
+
+.sheet-active-defense .repcontainer .repitem .sheet-notebox input[name="attr_type"][value="Power Block Mental"] ~ .sheet-active-defense-formula .sheet-formula-power-block-mental {
+    display: block;
+}
+
+.sheet-active-defense input.sheet-medium-width {
+    width: 50px ! important;
+}
+
+.sheet-weapon-parry-summary {
+    height: 82px;
+    align-items: normal;
+}
+
+.sheet-weapon-parry-summary b.sheet-alert {
+    color: var(--highlight-text);
+}
+
+/* Text Area Box Styling for Defense Bonus (DB) Notes*/
+.sheet-defense-bonus-notes .sheet-header .sheet-col0 {
+    padding-left: 6px;
+}
+
+.sheet-defense-bonus-notes-textarea {
+    box-sizing: border-box;
+    float: left;
+    padding: 5px;
+    width: 100%;
+    margin: 0;
+}
+
+.sheet-defense-bonus-notes-textarea textarea {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 100px;
+}
+
+/* -- DEFENSE BONUS -- */
+.sheet-defense-bonus-notes { margin-top: 5px; width: calc(100% - 0.4em); }
+
+/* -- Roll Modifiers Table -- */
+.sheet-melee-modifiers {
+    width: calc(100% - 150px);
+}
+
+.sheet-range-modifiers {
+    width: calc(100% - 150px);
+}
+
+.sheet-roll-modifiers-table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.sheet-roll-modifiers-table .sheet-modifier-row {
+    display: table-row;
+} 
+
+.sheet-roll-modifiers-table .sheet-modifier-cell {
+    display: table-cell;
+    padding: 1px;
+    line-height: normal;
+}
+
+.sheet-roll-modifiers-table .sheet-modifier-cell.sheet-modifier-fill-cell-20 {
+    width: 20%;
+}
+
+.sheet-roll-modifiers-table .sheet-modifier-cell.sheet-modifier-fill-cell-15 {
+    width: 15%;
+}
+
+.sheet-roll-modifiers-table .sheet-modifier-cell.sheet-modifier-fill-cell-10 {
+    width: 10%;
+}
+
+.sheet-roll-modifiers-table .sheet-modifier-caption {
+    display: table-caption;
+    text-align: center;
+}
+
+.sheet-roll-modifiers-table .sheet-modifier-cell.sheet-modifier-align-top {
+    vertical-align: top;
+    padding-top: 3px;
+}
+
+.sheet-roll-modifiers-table .sheet-modifier-cell select.sheet-single-digit {
+    width: 40px;
+    height: 21px;
+    padding: 0;
+    margin: 0;
+}
+
+/* annoying line height fix */
+.sheet-modifier-line-height-fix {
+    line-height: 18px !important;
+}
+
+.sheet-roll-modifiers-table textarea.sheet-reason-textarea {
+    height: 36px;
+    width:150px;
+    margin-bottom: 0;
+}
+
+/* -- Melee Attacks -- */
+.sheet-melee-attacks { width: calc(100% - 140px - 0.8em); }
+.sheet-melee-attacks .sheet-col0 { width: calc(100% - 269px); }
+.sheet-melee-attacks .sheet-col0 input { text-align:left; }
+.sheet-melee-attacks .sheet-col1 { width: 75px; }
+.sheet-melee-attacks .sheet-col2 { width: 30px; }
+.sheet-melee-attacks .sheet-col3 { width: 55px; }
+.sheet-melee-attacks .sheet-col4 { width: 50px; }
+.sheet-melee-attacks .sheet-col4 input { text-align:left; }
+.sheet-melee-attacks .sheet-col5 { width: 30px; }
+.sheet-melee-attacks .sheet-col6 { width: 22px; }
+.sheet-melee-attacks .sheet-header .sheet-col5 { width: 52px; }
+.sheet-melee-attacks .sheet-row-stats .sheet-col0 { margin-left: 48px; width: calc(100% - 316px); }
+
+/* toggle attack modifiers for active defenses, melee, and ranged attacks */
+.sheet-box .sheet-col-mod-tool input[type="checkbox"] {
+    margin-top: -6px;
+}
+
+/* TODO: remove display: none; to start work */
+.sheet-col-mod-tool .sheet-icon {
+    display: none;
+    font-family: "Pictos";
+    color: #bbb;
+    margin-left: -22px;
+    font-size: 18px;
+    text-align: center;
+    font-variant: normal;
+}
+
+.sheet-toggle-mod-tool:checked ~ .sheet-icon {
+    color: green;
+}
+
+.sheet-attack-modifiers-notebox {
+    display: none;
+}
+
+.sheet-attack-modifiers-notebox .sheet-tooltip {
+    margin-left: 0;
+}
+
+input[name="attr_toggle_melee_mod_tool"][value="1"] ~ .sheet-attack-modifiers-notebox {
+    display: block;
+    padding: 5px;
+    margin: 0 0 10px 48px;
+    width: calc( 100% - 58px );
+    border-left: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* more melee specific  css */
+.sheet-melee-attacks .sheet-custom-checkbox label {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+
+
+.sheet-melee-attacks .sheet-custom-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 22px;
+    opacity: 1;
+    position: absolute;
+    margin-left: 25px;
+    line-height: 22px;
+}
+
+.sheet-melee-attacks .sheet-reason-for-mod {
+    width: calc(100% - 162px);
+}
+
+.sheet-melee-attacks .sheet-reason-for-mod input {
+    text-align: left;
+}
+
+/* -- highlight row -- */
+.sheet-melee-attacks .repcontainer.ui-sortable.editmode .sheet-toggle-notes {
+    display: none;
+}
+
+.sheet-melee-attacks input.sheet-toggle-highlight[type="checkbox"] {
+    width: 16px;
+    height: 22px;
+    opacity: 1;
+    position: absolute;
+    margin-left: 25px;
+}
+
+.sheet-melee-attacks .sheet-toggle-notes {
+    position: absolute;
+    left: 0px;
+}
+
+.sheet-melee-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats,
+.sheet-melee-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats input:enabled,
+.sheet-melee-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-details2,
+.sheet-melee-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-melee-notebox,
+.sheet-melee-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-ranged-notebox,
+.sheet-active-defense input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats,
+.sheet-active-defense input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-notebox {
+    background: #B7FFAA;    
+}
+
+.sheet-melee-notebox .sheet-tooltip {
+    margin-left: 0;
+}
+
+/* -- Ranged Attacks -- */
+.sheet-ranged-attacks { width: calc(100% - 140px - 0.8em); }
+.sheet-ranged-attacks .sheet-col0 { width: calc(100% - 460px); }
+.sheet-ranged-attacks .sheet-col0-st { width: calc(100% - 598px); }
+.sheet-ranged-attacks .sheet-col0 input { text-align:left; }
+.sheet-ranged-attacks .sheet-col1 { width: 60px; }
+.sheet-ranged-attacks .sheet-col2 { width: 30px; }
+.sheet-ranged-attacks .sheet-col3 { width: 55px; }
+.sheet-ranged-attacks .sheet-col4 { width: 30px; }
+.sheet-ranged-attacks .sheet-col5 { width: 65px; }
+.sheet-ranged-attacks .sheet-col5-thrown { width: 50px; }
+.sheet-ranged-attacks .sheet-col5.sheet-thrown-object-input input { text-align: center;}
+.sheet-ranged-attacks .sheet-col6 { width: 30px; }
+.sheet-ranged-attacks .sheet-col7 { width: 60px; }
+.sheet-ranged-attacks .sheet-col8 { width: 39px; }
+.sheet-ranged-attacks .sheet-col9 { width: 35px; }
+.sheet-ranged-attacks .sheet-col10 { width: 30px; }
+.sheet-ranged-attacks .sheet-col11 { width: 22px; }
+.sheet-ranged-attacks .sheet-col-verifycheck { width: 30px; }
+.sheet-ranged-attacks .sheet-col-setting-text { width: 290px; }
+.sheet-ranged-attacks .sheet-header .sheet-col10 { width: 52px; }
+.sheet-ranged-attacks .sheet-row-stats .sheet-col0 { margin-left: 48px; width: calc(100% - 510px); }
+.sheet-ranged-attacks .sheet-row-stats .sheet-col0-st { margin-left: 20px; width: calc(100% - 620px); }
+.sheet-ranged-attacks .sheet-row-stats.sheet-row-thrown-object { height: 28px; }
+
+.sheet-ranged-attacks .sheet-custom-checkbox label {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+
+.sheet-ranged-attacks .sheet-custom-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    opacity: 1;
+    margin-left: 5px;
+    line-height: 22px;
+}
+
+.sheet-ranged-attacks .sheet-reason-for-mod {
+    width: calc(100% - 162px);
+}
+
+.sheet-ranged-attacks .sheet-reason-for-mod input {
+    text-align: left;
+}
+
+/* -- highlight row -- */
+.sheet-ranged-attacks .repcontainer.ui-sortable.editmode .sheet-toggle-notes {
+    display: none;
+}
+.sheet-ranged-attacks input.sheet-toggle-highlight[type="checkbox"] {
+    width: 16px;
+    height: 22px;
+    opacity: 1;
+    position: absolute;
+    margin-left: 25px;
+}
+
+.sheet-ranged-attacks .sheet-toggle-notes {
+    position: absolute;
+    left: 0px;
+}
+
+.sheet-ranged-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats,
+.sheet-ranged-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-stats input:enabled,
+.sheet-ranged-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-row-details2,
+.sheet-ranged-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-melee-notebox,
+.sheet-ranged-attacks input.sheet-toggle-highlight[type="checkbox"]:checked ~ .sheet-ranged-notebox {
+    background: #B7FFAA;    
+}
+
+.sheet-ranged-notebox input.sheet-text-left {
+    text-align: left;
+}
+
+.sheet-ranged-notebox .sheet-col-normal {
+    width: 87px;
+    margin-left: 4px;
+    text-align: left;
+}
+
+.sheet-ranged-notebox .sheet-col-row-id {
+    width: 48px;
+}
+
+.sheet-ranged-notebox .sheet-col-input {
+    width: 33px;
+    margin-left: 4px;
+    text-align: left;
+}
+
+.sheet-ranged-notebox .sheet-col-auto {
+    width: calc(100% - 434px);
+}
+
+.sheet-ranged-notebox .sheet-col-wide {
+    width: 250px;
+}
+
+.sheet-ranged-notebox .sheet-col-input-medium {
+    width: 140px;
+    text-align: left;
+}
+
+.sheet-ranged-notebox .sheet-tooltip {
+    margin-left: 0;
+}
+
+/* -- Combat Tools: Range Calculator -- */
+.sheet-firing-up-down {
+    width: calc(100% - 140px - 0.8em);
+    padding-bottom: 5px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-title {
+    background: var(--header-bg);
+}
+
+.sheet-firing-up-down .sheet-table .sheet-title .sheet-cell {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-title .sheet-range-calculator-title {
+    width: 50%;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-title .sheet-range-calculator-reset {
+    width: 49%;
+    text-align: right;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell {
+    padding: 0 5px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-braced {
+    width: 55px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-centered {
+    text-align: center;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-linear-range {
+    width: 72px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-speed {
+    width: 66px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-size {
+    width: 40px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-fire-direction {
+    width: 114px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-fire-up-dwn-distance {
+    width: 50px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-telescopic-vision {
+    width: 50px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-rof {
+    width: 50px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-new-range {
+    width: 58px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-aiming {
+    width: 100px;
+}
+
+.sheet-firing-up-down .sheet-table .sheet-cell.sheet-hit-mod {
+    width: 60px;
+}
+
+button[type=action].sheet-reset,
+button[type=action].sheet-sort {
+    height: 19px;
+    line-height: 19px;
+    background: var(--secondary-highlight);
+    color: var(--secondary-highlight-color); 
+    border-radius: 3px;
+    font-weight: bold;
+    width: 50px;
+}
+
+button[type=action].sheet-green {
+    height: 19px;
+    line-height: 19px;
+    background: #347970;
+    color: #ffffff; 
+    border-radius: 3px;
+    font-weight: bold;
+    width: 50px;
+}
+
+button[type=action].sheet-wide-reset {
+    width: 85px;
+}
+
+
+button[type=action].sheet-sort {
+    width: 100px;
+}
+
+div.sheet-sort-control {
+    margin: 10px 5px 10px 3px;
+}
+
+.sheet-reset input[name="attr_resync_state"][value="clicked"] ~ button.sheet-reset,
+.sheet-reset input[name="attr_resync_via_attributes_state"][value="clicked"] ~ button.sheet-reset,
+.sheet-reset input[name="attr_import_json_state"][value="clicked"] ~ button.sheet-reset {
+    background-color: gray;
+}
+
+
+button.sheet-positive-action {
+    height: 19px;
+    line-height: 19px;
+    color: white;
+    background: var(--highlight-text) ! important;
+    border-radius: 3px;
+    font-weight: bold;
+    width: 75px ! important;
+}
+
+
+/* Melee Section: Slam Tool */
+.sheet-slam-db-width {
+    width: 35px !important;
+}
+
+/* Melee Section: Slam Tool */
+.sheet-slam-damage-width {
+    width: 55px !important;
+}
+
+.sheet-slam-attack-tool {
+    width: calc(100% - 76px - 0.8em);
+    padding-bottom: 5px;
+    overflow: hidden;
+}
+
+.sheet-slam-attack-table {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 22px auto 60px 60px 75px 30px 55px 50px 30px 26px;
+    grid-gap: 2px;
+    justify-content: stretch;
+}
+
+.sheet-slam-attack-table > div {
+    line-height: 22px;
+}
+
+.sheet-slam-attack-table .sheet-title {
+    grid-column: 1 / span 10;
+    background: var(--header-bg);
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0 5px;
+}
+
+.sheet-slam-attack-table .sheet-slam-options-box {
+    grid-column: 2 / span 9;
+    padding: 0 0 10px 5px;
+    display: none;
+    border-left: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.sheet-slam-attack-table .sheet-slam-options-box div.sheet-row {
+    height: auto;
+}
+
+.sheet-slam-attack-table .sheet-slam-options-box div.sheet-row .sheet-cell label {
+    font-weight: bold;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+}
+
+.sheet-slam-attack-table input[name=attr_toggle_slam_options][value=on] ~ .sheet-slam-options-box {
+    display: block;
+}
+
+.sheet-slam-attack-table .sheet-subtitle {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+.sheet-slam-attack-table .sheet-header {
+    background: none;
+}
+
+.sheet-slam-attack-table .sheet-item input:not(.sheet-arrow-toggle) {
+    background: var(--input-bg);
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+.sheet-slam-attack-table .sheet-item input.sheet-align-left {
+    text-align: left;
+}
+
+.sheet-slam-attack-table .sheet-item input:not(.sheet-arrow-toggle):enabled {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sheet-slam-attack-table .sheet-item select {
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+/* universal arrow toggle button */
+.sheet-arrow-toggle {
+    appearance: none;
+    width: 22px !important;
+    height: 22px !important;
+    display: inline-block;
+    position: relative;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer !important;
+    background: #faf7fa;
+    font-size: 18px;
+    padding: 0 0 0 2px;
+    margin: 0;
+    opacity: 1 !important;
+}
+
+.sheet-arrow-toggle:focus {
+    outline: none !important;
+}
+  
+.sheet-arrow-toggle:before {
+    content: "►";
+    display: block;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+}
+  
+.sheet-arrow-toggle:checked:before {
+    content: "▼";
+    padding: 1px 0 0 0;
+}
+
+.sheet-arrow-toggle.sheet-margin-left-sm {
+    margin-left: 2px;
+}
+
+/* Combat Tools: Falling and Collision */
+.sheet-falling-collision {
+    width: calc(100% - 76px - 0.8em);
+    padding-bottom: 5px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-title {
+    background: var(--header-bg);
+}
+
+.sheet-falling-collision .sheet-table .sheet-title .sheet-cell {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell {
+    padding: 0 5px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-row-title {
+    width: 60px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-yards-fallen {
+    width: 80px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-gravity {
+    width: 60px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-atmosphere {
+    width: 60px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-velocity {
+    width: 60px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-terminal-velocity {
+    width: 80px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-hit-points {
+    width: 60px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-hard-object {
+    width: 60px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-hard-object input[type="checkbox"] {
+    opacity: 1;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-damage {
+    width: 60px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-roll-damage {
+    width: 34px;
+}
+
+.sheet-falling-collision .sheet-table .sheet-cell.sheet-reset {
+    width: 60px;
+}
+
+/* Combat Tools: Demolition */
+.sheet-demolition {
+    width: calc(100% - 76px - 0.8em);
+    padding-bottom: 5px;
+}
+
+.sheet-demolition .sheet-table .sheet-title {
+    color:var(--header-text);
+    background: var(--header-bg);
+}
+
+.sheet-demolition .sheet-table .sheet-title .sheet-cell {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell {
+    padding: 0 5px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-row-title {
+    width: 75px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-select-box {
+    width: 75px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-text-box {
+    width: 110px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-input {
+    width: 53px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-six-d-spacer {
+    width: 8px;
+    padding: 0;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-damage {
+    width: 60px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-roll-damage {
+    width: 36px;
+}
+
+.sheet-demolition .sheet-table .sheet-cell.sheet-reset {
+    width: 45px;
+}
+
+.sheet-demolition .sheet-popup.sheet-frag-label {
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Combat Tools: Shotgun tool */
+.sheet-shotgun-tool {
+    width: calc(100% - 140px - 0.8em);
+    padding-bottom: 5px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-title {
+    color:var(--header-text);
+    background: var(--header-bg);
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-title .sheet-cell {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell {
+    padding: 0 5px 0 5px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-damage {
+    width: 65px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-rof {
+    width: 65px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-damage-type {
+    width: 65px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-range {
+    width: 75px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-range span.sheet-one-half {
+    font-size: 10px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-close-range {
+    width: 75px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-close-rof {
+    width: 65px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-close-damage {
+    width: 65px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-roll-damage {
+    width: 36px;
+}
+
+.sheet-shotgun-tool .sheet-table .sheet-cell.sheet-reset {
+    width: 60px;
+}
+
+.sheet-reset button.sheet-reset {
+    height: 19px;
+    line-height: 9px;
+    color: white;
+    background: var(--highlight-text);
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.sheet-reset button.sheet-reset.sheet-small-width {
+    width: 60px;
+}
+
+.sheet-reset button.sheet-reset.sheet-medium-width {
+    width: 135px;
+}
+
+.sheet-view-resync-settings {
+    background: var(--secondary-highlight);
+    color: var(--secondary-highlight-color);
+    padding: 3px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    line-height: 18px;
+    width: 45px;
+    font-size: 11px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+}
+
+.sheet-shotgun-tool .sheet-popup.sheet-frag-label {
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sheet-shotgun-tool .sheet-shotgun-notes {
+    padding: 10px 0 0 10px;
+    width: 99%;
+    height: 40px;
+}
+
+/* Damage Resistance */
+.sheet-damage-reduction { float: right; width: 190px; }
+.sheet-damage-reduction .sheet-col0 { width: 55px; }
+.sheet-damage-reduction .sheet-col0 input { text-align: right; font-weight: bold; }
+.sheet-damage-reduction .sheet-col1 { width: 25px; text-align: center; }
+.sheet-damage-reduction .sheet-col2 { width: 110px; text-align: center; }
+.sheet-damage-reduction .sheet-row-title .sheet-col0 { width: 100%; }
+.sheet-damage-reduction .sheet-header .sheet-col2 { width: 110px; }
+
+/* range/speed modifier image column */
+.sheet-speed-range-images {
+    float: right;
+    width: 140px;
+}
+
