@@ -1,0 +1,642 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Roll20 GURPS Import Schema",
+  "type": "object",
+  "properties": {
+    "CharacterName": {
+      "type": "string"
+    },
+    "Fullname": {
+      "type": "string"
+    },
+    "Playername": {
+      "type": "string"
+    },
+    "Nickname": {
+      "type": "string"
+    },
+    "Race": {
+      "type": "string"
+    },
+    "RaceRef": {
+      "type": "string"
+    },
+    "TemplateNames": {
+      "type": "string"
+    },
+    "Gender": {
+      "type": "string"
+    },
+    "Size": {
+      "type": "integer"
+    },
+    "ApplySizeModifier": {
+      "type": "boolean"
+    },
+    "Reactions": {
+      "type": "string"
+    },
+    "CampaignTl": {
+      "type": "integer"
+    },
+    "TotalPoints": {
+      "type": "integer"
+    },
+    "Tl": {
+      "type": "integer"
+    },
+    "TlPts": {
+      "type": "integer"
+    },
+    "Status": {
+      "type": "string"
+    },
+    "Wealth": {
+      "type": "string"
+    },
+    "Income": {
+      "type": "integer"
+    },
+    "CostOfLiving": {
+      "type": "integer"
+    },
+    "Stash": {
+      "type": "integer"
+    },
+    "Age": {
+      "type": "string"
+    },
+    "Height": {
+      "type": "string"
+    },
+    "Weight": {
+      "type": "integer"
+    },
+    "Appearance": {
+      "type": "integer"
+    },
+    "GeneralAppearance": {
+      "type": "string"
+    },
+    "StrengthMod": {
+      "type": "integer"
+    },
+    "StrengthPoints": {
+      "type": "integer"
+    },
+    "DexterityMod": {
+      "type": "integer"
+    },
+    "DexterityPoints": {
+      "type": "integer"
+    },
+    "IntelligenceMod": {
+      "type": "integer"
+    },
+    "IntelligencePoints": {
+      "type": "integer"
+    },
+    "HealthMod": {
+      "type": "integer"
+    },
+    "HealthPoints": {
+      "type": "integer"
+    },
+    "PerceptionMod": {
+      "type": "integer"
+    },
+    "PerceptionPoints": {
+      "type": "integer"
+    },
+    "VisionMod": {
+      "type": "integer"
+    },
+    "VisionPoints": {
+      "type": "integer"
+    },
+    "HearingMod": {
+      "type": "integer"
+    },
+    "HearingPoints": {
+      "type": "integer"
+    },
+    "TasteSmellMod": {
+      "type": "integer"
+    },
+    "TasteSmellPoints": {
+      "type": "integer"
+    },
+    "TouchMod": {
+      "type": "integer"
+    },
+    "TouchPoints": {
+      "type": "integer"
+    },
+    "WillpowerMod": {
+      "type": "integer"
+    },
+    "WillpowerPoints": {
+      "type": "integer"
+    },
+    "FearCheckMod": {
+      "type": "integer"
+    },
+    "FearCheckPoints": {
+      "type": "integer"
+    },
+    "StunCheckMod": {
+      "type": "integer"
+    },
+    "KnockdownCheckMod": {
+      "type": "integer"
+    },
+    "UnconsciousCheckMod": {
+      "type": "integer"
+    },
+    "UnconsciousCheckPoints": {
+      "type": "integer"
+    },
+    "DeathCheckMod": {
+      "type": "integer"
+    },
+    "DeathCheckPoints": {
+      "type": "integer"
+    },
+    "BasicSpeedMod": {
+      "type": "integer"
+    },
+    "BasicSpeedPoints": {
+      "type": "integer"
+    },
+    "BasicMoveMod": {
+      "type": "integer"
+    },
+    "BasicMovePoints": {
+      "type": "integer"
+    },
+    "EnhancedGroundMoveMod": {
+      "type": "integer"
+    },
+    "EnhancedGroundMovePoints": {
+      "type": "integer"
+    },
+    "DodgeMod": {
+      "type": "integer"
+    },
+    "LiftStMod": {
+      "type": "integer"
+    },
+    "LiftStPoints": {
+      "type": "integer"
+    },
+    "StrikingStMod": {
+      "type": "integer"
+    },
+    "StrikingStPoints": {
+      "type": "integer"
+    },
+    "HitPointsMod": {
+      "type": "integer"
+    },
+    "HitPointsPoints": {
+      "type": "integer"
+    },
+    "HitPoints": {
+      "type": "integer"
+    },
+    "FatiguePointsMod": {
+      "type": "integer"
+    },
+    "FatiguePointsPoints": {
+      "type": "integer"
+    },
+    "FatiguePoints": {
+      "type": "integer"
+    },
+    "FlightChecked": {
+      "type": "boolean"
+    },
+    "FlightPoints": {
+      "type": "integer"
+    },
+    "BasicAirMoveMod": {
+      "type": "integer"
+    },
+    "BasicAirMovePoints": {
+      "type": "integer"
+    },
+    "EnhancedAirLevel": {
+      "type": "integer"
+    },
+    "EnhancedAirMovePoints": {
+      "type": "integer"
+    },
+    "AmphibiousChecked": {
+      "type": "boolean"
+    },
+    "AmphibiousPoints": {
+      "type": "integer"
+    },
+    "BasicWaterMoveMod": {
+      "type": "integer"
+    },
+    "BasicWaterMovePoints": {
+      "type": "integer"
+    },
+    "EnhancedWaterLevel": {
+      "type": "integer"
+    },
+    "EnhancedWaterMovePoints": {
+      "type": "integer"
+    },
+    "SuperJumpEnteredLevel": {
+      "type": "integer"
+    },
+    "SuperJumpPoints": {
+      "type": "integer"
+    },
+    "SpellBonus": {
+      "type": "integer"
+    },
+    "CombatReflexes": {
+      "type": "boolean"
+    },
+    "RepeatingLanguages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Spoken": {
+            "type": "integer"
+          },
+          "Written": {
+            "type": "integer"
+          },
+          "IsNative": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "RepeatingCultures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Points": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "RepeatingTraits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "TraitLevel": {
+            "type": "string"
+          },
+          "Foa": {
+            "type": "string"
+          },
+          "Points": {
+            "type": "integer"
+          },
+          "Ref": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RepeatingPerks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "RepeatingQuirks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "RepeatingDisadvantages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "TraitLevel": {
+            "type": "string"
+          },
+          "ControlRating": {
+            "type": "string"
+          },
+          "Points": {
+            "type": "integer"
+          },
+          "Ref": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RepeatingRacial": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "RepeatingSkills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Tl": {
+            "type": "string"
+          },
+          "Base": {
+            "type": "string"
+          },
+          "Difficulty": {
+            "type": "string"
+          },
+          "Bonus": {
+            "type": "integer"
+          },
+          "Points": {
+            "type": "integer"
+          },
+          "Skill": {
+            "type": "integer"
+          },
+          "Ref": {
+            "type": "string"
+          },
+          "SkillModNotes": {
+            "type": "string"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RepeatingTechniquesrevised": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "RepeatingDefense": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Info": {
+            "type": "string"
+          },
+          "Skill": {
+            "type": "integer"
+          },
+          "SkillMod": {
+            "type": "integer"
+          },
+          "DefenseModReason": {
+            "type": "string"
+          },
+          "InfoDescription": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RepeatingMelee": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Damage": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Reach": {
+            "type": "string"
+          },
+          "Skill": {
+            "type": "integer"
+          },
+          "ArmorDivisor": {
+            "type": "integer"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RepeatingRanged": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Damage": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Acc": {
+            "type": "string"
+          },
+          "Range": {
+            "type": "string"
+          },
+          "Rof": {
+            "type": "string"
+          },
+          "Shots": {
+            "type": "string"
+          },
+          "Bulk": {
+            "type": "string"
+          },
+          "Recoil": {
+            "type": "string"
+          },
+          "Skill": {
+            "type": "integer"
+          },
+          "Malfunction": {
+            "type": "string"
+          },
+          "MalfunctionVerify": {
+            "type": "boolean"
+          },
+          "MalfunctionVeryReliable": {
+            "type": "boolean"
+          },
+          "ArmorDivisor": {
+            "type": "integer"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RepeatingItem": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Tl": {
+            "type": "string"
+          },
+          "LegalityClass": {
+            "type": "string"
+          },
+          "Ref": {
+            "type": "string"
+          },
+          "Count": {
+            "type": "integer"
+          },
+          "Cost": {
+            "type": "integer"
+          },
+          "Weight": {
+            "type": "integer"
+          },
+          "Notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RepeatingSpells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Idkey": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Difficulty": {
+            "type": "string"
+          },
+          "SpellModifier": {
+            "type": "integer"
+          },
+          "Points": {
+            "type": "integer"
+          },
+          "SpellResistedBy": {
+            "type": "string"
+          },
+          "Duration": {
+            "type": "string"
+          },
+          "Cost": {
+            "type": "string"
+          },
+          "Skill": {
+            "type": "integer"
+          },
+          "Ref": {
+            "type": "string"
+          },
+          "Casttime": {
+            "type": "string"
+          },
+          "Maintain": {
+            "type": "string"
+          },
+          "SpellClass": {
+            "type": "string"
+          },
+          "SpellCollege": {
+            "type": "string"
+          },
+          "SpellCollegeSecondary": {
+            "type": "string"
+          },
+          "SpellModNotes": {
+            "type": "string"
+          },
+          "SpellNotes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
